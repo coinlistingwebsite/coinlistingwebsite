@@ -1,0 +1,316 @@
+"use client";
+import {
+  Api,
+  AssessmentOutlined,
+  Brush,
+  CurrencyBitcoin,
+  GitHub,
+  MenuBook,
+  NewspaperOutlined,
+  Search,
+  Settings,
+  SmartToy,
+  Telegram,
+  TipsAndUpdates,
+  Twitter,
+} from "@mui/icons-material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import CategoryIcon from "@mui/icons-material/Category";
+import LinkIcon from "@mui/icons-material/Link";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import Link from "next/link";
+import { useContext } from "react";
+import { ThemeContext } from "@/context/ThemeContext";
+
+const Navbar = () => {
+  const { theme, changeTheme } = useContext(ThemeContext);
+
+  return (
+    <>
+      <div className="hidden md:flex flex-row max-w-7xl mx-auto p-2 ">
+        <div className="flex flex-row text-xs gap-3 flex-1">
+          <span className="my-auto">
+            Coins : <b>14,402</b>
+          </span>
+          <span className="my-auto">
+            Exchanges : <b>1,402</b>
+          </span>
+          <span className="my-auto">
+            MarketCap :<b>$21.4T</b>
+            <b className="text-red-400">
+              <ArrowDropDownIcon className="text-red-400 m-0" /> 41.5%
+            </b>
+          </span>
+          <span className="my-auto">
+            24hr Vol : <b>$101.46B</b>
+          </span>
+        </div>
+
+        <div className="my-auto space-x-1">
+          <label className="swap swap-rotate  h-full">
+            {/* this hidden checkbox controls the state */}
+            <input
+              type="checkbox"
+              checked={theme == "corporate" ? false : true}
+              onChange={(event) => {
+                if (event.target.checked) {
+                  changeTheme("dark");
+                } else {
+                  changeTheme("corporate");
+                }
+              }}
+            />
+
+            {/* sun icon */}
+            <svg
+              className="swap-on fill-current w-5 h-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+            </svg>
+
+            {/* moon icon */}
+            <svg
+              className="swap-off fill-current w-5 h-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+            </svg>
+          </label>
+
+          <button className="btn btn-info btn-sm">Edit Token</button>
+          <a
+            href="submityourtoken"
+            target="_blank"
+            className="btn btn-success btn-sm"
+          >
+            Submit Token
+          </a>
+        </div>
+      </div>
+
+      {/* <div className="border border-[1px] border-accent"></div> */}
+      <div className="divider p-0 m-0"></div>
+
+      <div className="navbar max-w-7xl mx-auto">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a>Item 1</a>
+              </li>
+              <li>
+                <a>Parent</a>
+                <ul className="p-2">
+                  <li>
+                    <a>Submenu 1</a>
+                  </li>
+                  <li>
+                    <a>Submenu 2</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a>Item 3</a>
+              </li>
+            </ul>
+          </div>
+          <Link href="/" className="btn btn-ghost text-xl">
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2FBullishMarketCap.png?alt=media&token=0ce6c0c8-a2fd-496f-935a-54b92ac6b4f4"
+              className="rounded-full h-full"
+              alt="Logo"
+            />
+          </Link>
+        </div>
+
+        <div className="navbar-start hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 gap-5">
+            <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
+              Cryptocurrencies
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
+              >
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <BarChartIcon className="text-sm" />
+                    <span className="flex-1"> By Marketcap</span>
+                  </span>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <CategoryIcon className="text-sm" />
+                    <span className="flex-1"> Categories</span>
+                  </span>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <LinkIcon className="text-sm" />
+                    <span className="flex-1"> Chains</span>
+                  </span>
+                </li>
+                <hr />
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <AutoAwesomeIcon className="text-sm" />
+                    <Link href="/newcryptocurrencies" className="flex-1">
+                      New Cryptocurrencies
+                    </Link>
+                  </span>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <EmojiEventsIcon className="text-sm" />
+                    <Link href="/gainers-losers" className="flex-1">
+                      Gainers & Losers
+                    </Link>
+                  </span>
+                </li>
+              </ul>
+            </li>
+
+            <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
+              Exchanges
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
+              >
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <BarChartIcon className="text-sm" />
+                    <span className="flex-1">Crypto Exchanges</span>
+                  </span>
+                </li>
+              </ul>
+            </li>
+
+            <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
+              Learn
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
+              >
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <MenuBook className="text-sm" />
+                    <span className="flex-1"> Learn Crypto</span>
+                  </span>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <TipsAndUpdates className="text-sm" />
+                    <span className="flex-1">Research Insights</span>
+                  </span>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <Link href="/cryptonews" className="my-auto flex-1 flex">
+                    <NewspaperOutlined className="text-sm" />
+                    <span className="flex-1">News</span>
+                  </Link>
+                </li>
+
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <AssessmentOutlined className="text-sm" />
+                    <span className="flex-1"> Reports</span>
+                  </span>
+                </li>
+              </ul>
+            </li>
+
+            <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
+              <Link href="/services">Services</Link>
+
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
+              >
+                <li className="rounded-lg flex flex-row">
+                  <Link href="/services" className="my-auto flex-1 flex">
+                    <SmartToy className="text-sm" />
+                    <span className="flex-1">Bot Services</span>
+                  </Link>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <Link href="/services" className="my-auto flex-1 flex">
+                    <GitHub className="text-sm" />
+                    <span className="flex-1">Fullstack Developer</span>
+                  </Link>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <Link href="/services" className="my-auto flex-1 flex">
+                    <CurrencyBitcoin className="text-sm" />
+                    <span className="flex-1">Blockchain Developer</span>
+                  </Link>
+                </li>
+
+                <li className="rounded-lg flex flex-row">
+                  <Link href="/services" className="my-auto flex-1 flex">
+                    <Brush className="text-sm" />
+                    <span className="flex-1">Crypto Designer</span>
+                  </Link>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <Link href="/services" className="my-auto flex-1 flex">
+                    <Telegram className="text-sm" />
+                    <span className="flex-1">Telegram Shilling</span>
+                  </Link>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <Link href="/services" className="my-auto flex-1 flex">
+                    <Twitter className="text-sm" />
+                    <span className="flex-1">Twitter Shilling</span>
+                  </Link>
+                </li>
+                <li className="rounded-lg flex flex-row">
+                  <span className="my-auto flex-1 flex">
+                    <Api className="text-sm" />
+                    <span className="flex-1">API (Coming soon)</span>
+                  </span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div className=" hidden lg:flex navbar-end">
+          <div className="border rounded-full p-2 w-1/2 flex flex-row focus:w-full hover:w-full ease-in duration-700">
+            <Search />
+            <input
+              type="text"
+              placeholder="Search a token ..."
+              className="outline-none placeholder:font-light bg-transparent flex-1 ml-2"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="divider p-0 m-0"></div>
+    </>
+  );
+};
+
+export default Navbar;

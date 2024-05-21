@@ -1,5 +1,11 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/main/navbar";
+import Footer from "@/components/main/footer";
+
+import ClientThemeWrapper from "@/context/ClientThemeWrapper";
+import ThemeProvider from "@/context/ThemeContext";
+import CryptoDataProvider from "@/context/CryptoDataContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +17,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className}`}>
+        <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
+        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"></script>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+
+        <ThemeProvider>
+          <ClientThemeWrapper>
+            <CryptoDataProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </CryptoDataProvider>
+          </ClientThemeWrapper>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
