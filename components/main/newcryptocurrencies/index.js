@@ -4,6 +4,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 import React, { useContext } from "react";
 import Tr from "./tr";
 import SectionOne from "../home-component/section-1";
+import NewTokenMarquee from "@/components/elements/new-token-marquee";
 
 const NewCryptocurrency = () => {
   const { newTokens, loading } = useContext(CryptoDataContext);
@@ -19,6 +20,15 @@ const NewCryptocurrency = () => {
   return (
     <>
       <SectionOne />
+
+      <br />
+
+      <NewTokenMarquee />
+
+      <p className="my-10">
+        Introducing the top new cryptocurrencies shaking up the digital asset
+        landscape.
+      </p>
 
       <div
         className={`${

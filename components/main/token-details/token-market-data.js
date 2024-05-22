@@ -46,6 +46,9 @@ const TokenMarketData = ({ details, onDatabase }) => {
     fetchMarketData();
   }, []);
 
+  var options = { style: "currency", currency: "USD" };
+  var formatter = new Intl.NumberFormat("en-US", options);
+
   return (
     <div>
       {loading ? (
@@ -57,12 +60,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
           {market && (
             <>
               <div className="mt-5">
-                <b className="text-3xl">
-                  {new Intl.NumberFormat("en-IN", {
-                    style: "currency",
-                    currency: "USD",
-                  }).format(market.price)}
-                </b>
+                <b className="text-3xl"> {formatter.format(market.price)}</b>
                 <span
                   className={
                     market.percent_change_24h > 0

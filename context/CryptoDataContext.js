@@ -114,7 +114,11 @@ export default function CryptoDataProvider({ children }) {
   };
 
   useLayoutEffect(() => {
-    fetchCryptoData();
+    for (let i = 0; i < 200; i++) {}
+
+    setTimeout(() => {
+      fetchCryptoData();
+    }, 4000);
   }, []);
 
   return (

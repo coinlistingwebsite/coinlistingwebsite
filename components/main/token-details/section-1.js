@@ -26,6 +26,7 @@ const SectionOne = ({ details, onDatabase }) => {
             <img
               src={details.logo}
               alt={onDatabase ? details.project_name : details.name}
+              className="img"
             />
           </div>
         </div>

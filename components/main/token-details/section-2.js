@@ -6,6 +6,8 @@ import React, { useContext } from "react";
 const SectionTwo = ({ details, onDatabase }) => {
   let { theme } = useContext(ThemeContext);
 
+  console.log(details);
+
   return (
     <div className="p-1 lg:w-[65%]">
       <div id="dexscreener-embed">

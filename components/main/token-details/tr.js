@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { formatNumber } from "@/lib/validations/validations";
+
 
 const Tr = ({ title, description, value }) => {
   var options = { style: "currency", currency: "USD" };

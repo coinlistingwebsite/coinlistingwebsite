@@ -4,18 +4,12 @@ import NewsSection from "@/components/sub-main/news-section";
 import SectionOne from "./section-1";
 import SectionTwo from "./section-2";
 import TokenTable from "@/components/sub-main/token-table";
-import HomeTokenTable from "@/components/sub-main/home-token-table";
-import Tweets from "@/components/sub-main/tweets";
-import NewsMarquee from "@/components/elements/news-marquee";
 
 const HomeComponent = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-0">
       {/* Section 1 */}
       <SectionOne />
-      <br />
-
-      <NewsMarquee />
 
       <br />
       {/* Section 2 */}

@@ -16,7 +16,6 @@
 
 @media (min-width: 1400px) {
   #dexscreener-embed {
-  
   }
 }
 
@@ -26,4 +25,8 @@
   top: 0;
   left: 0;
   border: 0;
+}
+
+.img {
+  pointer-events: none;
 }

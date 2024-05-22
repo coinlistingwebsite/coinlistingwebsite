@@ -6,7 +6,7 @@ import Moment from "react-moment";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-const NewsMarquee = () => {
+const NewTokenMarquee = () => {
   let { loading, newTokens } = useContext(CryptoDataContext);
 
   if (loading) {
@@ -19,7 +19,7 @@ const NewsMarquee = () => {
     <div>
       <Marquee
         direction="left"
-        className="border border-base-200 py-1 rounded-3xl flex flex-row"
+        className="border border-2 border-base-200 py-1 rounded-3xl flex flex-row"
         pauseOnHover
       >
         {newTokens?.map((token, index) => (
@@ -56,4 +56,4 @@ const NewsMarquee = () => {
   );
 };
 
-export default NewsMarquee;
+export default NewTokenMarquee;
