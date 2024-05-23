@@ -1,15 +1,23 @@
-import Tweet from "@/components/sub-main/tweets/tweet";
 import { ThemeContext } from "@/context/ThemeContext";
 import { ArrowForward, Twitter } from "@mui/icons-material";
 import React, { useContext } from "react";
 
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
+
+import {
+  ArrowDownward,
+  Chat,
+  Facebook,
+  GitHub,
+  LanguageRounded,
+  Reddit,
+} from "@mui/icons-material";
+
 const SectionTwo = ({ details, onDatabase }) => {
   let { theme } = useContext(ThemeContext);
 
-  console.log(details);
-
   return (
-    <div className="p-1 lg:w-[65%]">
+    <div className="p-1 lg:w-[50%]">
       <div id="dexscreener-embed">
         {onDatabase ? (
           <iframe
@@ -36,6 +44,51 @@ const SectionTwo = ({ details, onDatabase }) => {
       <div className="opacity-75 text-xs leading-7">
         {onDatabase ? details.full_description : details.description}
       </div>
+
+      {/* Cex and Dex listing */}
+
+      {onDatabase && (
+        <div className="overflow-x-auto border border-base-200 rounded-3xl my-10">
+          <table className="table table-zebra">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>Dex Listing</th>
+                <th>Cex Listing</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+
+              <tr>
+                <td>
+                  {onDatabase && details.urls.dex_link ? (
+                    <a
+                      href={details.urls.dex_link}
+                      className="btn btn-info btn-sm ml-3"
+                    >
+                      <CurrencyBitcoinIcon />
+                      {details.urls.dex_name}
+                    </a>
+                  ) : null}
+                </td>
+                <td>
+                  {onDatabase && details.urls.cex_link ? (
+                    <a
+                      href={details.urls.cex_link}
+                      className="btn btn-success btn-sm ml-3"
+                    >
+                      <CurrencyBitcoinIcon />
+                      {details.urls.cex_name}
+                    </a>
+                  ) : null}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
+
       <div className="mt-5">Tags</div>
       <div className="opacity-75 text-xs mt-2">
         {details.tags?.map((tag, index) => (

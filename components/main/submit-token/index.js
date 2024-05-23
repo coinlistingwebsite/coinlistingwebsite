@@ -296,32 +296,6 @@ const SubmitTokenComponent = () => {
       </label>
 
       {/* ------------------------ */}
-      {/* One line description */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">One-liner description</span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              short_description: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            Provide a snappy and concise tagline for the project. E,g, KAVA - A
-            Cross-Chain Platform for Decentralized Finance. Band Protocol -
-            Secure and scalable decentralized oracle for Web3.0.{" "}
-          </span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
       {/* Detailed Project Description (Cryptoasset) */}
 
       <label className="form-control">
@@ -436,33 +410,6 @@ const SubmitTokenComponent = () => {
       </label>
 
       {/* ------------------------ */}
-      {/* Website 2 */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">Website 2 (optional)</span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              website_2: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            There is data validation for this field. Kindly ensure that your URL
-            conforms to the following format: https://www.website.com. We
-            recommend adding your dexscan URL for this field e.g.
-            https://dexscan.app/bsc/0x2170ed0880ac9a755fd29b2688956bd959f933f8/
-          </span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
       {/* Chain */}
 
       <SelectChain formData={formData} setFormData={setFormData} />
@@ -484,40 +431,6 @@ const SubmitTokenComponent = () => {
             });
           }}
         />
-      </label>
-
-      {/* ------------------------ */}
-      {/* Number of Decimals */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Number of Decimals (Contract Address 1)(optional)
-          </span>
-        </div>
-        <input
-          type="number"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              contract_decimals: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            This is usually found on the explorer page of the asset. See example
-            -
-            <a
-              href="https://gyazo.com/7e2b24ca517cd90fd3a36f83d7c0a88f"
-              target="_blank"
-              className="underline text-secondary"
-            >
-              https://gyazo.com/7e2b24ca517cd90fd3a36f83d7c0a88f
-            </a>
-          </span>
-        </div>
       </label>
 
       {/* ------------------------ */}
@@ -609,56 +522,6 @@ const SubmitTokenComponent = () => {
 
       <label className="form-control w-full">
         <div className="label">
-          <span className="submit_token_text">
-            Announcement (e.g. Bitcointalk)(optional)
-          </span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              announcement: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">Insert a valid URL.</span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
-      {/* Source Code (e.g. Github, Gitter)(optional)
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Message Board 1 (e.g. Blog/Medium)(optional)
-          </span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              message_board: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">Insert a valid URL.</span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
-      {/* Source Code (e.g. Github, Gitter)(optional)
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
           <span className="submit_token_text">Twitter</span>
         </div>
         <input
@@ -683,79 +546,6 @@ const SubmitTokenComponent = () => {
               https://twitter.com/bitcoin
             </a>
           </span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
-      {/* Source Code (e.g. Github, Gitter)(optional)
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">Reddit (optional)</span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              reddit: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            Insert a valid URL for a subreddit.
-          </span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
-      {/* Source Code (e.g. Github, Gitter)(optional)
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">Facebook(optional)</span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              facebook: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">Insert a valid URL</span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
-      {/* Source Code (e.g. Github, Gitter)(optional)
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Video Channel (e.g. YouTube)(optional)
-          </span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              youtube: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">Insert a valid URL</span>
         </div>
       </label>
 
@@ -792,53 +582,8 @@ const SubmitTokenComponent = () => {
         </div>
       </label>
 
-      {/* ------------------------ */}
-      {/* Chat 1 (e.g. Discord, Telegram, Slack, Weibo).
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">LinkedIn(optional)</span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              linkedin: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">Insert a valid URL.</span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
-      {/* Chat 1 (e.g. Discord, Telegram, Slack, Weibo).
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Mobile App 1 (e.g. Google Play store, iTunes store)(optional)
-          </span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              mobile_app: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">Insert a valid URL.</span>
-        </div>
-      </label>
+      <br />
+      <br />
 
       {/* ------------------------ */}
       {/* Chat 1 (e.g. Discord, Telegram, Slack, Weibo).
@@ -924,6 +669,9 @@ const SubmitTokenComponent = () => {
         </div>
       </label>
 
+      <br />
+      <br />
+
       {/* ------------------------ */}
 
       <label className="form-control w-full">
@@ -1000,6 +748,9 @@ const SubmitTokenComponent = () => {
       {/* ------------------------ */}
       {/* Chat 1 (e.g. Discord, Telegram, Slack, Weibo).
        */}
+
+      <br />
+      <br />
 
       <label className="form-control w-full mb-10">
         <div className="label">
@@ -1081,7 +832,7 @@ const SubmitTokenComponent = () => {
           <div>
             <h3 className="font-bold">Your Request has been Submitted!</h3>
             <div className="text-xs">
-              Request Id is {requestid} {" "} Please Store this ID number.
+              Request Id is {requestid} Please Store this ID number.
             </div>
           </div>
         </div>

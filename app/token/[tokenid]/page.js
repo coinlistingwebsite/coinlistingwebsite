@@ -7,7 +7,6 @@ import React from "react";
 export const dynamic = "force-dynamic";
 
 export default async function TokenPage({ params }) {
-  
   let tokenid = params.tokenid;
   const { details, onDatabase, error } = await fetchTokenDetails(tokenid);
 
@@ -23,10 +22,14 @@ export default async function TokenPage({ params }) {
   }
 
   return (
-    <main className="max-w-7xl mx-auto">
+    <main className="max-w-[1500px] mx-auto">
       <SectionOne />
 
-      <TokenDetails details={details} onDatabase={onDatabase} />
+      <TokenDetails
+        details={details}
+        onDatabase={onDatabase}
+        tokenid={tokenid}
+      />
     </main>
   );
 }

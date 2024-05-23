@@ -3,21 +3,9 @@ import Tr from "./tr";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import {
-  ArrowDownward,
-  Chat,
-  Facebook,
-  GitHub,
-  LanguageRounded,
-  Reddit,
-  Twitter,
-} from "@mui/icons-material";
-import TravelExploreIcon from "@mui/icons-material/TravelExplore";
-import TrInfo from "./tr-info";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 
 const TokenMarketData = ({ details, onDatabase }) => {
-  console.log(details);
+
   const [market, setMarket] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -60,7 +48,8 @@ const TokenMarketData = ({ details, onDatabase }) => {
           {market && (
             <>
               <div className="mt-5">
-                <b className="text-3xl"> {formatter.format(market.price)}</b>
+                <b className="text-3xl"> ${market.price}</b>
+                <br />
                 <span
                   className={
                     market.percent_change_24h > 0
@@ -119,114 +108,7 @@ Max Supply = Theoretical maximum as coded"
         </>
       )}
 
-      <div className="flex flex-row">
-        <button className="btn btn-success btn-sm">
-          Buy / Sell <ArrowDownward />
-        </button>
-
-        {onDatabase && details.urls.dex_link ? (
-          <a
-            href={details.urls.dex_link}
-            className="btn btn-success btn-sm ml-3"
-          >
-            <CurrencyBitcoinIcon />
-            {details.urls.dex_name}
-          </a>
-        ) : null}
-
-        {onDatabase && details.urls.cex_link ? (
-          <a
-            href={details.urls.cex_link}
-            className="btn btn-success btn-sm ml-3"
-          >
-            <CurrencyBitcoinIcon />
-            {details.urls.cex_name}
-          </a>
-        ) : null}
-      </div>
-      <div className="text-xl mt-3 p-2 font-bold">Info</div>
-
-      <table className="table table-xs w-full mt-2">
-        <tbody>
-          <TrInfo
-            title="Website"
-            link={
-              onDatabase ? (
-                <>{details.urls.website}</>
-              ) : (
-                <>{details.urls.website[0]}</>
-              )
-            }
-            icon={<LanguageRounded className="text-xs" />}
-          />
-          <TrInfo
-            title="Explorer"
-            link={
-              onDatabase ? (
-                <>{details.urls.etherscan}</>
-              ) : (
-                <>{details.urls.explorer[0]}</>
-              )
-            }
-            icon={<TravelExploreIcon className="text-xs" />}
-          />
-          <TrInfo
-            title="Telegram"
-            link={
-              onDatabase ? (
-                <>{details.urls.chat}</>
-              ) : (
-                <>{details.urls.chat[0]}</>
-              )
-            }
-            icon={<Chat className="text-xs" />}
-          />
-          <TrInfo
-            title="Twitter"
-            link={
-              onDatabase ? (
-                <>{details.urls.twitter}</>
-              ) : (
-                <>{details.urls.twitter[0]}</>
-              )
-            }
-            icon={<Twitter className="text-xs" />}
-          />
-          <TrInfo
-            title="Source Code"
-            link={
-              onDatabase ? (
-                <>{details.urls.source_code}</>
-              ) : (
-                <>{details.urls.source_code[0]}</>
-              )
-            }
-            icon={<GitHub className="text-xs" />}
-          />
-          <TrInfo
-            title="Reddit"
-            link={
-              onDatabase ? (
-                <>{details.urls.reddit}</>
-              ) : (
-                <>{details.urls.reddit[0]}</>
-              )
-            }
-            icon={<Reddit className="text-xs" />}
-          />
-          <TrInfo
-            title="Facebook"
-            link={
-              onDatabase ? (
-                <>{details.urls.facebook}</>
-              ) : (
-                <>{details.urls.facebook[0]}</>
-              )
-            }
-            icon={<Facebook className="text-xs" />}
-          />
-        </tbody>
-      </table>
+     
     </div>
   );
 };

@@ -4,6 +4,7 @@ import NewsSection from "@/components/sub-main/news-section";
 import SectionOne from "./section-1";
 import SectionTwo from "./section-2";
 import TokenTable from "@/components/sub-main/token-table";
+import Link from "next/link";
 
 const HomeComponent = () => {
   return (
@@ -25,9 +26,9 @@ const HomeComponent = () => {
         <b>BullishMarketCap</b> and unleash the full potential of your digital
         endeavors. From Meme Websites, Telergam Bots, to Graphical designs, BMC
         is ready to serve you.
-        <small className="badge badge-accent ml-5 badge-xs">
+        <Link href="/services" className="badge badge-success ml-5 badge-xs">
           read more ...
-        </small>
+        </Link>
       </div>
       {/* Tokens Table */}
       <TokenTable />

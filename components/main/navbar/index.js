@@ -83,13 +83,9 @@ const Navbar = () => {
           </label>
 
           <button className="btn btn-info btn-sm">Edit Token</button>
-          <a
-            href="submityourtoken"
-            target="_blank"
-            className="btn btn-success btn-sm"
-          >
+          <Link href="/submityourtoken" className="btn btn-success btn-sm">
             Submit Token
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -140,7 +136,7 @@ const Navbar = () => {
           </div>
           <Link href="/" className="btn btn-ghost text-xl">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2FBullishMarketCap.png?alt=media&token=0ce6c0c8-a2fd-496f-935a-54b92ac6b4f4"
+              src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2FBullishMarketCap%20(2).png?alt=media&token=d955566c-066b-4aef-bfc4-bfb04216cc9a"
               className="rounded-full h-full"
               alt="Logo"
             />
