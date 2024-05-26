@@ -5,7 +5,7 @@ import { createContext, useState, useLayoutEffect } from "react";
 export const CryptoDataContext = createContext();
 
 export default function CryptoDataProvider({ children }) {
-  const [cryptoData, setCryptoData] = useState();
+  const [cryptoData, setCryptoData] = useState([]);
   const [losers, setLosers] = useState([]);
   const [gainers, setGainers] = useState([]);
   const [newTokens, setNewTokens] = useState([]);
@@ -113,11 +113,28 @@ export default function CryptoDataProvider({ children }) {
     setCryptoData(gainers);
   };
 
+  const addToFavourite = async (symbol) => {
+    let favourite = localStorage.getItem("bmc_favourite");
+
+    console.log(favourite);
+
+    let fav = [];
+
+    if (favourite) {
+      fav = [favourite];
+    }
+
+    fav.push(symbol);
+
+    //  favourite.push(symbol);
+
+    localStorage.setItem("bmc_favourite", fav);
+  };
+
   useLayoutEffect(() => {
     for (let i = 0; i < 200; i++) {}
-
     setTimeout(() => {
-      fetchCryptoData();
+     fetchCryptoData();
     }, 4000);
   }, []);
 
@@ -130,6 +147,7 @@ export default function CryptoDataProvider({ children }) {
         newTokens,
         news,
         loading,
+        addToFavourite,
 
         sortByPrice,
         setCryptoData,

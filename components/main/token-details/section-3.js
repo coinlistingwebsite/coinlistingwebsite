@@ -1,8 +1,17 @@
-import { Rocket, TrendingDown } from "@mui/icons-material";
+import {
+  CurrencyBitcoin,
+  Hive,
+  Info,
+  Rocket,
+  TrendingDown,
+} from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import { VotesById } from "@/lib/fetch-data";
 import DoughnutElement from "./chart";
+import HiveIcon from "@mui/icons-material/Hive";
+import AddIcon from "@mui/icons-material/Add";
+import EnhancedEncryptionIcon from "@mui/icons-material/EnhancedEncryption";
 
 const SectionThree = ({ details, onDatabase }) => {
   const [loading, setLoading] = useState(false);
@@ -12,7 +21,6 @@ const SectionThree = ({ details, onDatabase }) => {
     bullish: 1000,
     bearish: 0,
   });
-  const [load, setLoad] = useState(true);
 
   const onBullish = async (vote) => {
     if (vote) {
@@ -69,13 +77,11 @@ const SectionThree = ({ details, onDatabase }) => {
   };
 
   const fetchVotes = async (id) => {
-    setLoad(true);
     let { bullish, bearish, error } = await VotesById(
       onDatabase ? details.request_id : details.id
     );
 
     if (error) {
-      setLoad(false);
       return;
     }
 
@@ -83,7 +89,6 @@ const SectionThree = ({ details, onDatabase }) => {
       bullish: parseInt(bullish) + 1000,
       bearish: bearish,
     });
-    setLoad(false);
   };
 
   useEffect(() => {
@@ -92,15 +97,7 @@ const SectionThree = ({ details, onDatabase }) => {
 
   return (
     <div>
-      {load ? (
-        <>
-          <div className="w-full mx-auto my-10 flex justify-center">
-            <span className="loading loading-spinner loading-lg"></span>
-          </div>
-        </>
-      ) : (
-        <DoughnutElement dataChart={chart} />
-      )}
+      <DoughnutElement dataChart={chart} />
 
       <div className="text-md font-bold">
         How do you feel about {onDatabase ? details.project_name : details.name}{" "}
@@ -134,45 +131,47 @@ const SectionThree = ({ details, onDatabase }) => {
         </div>
       </div>
 
-      <div className=" border-base-200 rounded-3xl p-3 w-full mt-5 text-center">
-        {/* <b className="font-bold">CHECK SAFETY</b>
-        <div className="divider"></div> */}
-        <div className="flex flex-row my-5 w-full">
-          <a
-            href="https://app.quickintel.io/scanner"
-            target="_blank"
-            className="btn btn-info flex-1"
-          >
-            Quick Intel
-          </a>
-          <div className="divider divider-horizontal"></div>
-          <a
-            href="https://gopluslabs.io/token-security"
-            target="_blank"
-            className="btn btn-success flex-1"
-          >
-            GoPlus
-          </a>
-        </div>
-        <div className="divider"></div>
-        <div className="flex flex-row my-5 w-full">
-          <a
-            href="https://honeypot.is
+      <br />
+
+      <div className="border border-base-200 rounded-3xl p-3 w-full mt-5 text-center">
+        <b className="font-bold">CHECK SAFETY</b>
+        <div className="divider m-0 p-0"></div>
+
+        <a
+          href="https://app.quickintel.io/scanner"
+          target="_blank"
+          className="btn btn-info btn-sm flex-1 flex"
+        >
+          Quick Intel <Info />
+        </a>
+        <div className="divider m-0 p-0"></div>
+        <a
+          href="https://gopluslabs.io/token-security"
+          target="_blank"
+          className="btn btn-success btn-sm flex-1 flex"
+        >
+          GoPlus <AddIcon />
+        </a>
+
+        <div className="divider m-0 p-0"></div>
+
+        <a
+          href="https://honeypot.is
 "
-            target="_blank"
-            className="btn btn-warning flex-1"
-          >
-            HoneyPot
-          </a>
-          <div className="divider divider-horizontal"></div>
-          <a
-            href="https://tokensniffer.com"
-            target="_blank"
-            className="btn btn-primary flex-1"
-          >
-            Tokensniffer
-          </a>
-        </div>
+          target="_blank"
+          className="btn btn-warning btn-sm flex-1 flex"
+        >
+          HoneyPot
+          <HiveIcon />
+        </a>
+        <div className="divider m-0 p-0"></div>
+        <a
+          href="https://tokensniffer.com"
+          target="_blank"
+          className="btn btn-primary btn-sm flex-1 flex"
+        >
+          Tokensniffer <CurrencyBitcoin />
+        </a>
       </div>
     </div>
   );

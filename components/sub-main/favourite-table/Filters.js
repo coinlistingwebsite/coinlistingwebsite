@@ -10,8 +10,7 @@ const Filters = () => {
         style={{ backgroundColor: "#35AF6D" }}
       >
         <StackedBarChartIcon className="text-xs" />
-
-        <Link href="/newcryptocurrencies">Trending</Link>
+        Favorites
       </li>
       <li
         className="px-3 text-[#35AF6D] rounded-full text-xs font-bold "
@@ -28,14 +27,6 @@ const Filters = () => {
         <StackedBarChartIcon className="text-xs" />
 
         <Link href="/gainers-losers">Gainers & Losers</Link>
-      </li>
-      <li
-        className="px-3 text-[#35AF6D] rounded-full text-xs font-bold "
-        style={{ backgroundColor: "rgb(232 252 201)" }}
-      >
-        <StackedBarChartIcon className="text-xs" />
-
-        <Link href="/favourites">Favorites</Link>
       </li>
     </ul>
   );

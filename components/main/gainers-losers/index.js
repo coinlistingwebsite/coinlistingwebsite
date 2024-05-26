@@ -2,8 +2,8 @@
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import React, { useContext } from "react";
 import Tr from "../home-component/tr";
-import SectionOne from "../home-component/section-1";
 import Link from "next/link";
+import { RefreshOutlined } from "@mui/icons-material";
 
 const GainersLosers = () => {
   let { losers, gainers, loading } = useContext(CryptoDataContext);
@@ -15,9 +15,27 @@ const GainersLosers = () => {
       </div>
     );
 
+  if (gainers.length == 0) {
+    return (
+      <main className="max-w-7xl mx-auto py-40 text-center">
+        <h1 className="text-4xl lg:text-[70px] my-2">WHOOPS !</h1>
+        <p>Sorry, the section you are looking for could not be found.</p>
+        <p>Slow or Bad Internet Connection.</p>
+        <p>
+          <button
+            onClick={() => window.location.reload(true)}
+            className="btn btn-neutral btn-md mt-5"
+          >
+            <RefreshOutlined /> Try Refresh the Page
+          </button>
+        </p>
+      </main>
+    );
+  }
+
   return (
     <div>
-      <SectionOne />
+     
 
       <div className="text-md breadcrumbs">
         <ul>

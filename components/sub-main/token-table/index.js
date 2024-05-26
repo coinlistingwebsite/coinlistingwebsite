@@ -150,7 +150,9 @@ const TokenTable = () => {
         <button
           className="join-item btn"
           disabled={
-            cryptoData.slice(page, page + perPage).length == 0 ? true : false
+            cryptoData.slice(page + perPage, page + perPage * 2).length == 0
+              ? true
+              : false
           }
           onClick={() => setPage(page + perPage)}
         >

@@ -5,7 +5,6 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const TokenMarketData = ({ details, onDatabase }) => {
-
   const [market, setMarket] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -38,7 +37,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
   var formatter = new Intl.NumberFormat("en-US", options);
 
   return (
-    <div>
+    <div className="p-2 bg-base-300 rounded-xl my-3">
       {loading ? (
         <div className="w-full my-20 flex justify-center">
           <span className="loading loading-spinner loading-lg"></span>
@@ -47,7 +46,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
         <>
           {market && (
             <>
-              <div className="mt-5">
+              <div>
                 <b className="text-3xl"> ${market.price}</b>
                 <br />
                 <span
@@ -107,8 +106,6 @@ Max Supply = Theoretical maximum as coded"
           )}
         </>
       )}
-
-     
     </div>
   );
 };

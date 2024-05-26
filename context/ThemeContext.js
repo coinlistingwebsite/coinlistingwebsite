@@ -5,7 +5,7 @@ import { createContext, useState, useEffect } from "react";
 export const ThemeContext = createContext();
 
 export default function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState("corporate");
+  const [theme, setTheme] = useState("dark");
   const [isMounted, setIsMounted] = useState(false);
 
   const delayFunc = async () => {
@@ -22,8 +22,8 @@ export default function ThemeProvider({ children }) {
       setIsMounted(true);
     }, 4000);
 
-    const storedTheme = localStorage.getItem("theme") || "corporate";
-    setTheme(storedTheme);
+  //  const storedTheme = localStorage.getItem("theme") || "corporate";
+  //  setTheme(storedTheme);
   }, []);
 
   if (!isMounted)

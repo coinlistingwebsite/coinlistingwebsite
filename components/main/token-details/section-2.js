@@ -17,7 +17,15 @@ const SectionTwo = ({ details, onDatabase }) => {
   let { theme } = useContext(ThemeContext);
 
   return (
-    <div className="p-1 lg:w-[50%]">
+    <div className="p-1">
+      <div className="mb-2 flex flex-row gap-3">
+        <span className="badge badge-info badge-lg">Chart</span>
+        <span className="badge badge-info badge-lg">
+          About {onDatabase ? <>{details.project_name}</> : <>{details.name}</>}
+        </span>
+        <span className="badge badge-info badge-lg">Tags</span>
+      </div>
+
       <div id="dexscreener-embed">
         {onDatabase ? (
           <iframe
@@ -41,7 +49,7 @@ const SectionTwo = ({ details, onDatabase }) => {
         <b>About {onDatabase ? details.project_name : details.name}</b>{" "}
         <span className="opacity-75 ml-3">({details.symbol})</span>
       </div>
-      <div className="opacity-75 text-xs leading-7">
+      <div className="opacity-75 text-xs leading-7 p-1 bg-base-300 rounded-xl">
         {onDatabase ? details.full_description : details.description}
       </div>
 
@@ -89,7 +97,8 @@ const SectionTwo = ({ details, onDatabase }) => {
         </div>
       )}
 
-      <div className="mt-5">Tags</div>
+      {details?.tags && <div className="mt-5">Tags</div>}
+
       <div className="opacity-75 text-xs mt-2">
         {details.tags?.map((tag, index) => (
           <span className="badge badge-ghost mr-3" key={index}>

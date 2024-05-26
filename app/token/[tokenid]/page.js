@@ -1,4 +1,3 @@
-import SectionOne from "@/components/main/home-component/section-1";
 import TokenDetails from "@/components/main/token-details";
 import { fetchTokenDetails } from "@/lib/fetch-data";
 import Link from "next/link";
@@ -22,9 +21,7 @@ export default async function TokenPage({ params }) {
   }
 
   return (
-    <main className="max-w-[1500px] mx-auto">
-      <SectionOne />
-
+    <main className="max-w-[1500px] mx-auto my-10">
       <TokenDetails
         details={details}
         onDatabase={onDatabase}

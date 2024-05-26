@@ -8,6 +8,7 @@ const Tr = ({ index, token }) => {
   if (!token) return;
 
   let { addToFavourite } = useContext(CryptoDataContext);
+  const [favourite, setFavourite] = useState(false);
   const [reset, setReset] = useState();
 
   var options = { style: "currency", currency: "USD" };
@@ -154,7 +155,11 @@ const Tr = ({ index, token }) => {
 
         <td>{formatter.format(token.quote.USD.volume_24h)}</td>
 
-        <td>{formatter.format(token.quote.USD.market_cap)}</td>
+        <td>
+          {formatter.format(token.quote.USD.market_cap)}
+
+          {!token.quote.USD.market_cap && "-"}
+        </td>
       </tr>
     </>
   );

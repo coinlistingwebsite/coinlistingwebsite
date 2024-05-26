@@ -3,16 +3,27 @@ import React from "react";
 import SectionOne from "./section-1";
 import SectionTwo from "./section-2";
 import SectionThree from "./section-3";
+import TestOne from "./test1";
 
 const TokenDetails = ({ details, onDatabase, tokenid }) => {
   return (
     <div className="block lg:flex lg:flex-row my-5">
       {/* Section 1 */}
-      <SectionOne details={details} onDatabase={onDatabase} tokenid={tokenid} />
+
+      <div className="p-1 lg:w-[30%]">
+        <SectionOne
+          details={details}
+          onDatabase={onDatabase}
+          tokenid={tokenid}
+        />
+      </div>
 
       <div className="divider divider-horizontal"></div>
       {/* Section 2 */}
-      <SectionTwo details={details} onDatabase={onDatabase} />
+
+      <div className="p-1 lg:w-[50%]">
+        <SectionTwo details={details} onDatabase={onDatabase} />
+      </div>
 
       <div className="divider divider-horizontal"></div>
 

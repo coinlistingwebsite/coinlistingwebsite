@@ -7,6 +7,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import Link from "next/link";
+import { RefreshOutlined } from "@mui/icons-material";
 
 const SectionTwo = () => {
   const [checked, setChecked] = useState(true);
@@ -111,7 +112,23 @@ const SectionTwo = () => {
                 </table>
               )}
 
-              {!loading && gainers.length == 0 ? <>Data Unavailable</> : null}
+              {!loading && gainers.length == 0 ? (
+                <div className="my-auto text-center">
+                  <h1 className="text-md my-2">WHOOPS !</h1>
+                  <p className="text-xs">
+                    Sorry, the section you are looking for could not be found.
+                  </p>
+                  <p className="text-xs">Slow or Bad Internet Connection.</p>
+                  <p>
+                    <button
+                      onClick={() => window.location.reload(true)}
+                      className="btn btn-neutral btn-xs mt-5"
+                    >
+                      <RefreshOutlined /> Try Refresh the Page
+                    </button>
+                  </p>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -152,6 +169,24 @@ const SectionTwo = () => {
                   </tbody>
                 </table>
               )}
+
+              {!loading && losers.length == 0 ? (
+                <div className="my-auto text-center">
+                  <h1 className="text-md my-2">WHOOPS !</h1>
+                  <p className="text-xs">
+                    Sorry, the section you are looking for could not be found.
+                  </p>
+                  <p className="text-xs">Slow or Bad Internet Connection.</p>
+                  <p>
+                    <button
+                      onClick={() => window.location.reload(true)}
+                      className="btn btn-neutral btn-xs mt-5"
+                    >
+                      <RefreshOutlined /> Try Refresh the Page
+                    </button>
+                  </p>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

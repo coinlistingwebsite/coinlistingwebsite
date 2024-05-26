@@ -35,7 +35,12 @@ const NewsSection = () => {
         <p>Sorry, the section you are looking for could not be found.</p>
         <p>Slow or Bad Internet Connection.</p>
         <p>
-          <RefreshOutlined /> Try Refresh the Page
+          <button
+            onClick={() => window.location.reload(true)}
+            className="btn btn-neutral btn-md mt-5"
+          >
+            <RefreshOutlined /> Try Refresh the Page
+          </button>
         </p>
       </main>
     );
