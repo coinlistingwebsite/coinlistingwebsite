@@ -4,26 +4,28 @@ import React, { useContext } from "react";
 
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 
-import {
-  ArrowDownward,
-  Chat,
-  Facebook,
-  GitHub,
-  LanguageRounded,
-  Reddit,
-} from "@mui/icons-material";
-
 const SectionTwo = ({ details, onDatabase }) => {
   let { theme } = useContext(ThemeContext);
 
   return (
     <div className="p-1">
-      <div className="mb-2 flex flex-row gap-3">
-        <span className="badge badge-info badge-lg">Chart</span>
-        <span className="badge badge-info badge-lg">
+      <div className="mb-4 flex flex-row gap-3">
+        <span className="badge badge-neutral badge-lg">Chart</span>
+        <a href="#about" className="badge badge-neutral badge-lg">
           About {onDatabase ? <>{details.project_name}</> : <>{details.name}</>}
-        </span>
-        <span className="badge badge-info badge-lg">Tags</span>
+        </a>
+        <a href="#tags" className="badge badge-neutral badge-lg">
+          Tags
+        </a>
+        <a href="#boost" className="badge badge-neutral badge-lg">
+          Boost
+        </a>
+        <a href="#socials" className="badge badge-neutral badge-lg">
+          Socials
+        </a>
+        <a href="#safety" className="badge badge-neutral badge-lg">
+          Check Safety
+        </a>
       </div>
 
       <div id="dexscreener-embed">
@@ -45,20 +47,19 @@ const SectionTwo = ({ details, onDatabase }) => {
           ></iframe>
         )}
       </div>
-      <div className="flex flex-row mt-5">
+      <div className="flex flex-row mt-5" id="about">
         <b>About {onDatabase ? details.project_name : details.name}</b>{" "}
         <span className="opacity-75 ml-3">({details.symbol})</span>
       </div>
-      <div className="opacity-75 text-xs leading-7 p-1 bg-base-300 rounded-xl">
+      <div className="opacity-75 text-md leading-5 p-1 bg-base-300 rounded-xl">
         {onDatabase ? details.full_description : details.description}
       </div>
 
       {/* Cex and Dex listing */}
 
-      {onDatabase && (
+      {/* {onDatabase && (
         <div className="overflow-x-auto border border-base-200 rounded-3xl my-10">
           <table className="table table-zebra">
-            {/* head */}
             <thead>
               <tr>
                 <th>Dex Listing</th>
@@ -66,8 +67,6 @@ const SectionTwo = ({ details, onDatabase }) => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-
               <tr>
                 <td>
                   {onDatabase && details.urls.dex_link ? (
@@ -95,11 +94,11 @@ const SectionTwo = ({ details, onDatabase }) => {
             </tbody>
           </table>
         </div>
-      )}
+      )} */}
 
       {details?.tags && <div className="mt-5">Tags</div>}
 
-      <div className="opacity-75 text-xs mt-2">
+      <div className="opacity-75 text-xs mt-2" id="tags">
         {details.tags?.map((tag, index) => (
           <span className="badge badge-ghost mr-3" key={index}>
             {tag}
@@ -124,6 +123,22 @@ const SectionTwo = ({ details, onDatabase }) => {
           </a>
         </>
       ) : null}
+
+      {/* <a
+        href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+        class="twitter-share-button"
+        data-size="large"
+        data-text="Hey very bullish about "
+        data-hashtags="bullishmarketcap"
+        data-show-count="false"
+      >
+        Tweet
+      </a>
+      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script> */}
     </div>
   );
 };

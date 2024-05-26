@@ -1,4 +1,5 @@
 import {
+  ContentCopy,
   CurrencyBitcoin,
   Hive,
   Info,
@@ -97,6 +98,8 @@ const SectionThree = ({ details, onDatabase }) => {
 
   return (
     <div>
+      <div className="text-xl font-bold">Boost Analysis</div>
+
       <DoughnutElement dataChart={chart} />
 
       <div className="text-md font-bold">
@@ -104,9 +107,9 @@ const SectionThree = ({ details, onDatabase }) => {
         today ?
         <br />
         <br />
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2" id="boost">
           <button
-            className="btn btn-success btn-sm"
+            className="btn btn-success btn-sm flex-1"
             onClick={() => {
               onBullish(true);
             }}
@@ -118,7 +121,7 @@ const SectionThree = ({ details, onDatabase }) => {
           </button>
 
           <button
-            className="btn btn-error btn-sm"
+            className="btn btn-error btn-sm flex-1"
             onClick={() => {
               onBullish(false);
             }}
@@ -131,10 +134,44 @@ const SectionThree = ({ details, onDatabase }) => {
         </div>
       </div>
 
-      <br />
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/banners%2F197e0d89-a7c9-43a7-b206-2b002ef3e891%2F1%20kopyas%C4%B1.png615bf443-72cf-4acc-b309-80affaa23505?alt=media&token=9348bb01-7515-4727-b7aa-2f3d9fcfa59b"
+        className="rounded-xl my-4"
+      />
 
-      <div className="border border-base-200 rounded-3xl p-3 w-full mt-5 text-center">
+      <div
+        className="border border-base-200 rounded-3xl p-3 w-full  text-center"
+        id="safety"
+      >
         <b className="font-bold">CHECK SAFETY</b>
+
+        <div className="divider m-0 p-0"></div>
+
+        <span
+          className="text-sm flex flex-row gap-2 w-full badge badge-neutral badge-lg hover:cursor-pointer justify-center"
+          onClick={() => {
+            navigator.clipboard.writeText(
+              onDatabase
+                ? details.contract_address
+                : details.platform.token_address
+            );
+            alert("Copied");
+          }}
+        >
+          {onDatabase ? (
+            <b className="text-xs">{details?.chain}</b>
+          ) : (
+            <>{details?.platform?.slug}</>
+          )}
+          :{" "}
+          {onDatabase ? (
+            <>{details?.contract_address.substr(0, 7)}...</>
+          ) : (
+            <>{details?.platform?.token_address.substr(0, 7)}...</>
+          )}
+          <ContentCopy className="text-sm" />
+        </span>
+
         <div className="divider m-0 p-0"></div>
 
         <a

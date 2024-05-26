@@ -1,14 +1,13 @@
 import { Tooltip } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-
 const Tr = ({ title, description, value }) => {
   var options = { style: "currency", currency: "USD" };
   var formatter = new Intl.NumberFormat("en-US", options);
 
   return (
     <>
-      <tr className="flex flex-row py-2">
+      <tr className="flex flex-row py-2 ">
         <td className="flex flex-row text-sm my-auto opacity-75">
           {title}
           <Tooltip title={description}>
@@ -19,7 +18,7 @@ const Tr = ({ title, description, value }) => {
           </Tooltip>
         </td>
 
-        <th className="flex-1 justify-end text-right font-light text-sm my-auto">
+        <th className="flex-1 justify-end text-right font-bold text-lg my-auto">
           {/* ${formatNumber(value)} */}
           {formatter.format(value)}
         </th>

@@ -3,6 +3,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Link from "next/link";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
+import { formatNumber } from "@/lib/validations/validations";
 
 const Tr = ({ index, token }) => {
   if (!token) return;
@@ -137,24 +138,18 @@ const Tr = ({ index, token }) => {
           )}
           {Number(token.quote.USD.percent_change_24h).toFixed(2)}%
         </td>
-        <td
-          className={
-            token.quote.USD.percent_change_7d > 0
-              ? "text-success py-4"
-              : "text-red py-4"
-          }
-        >
-          {token.quote.USD.percent_change_7d > 0 ? (
-            <ArrowDropUpIcon />
-          ) : (
-            <ArrowDropDownIcon />
-          )}
-          {Number(token.quote.USD.percent_change_7d).toFixed(2)}%
+
+        <td>
+          {formatNumber(token.quote.USD.volume_24h)}
+
+          {!token.quote.USD.volume_24h && "-"}
         </td>
 
-        <td>{formatter.format(token.quote.USD.volume_24h)}</td>
+        <td>
+          {formatNumber(token.quote.USD.market_cap)}
 
-        <td>{formatter.format(token.quote.USD.market_cap)}</td>
+          {!token.quote.USD.market_cap && "-"}
+        </td>
       </tr>
     </>
   );

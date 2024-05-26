@@ -138,7 +138,7 @@ const Navbar = () => {
           </div>
           <Link href="/" className="btn btn-ghost text-xl">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2F2.png?alt=media&token=0d85d9ff-54a0-4762-a1f9-fa4f38c2110c"
+              src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2F1%20(1).png?alt=media&token=71ca5670-d7af-4e30-aeb5-3e8c2f7304bf"
               className="rounded-full h-full"
               alt="Logo"
             />

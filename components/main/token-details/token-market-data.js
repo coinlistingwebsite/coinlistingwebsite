@@ -37,7 +37,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
   var formatter = new Intl.NumberFormat("en-US", options);
 
   return (
-    <div className="p-2 bg-base-300 rounded-xl my-3">
+    <div className="p-2 bg-base-300 rounded-xl my-3 border border-green border-[1px] rounded-xl my-3">
       {loading ? (
         <div className="w-full my-20 flex justify-center">
           <span className="loading loading-spinner loading-lg"></span>

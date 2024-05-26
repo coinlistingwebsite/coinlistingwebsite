@@ -1,12 +1,16 @@
-const TrInfo = ({ title, link, icon }) => {
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
+const TrInfo = ({ title, link, icon }) => {
   if (!link.props.children) return;
   return (
     <>
-      <tr className="flex flex-row py-2 w-full">
+      <tr className="flex flex-row py-2 w-full border border-green border-[1px] rounded-xl my-3">
+        <td>
+          <ArrowRightIcon />
+        </td>
         <td className="flex flex-row text-sm my-auto opacity-75">{title}</td>
 
-        <th className="flex-1 justify-end text-right font-light text-sm my-auto">
+        <td className="flex-1 justify-end text-right font-light text-sm my-auto">
           <a
             href={link.props.children}
             className="btn btn-neutral btn-xs break-words"
@@ -15,7 +19,7 @@ const TrInfo = ({ title, link, icon }) => {
             {icon}
             {link.props.children.substring(0, 20)}
           </a>
-        </th>
+        </td>
       </tr>
     </>
   );

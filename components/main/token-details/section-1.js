@@ -4,6 +4,7 @@ import TokenMarketData from "./token-market-data";
 
 import {
   Chat,
+  CurrencyBitcoin,
   Facebook,
   GitHub,
   LanguageRounded,
@@ -48,9 +49,9 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
     <div className="">
       {/* BreadCrumbs */}
 
-      <div className="flex flex-row gap-5 mt-5">
+      <div className="flex flex-row gap-5">
         <div className="avatar">
-          <div className={`w-8 mask mask-squircle `}>
+          <div className={`w-10 mask mask-squircle `}>
             <img
               src={details.logo}
               alt={onDatabase ? details.project_name : details.name}
@@ -60,7 +61,9 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
         </div>
 
         <div className="my-auto gap-3">
-          <b>{onDatabase ? details.project_name : details.name}</b>{" "}
+          <b className="text-xl">
+            {onDatabase ? details.project_name : details.name}
+          </b>{" "}
           <small className="opacity-50">${details.symbol} </small>
           {onDatabase ? (
             <span className="badge badge-ghost badge-xs my-auto">
@@ -109,8 +112,29 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
 
       <TokenMarketData details={details} onDatabase={onDatabase} />
 
-      <table className="table table-xs w-full mt-2 p-1 bg-base-300 rounded-xl">
+      <b className="font-bold">Social Media Links</b>
+
+      <table
+        className="table table-xs w-full p-1 bg-base-300 rounded-xl"
+        id="socials"
+      >
         <tbody>
+          {onDatabase && details.urls?.dex_link ? (
+            <TrInfo
+              title="Dex Listing"
+              link={onDatabase ? <>{details.urls.dex_link}</> : <></>}
+              icon={<CurrencyBitcoin className="text-xs text-green" />}
+            />
+          ) : null}
+
+          {onDatabase && details.urls?.cex_link ? (
+            <TrInfo
+              title="Cex Listing"
+              link={onDatabase ? <>{details.urls.cex_link}</> : <></>}
+              icon={<CurrencyBitcoin className="text-xs text-yellow-300" />}
+            />
+          ) : null}
+
           <TrInfo
             title="Website"
             link={
@@ -120,7 +144,7 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
                 <>{details.urls.website[0]}</>
               )
             }
-            icon={<LanguageRounded className="text-xs" />}
+            icon={<LanguageRounded className="text-xs text-blue-500" />}
           />
           <TrInfo
             title="Explorer"
@@ -131,7 +155,7 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
                 <>{details.urls.explorer[0]}</>
               )
             }
-            icon={<TravelExploreIcon className="text-xs" />}
+            icon={<TravelExploreIcon className="text-xs text-yellow-300" />}
           />
           <TrInfo
             title="Telegram"
@@ -142,7 +166,7 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
                 <>{details.urls.chat[0]}</>
               )
             }
-            icon={<Chat className="text-xs" />}
+            icon={<Chat className="text-xs text-blue-300" />}
           />
           <TrInfo
             title="Twitter"
@@ -153,7 +177,7 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
                 <>{details.urls.twitter[0]}</>
               )
             }
-            icon={<Twitter className="text-xs" />}
+            icon={<Twitter className="text-xs text-blue-500" />}
           />
           <TrInfo
             title="Source Code"
@@ -164,7 +188,7 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
                 <>{details.urls.source_code[0]}</>
               )
             }
-            icon={<GitHub className="text-xs" />}
+            icon={<GitHub className="text-xs text-purple-500" />}
           />
           <TrInfo
             title="Reddit"
@@ -175,7 +199,7 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
                 <>{details.urls.reddit[0]}</>
               )
             }
-            icon={<Reddit className="text-xs" />}
+            icon={<Reddit className="text-xs text-red" />}
           />
           <TrInfo
             title="Facebook"
@@ -186,7 +210,7 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
                 <>{details.urls.facebook[0]}</>
               )
             }
-            icon={<Facebook className="text-xs" />}
+            icon={<Facebook className="text-xs text-blue-600" />}
           />
         </tbody>
       </table>

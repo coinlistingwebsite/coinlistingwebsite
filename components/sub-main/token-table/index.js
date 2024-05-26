@@ -95,17 +95,7 @@ const TokenTable = () => {
                 <ArrowDropDownIcon />
                 24h
               </th>
-              <th
-                className="text-left hover:cursor-pointer"
-                onClick={() => {
-                  sortBy7dPercent();
-                  setPage(0);
-                  setReset(Math.random());
-                }}
-              >
-                <ArrowDropDownIcon />
-                7d
-              </th>
+             
               <th
                 className="text-left hover:cursor-pointer"
                 onClick={() => {

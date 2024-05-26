@@ -5,13 +5,13 @@ import { createContext, useState, useLayoutEffect } from "react";
 export const CryptoDataContext = createContext();
 
 export default function CryptoDataProvider({ children }) {
-  const [cryptoData, setCryptoData] = useState([]);
+  const [cryptoData, setCryptoData] = useState(dummy_data);
   const [losers, setLosers] = useState([]);
   const [gainers, setGainers] = useState([]);
   const [newTokens, setNewTokens] = useState([]);
   const [news, setNews] = useState([]);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   let fetchCryptoData = async () => {
     try {
@@ -116,8 +116,6 @@ export default function CryptoDataProvider({ children }) {
   const addToFavourite = async (symbol) => {
     let favourite = localStorage.getItem("bmc_favourite");
 
-    console.log(favourite);
-
     let fav = [];
 
     if (favourite) {
@@ -126,16 +124,13 @@ export default function CryptoDataProvider({ children }) {
 
     fav.push(symbol);
 
-    //  favourite.push(symbol);
-
     localStorage.setItem("bmc_favourite", fav);
   };
 
   useLayoutEffect(() => {
-    for (let i = 0; i < 200; i++) {}
-    setTimeout(() => {
-     fetchCryptoData();
-    }, 4000);
+    // setTimeout(() => {
+    //  fetchCryptoData();
+    // }, 4000);
   }, []);
 
   return (

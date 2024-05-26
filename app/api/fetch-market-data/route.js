@@ -5,7 +5,7 @@ export async function POST(request) {
   const { symbol } = await request.json();
 
   try {
-    console.log("FISH");
+ 
     let response = await axios.get(
       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical?symbol=${symbol.toLowerCase()}&count=1`,
       {
