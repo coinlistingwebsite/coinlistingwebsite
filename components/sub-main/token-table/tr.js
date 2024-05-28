@@ -140,14 +140,12 @@ const Tr = ({ index, token }) => {
         </td>
 
         <td>
-          {formatNumber(token.quote.USD.volume_24h)}
-
+          $ {formatNumber(token.quote.USD.volume_24h)}
           {!token.quote.USD.volume_24h && "-"}
         </td>
 
         <td>
-          {formatNumber(token.quote.USD.market_cap)}
-
+          $ {formatNumber(token.quote.USD.market_cap)}
           {!token.quote.USD.market_cap && "-"}
         </td>
       </tr>

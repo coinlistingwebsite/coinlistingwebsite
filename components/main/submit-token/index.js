@@ -38,10 +38,14 @@ const SubmitTokenComponent = () => {
     circulating_supply: "",
     total_supply: "",
     max_supply: "",
-    cex_name: "",
-    cex_link: "",
-    dex_name: "",
-    dex_link: "",
+    cex_name_1: "",
+    cex_link_1: "",
+    cex_name_2: "",
+    cex_link_2: "",
+    cex_name_3: "",
+    cex_link_3: "",
+    aims: "",
+
     public_verification_post: "",
   });
   const [error, setError] = useState(false);
@@ -271,7 +275,7 @@ const SubmitTokenComponent = () => {
 
       {/* ------------------------ */}
       {/* Cryptoasset Tags - Sector/Categories */}
-
+      {/* 
       <label className="form-control w-full my-3">
         <div className="label">
           <span className="submit_token_text">
@@ -293,7 +297,7 @@ const SubmitTokenComponent = () => {
             Example - Education, Fashion, Transport, DeFi
           </span>
         </div>
-      </label>
+      </label> */}
 
       {/* ------------------------ */}
       {/* Detailed Project Description (Cryptoasset) */}
@@ -586,177 +590,135 @@ const SubmitTokenComponent = () => {
       <br />
 
       {/* ------------------------ */}
-      {/* Chat 1 (e.g. Discord, Telegram, Slack, Weibo).
-       */}
 
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Circulating Supply (# of coins that are circulating in the market
-            and in the general public's hands.)
-          </span>
-        </div>
-        <input
-          type="number"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              circulating_supply: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            Insert EXACT number of units (e.g. 21000000).
-          </span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
-      {/* Chat 1 (e.g. Discord, Telegram, Slack, Weibo).
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Total Supply (# of coins in existence right now minus any coins that
-            have been verifiably burned.)(optional)
-          </span>
-        </div>
-        <input
-          type="number"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              total_supply: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            Insert EXACT number of units (e.g. 21000000).
-          </span>
-        </div>
-      </label>
-      {/* ------------------------ */}
-      {/* Chat 1 (e.g. Discord, Telegram, Slack, Weibo).
-       */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Max Supply (maximum # of coins that will ever exist in the lifetime
-            of the asset)
-          </span>
-        </div>
-        <input
-          type="number"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              max_supply: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            Insert EXACT number of units (e.g. 21000000). If the max supply is
-            infinite, type '0'
-          </span>
-        </div>
-      </label>
-
-      <br />
-      <br />
-
-      {/* ------------------------ */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            CEX Lisitng Platfom (Optional)
-          </span>
-        </div>
+      <div className="label">
+        <span className="submit_token_text">
+          CEX Lisitng Platfom. Fill information for where your token is
+          currently traded on.
+        </span>
+      </div>
+      <label className="form-control w-full flex flex-col md:flex-row gap-2">
         <input
           type="text"
           className="input input-bordered w-full"
+          placeholder="CEX Platfrom 1 Name"
           onChange={(event) => {
             setFormData({
               ...formData,
-              cex_name: event.target.value,
+              cex_name_1: event.target.value,
             });
           }}
         />
-      </label>
-      {/* ------------------------ */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">CEX Lisitng Link (Optional)</span>
-        </div>
         <input
           type="text"
+          placeholder="CEX Platfrom 1 Link"
           className="input input-bordered w-full"
           onChange={(event) => {
             setFormData({
               ...formData,
-              cex_link: event.target.value,
+              cex_link_1: event.target.value,
+            });
+          }}
+        />
+      </label>
+
+      {/* ------------------------ */}
+
+      <label className="form-control w-full flex flex-col md:flex-row gap-2 my-2">
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          placeholder="CEX Platfrom 2 Name"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              cex_name_2: event.target.value,
+            });
+          }}
+        />
+        <input
+          type="text"
+          placeholder="CEX Platfrom 2 Link"
+          className="input input-bordered w-full"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              cex_link_2: event.target.value,
+            });
+          }}
+        />
+      </label>
+
+      {/* ------------------------ */}
+
+      <label className="form-control w-full flex flex-col md:flex-row gap-2 my-2">
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          placeholder="CEX Platfrom 3 Name"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              cex_name_3: event.target.value,
+            });
+          }}
+        />
+        <input
+          type="text"
+          placeholder="CEX Platfrom 3 Link"
+          className="input input-bordered w-full"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              cex_link_3: event.target.value,
             });
           }}
         />
       </label>
       {/* ------------------------ */}
 
-      <label className="form-control w-full">
+      <label className="form-control">
         <div className="label">
           <span className="submit_token_text">
-            DEX Lisitng Platform (Optional)
+            Important aims in the future (Cryptoasset)
           </span>
         </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
+        <textarea
+          className="textarea textarea-bordered min-h-24"
           onChange={(event) => {
             setFormData({
               ...formData,
-              dex_name: event.target.value,
+              aims: event.target.value,
             });
           }}
-        />
+        ></textarea>
       </label>
-      {/* ------------------------ */}
-
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">DEX Lisitng Link (Optional)</span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              dex_link: event.target.value,
-            });
-          }}
-        />
-      </label>
-
-      {/* ------------------------ */}
-      {/* Chat 1 (e.g. Discord, Telegram, Slack, Weibo).
-       */}
 
       <br />
       <br />
 
       <label className="form-control w-full mb-10">
-        <div className="label">
+        <div className="label flex flex-row">
           <span className="submit_token_text">
-            Public Verification Post (Twitter)
+            Public Verification Post (Twitter). Please Post a Tweet, copy the
+            tweet link, and paste in the box
           </span>
+
+          <a
+            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+            class="twitter-share-button"
+            data-size="large"
+            data-text="🚀Hereby, We  applied to list on @BullishMarktCap. Our team ready take our project to the 🌙 MOON."
+            data-hashtags="bullishmarketcap"
+            data-show-count="false"
+          >
+            Tweet now
+          </a>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
         </div>
         <input
           type="text"
@@ -768,13 +730,6 @@ const SubmitTokenComponent = () => {
             });
           }}
         />
-        <div className="label">
-          <span className="submit_token_text">
-            Hereby, We want to list [ @Project twitter Username ] on
-            BullishMarketCap(@BullishMarktCap). Please attach your tweet link in
-            the blank.
-          </span>
-        </div>
       </label>
 
       {/* ------------------------------- */}
