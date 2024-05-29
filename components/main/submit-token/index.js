@@ -33,6 +33,8 @@ const SubmitTokenComponent = () => {
     facebook: "",
     youtube: "",
     chat: "",
+    telegram: "",
+    telegram_contact: "",
     linkedin: "",
     mobile_app: "",
     circulating_supply: "",
@@ -45,7 +47,6 @@ const SubmitTokenComponent = () => {
     cex_name_3: "",
     cex_link_3: "",
     aims: "",
-
     public_verification_post: "",
   });
   const [error, setError] = useState(false);
@@ -559,9 +560,7 @@ const SubmitTokenComponent = () => {
 
       <label className="form-control w-full">
         <div className="label">
-          <span className="submit_token_text">
-            Chat (e.g. Discord, Telegram, Slack, Weibo).
-          </span>
+          <span className="submit_token_text">Discord Chat</span>
         </div>
         <input
           type="text"
@@ -575,6 +574,27 @@ const SubmitTokenComponent = () => {
         />
         <div className="label">
           <span className="submit_token_text">
+            There is data validation for this field.
+          </span>
+        </div>
+      </label>
+
+      <label className="form-control w-full">
+        <div className="label">
+          <span className="submit_token_text">Telegram Chat</span>
+        </div>
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              telegram: event.target.value,
+            });
+          }}
+        />
+        <div className="label">
+          <span className="submit_token_text">
             There is data validation for this field. Ex:{" "}
             <a
               href="https://t.me/BullishMarktCap"
@@ -582,6 +602,28 @@ const SubmitTokenComponent = () => {
               className="underline text-secondary"
             ></a>
             https://t.me/BullishMarktCap
+          </span>
+        </div>
+      </label>
+
+      {/* =---------= */}
+      <label className="form-control w-full">
+        <div className="label">
+          <span className="submit_token_text">Telegram Contact</span>
+        </div>
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              telegram_contact: event.target.value,
+            });
+          }}
+        />
+        <div className="label">
+          <span className="submit_token_text">
+            Please provide your Telegram contact information
           </span>
         </div>
       </label>
@@ -707,6 +749,7 @@ const SubmitTokenComponent = () => {
           <a
             href="https://twitter.com/share?ref_src=twsrc%5Etfw"
             class="twitter-share-button"
+            target="_blank"
             data-size="large"
             data-text="🚀Hereby, We  applied to list on @BullishMarktCap. Our team ready take our project to the 🌙 MOON."
             data-hashtags="bullishmarketcap"

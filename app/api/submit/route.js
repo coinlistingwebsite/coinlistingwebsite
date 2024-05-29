@@ -49,6 +49,8 @@ export async function POST(request) {
       facebook: formData.facebook,
       youtube: formData.youtube,
       chat: formData.chat,
+      telegram: formData.telegram,
+      telegram_contact: formData.telegram_contact,
       linkedin: formData.linkedin,
       mobile_app: formData.mobile_app,
       cex_name_1: formData.cex_name_1,
