@@ -46,6 +46,10 @@ const SubmitTokenComponent = () => {
     cex_link_2: "",
     cex_name_3: "",
     cex_link_3: "",
+
+    cex_target_1: "",
+    cex_target_2: "",
+    cex_target_3: "",
     aims: "",
     public_verification_post: "",
   });
@@ -718,6 +722,54 @@ const SubmitTokenComponent = () => {
         />
       </label>
       {/* ------------------------ */}
+      <br />
+      <br />
+
+      <div className="label">
+        <span className="submit_token_text">
+          CEX Target Lisitng. Fill information for where your token aiming to be
+          traded on
+        </span>
+      </div>
+      <label className="form-control w-full flex flex-col md:flex-row gap-2">
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          placeholder="Target CEX 1"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              cex_target_1: event.target.value,
+            });
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Target CEX 2"
+          className="input input-bordered w-full"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              cex_target_2: event.target.value,
+            });
+          }}
+        />
+      </label>
+      <br />
+      <input
+        type="text"
+        placeholder="Target CEX 3"
+        className="input input-bordered w-full"
+        onChange={(event) => {
+          setFormData({
+            ...formData,
+            cex_target_3: event.target.value,
+          });
+        }}
+      />
+
+      <br />
+      <br />
 
       <label className="form-control">
         <div className="label">
