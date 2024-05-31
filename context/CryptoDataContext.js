@@ -8,7 +8,7 @@ export default function CryptoDataProvider({ children }) {
   const [cryptoData, setCryptoData] = useState(dummy_data);
   const [losers, setLosers] = useState([]);
   const [gainers, setGainers] = useState([]);
-  const [newTokens, setNewTokens] = useState([]);
+  const [newTokens, setNewTokens] = useState(dummy_data);
   const [news, setNews] = useState([]);
 
   const [loading, setLoading] = useState(false);

@@ -10,6 +10,8 @@ const NewCryptocurrency = () => {
   const { newTokens, loading } = useContext(CryptoDataContext);
   let { theme } = useContext(ThemeContext);
 
+  console.log(newTokens);
+
   if (loading)
     return (
       <div className="w-full mx-auto max-w-[1300px] min-h-[50vh] flex justify-center">

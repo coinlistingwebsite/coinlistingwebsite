@@ -37,7 +37,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
   var formatter = new Intl.NumberFormat("en-US", options);
 
   return (
-    <div className="p-2 bg-base-300 rounded-xl my-3 border border-green border-[1px] rounded-xl my-3">
+    <div className="p-2 bg-base-300 rounded-xl my-3">
       {loading ? (
         <div className="w-full my-20 flex justify-center">
           <span className="loading loading-spinner loading-lg"></span>
@@ -47,8 +47,8 @@ const TokenMarketData = ({ details, onDatabase }) => {
           {market && (
             <>
               <div>
-                <b className="text-3xl"> ${market.price}</b>
-                <br />
+                <div className="text-xl"> ${market.price}</div>
+
                 <span
                   className={
                     market.percent_change_24h > 0

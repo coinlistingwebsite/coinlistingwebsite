@@ -98,45 +98,59 @@ const SectionThree = ({ details, onDatabase }) => {
 
   return (
     <div>
-      <div className="text-xl font-bold">Boost Analysis</div>
+      <div className="bg-base-300 rounded-xl">
+        <table className="table table-zebra bg-base-300 p-2">
+          <tr className="border-b border-base-200">
+            <th>Aims of the Project</th>
+          </tr>
 
-      <DoughnutElement dataChart={chart} />
+          <tr>
+            <td>{details?.urls?.aims}</td>
+          </tr>
+        </table>
+      </div>
 
-      <div className="text-md font-bold">
-        How do you feel about {onDatabase ? details.project_name : details.name}{" "}
-        today ?
-        <br />
-        <br />
-        <div className="flex flex-row gap-2" id="boost">
-          <button
-            className="btn btn-success btn-sm flex-1"
-            onClick={() => {
-              onBullish(true);
-            }}
-          >
-            {loading && <span className="loading loading-spinner"></span>}
-            <Rocket />
-            Bullish
-            {voted == 1 && <DoneIcon />}
-          </button>
+      <div className="bg-base-300 rounded-xl p-3 mt-5">
+        <div className="text-xl font-bold">Boost Analysis</div>
 
-          <button
-            className="btn btn-error btn-sm flex-1"
-            onClick={() => {
-              onBullish(false);
-            }}
-          >
-            {loading2 && <span className="loading loading-spinner"></span>}
-            <TrendingDown />
-            Bearish
-            {voted == 2 && <DoneIcon />}
-          </button>
+        <DoughnutElement dataChart={chart} />
+
+        <div className="text-md font-bold">
+          How do you feel about{" "}
+          {onDatabase ? details.project_name : details.name} today ?
+          <br />
+          <br />
+          <div className="flex flex-row gap-2" id="boost">
+            <button
+              className="btn btn-success btn-sm flex-1"
+              onClick={() => {
+                onBullish(true);
+              }}
+            >
+              {loading && <span className="loading loading-spinner"></span>}
+              <Rocket />
+              Bullish
+              {voted == 1 && <DoneIcon />}
+            </button>
+
+            <button
+              className="btn btn-error btn-sm flex-1"
+              onClick={() => {
+                onBullish(false);
+              }}
+            >
+              {loading2 && <span className="loading loading-spinner"></span>}
+              <TrendingDown />
+              Bearish
+              {voted == 2 && <DoneIcon />}
+            </button>
+          </div>
         </div>
       </div>
 
       <img
         src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/banners%2F197e0d89-a7c9-43a7-b206-2b002ef3e891%2F1%20kopyas%C4%B1.png615bf443-72cf-4acc-b309-80affaa23505?alt=media&token=9348bb01-7515-4727-b7aa-2f3d9fcfa59b"
-        className="rounded-xl my-4"
+        className="rounded-xl my-4 w-full"
       />
 
       <div
