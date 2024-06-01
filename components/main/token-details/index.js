@@ -11,18 +11,18 @@ const TokenDetails = ({ details, onDatabase, tokenid }) => {
     <div className="block lg:flex lg:flex-row my-5 lg:gap-4">
       {/* Section 1 */}
 
-      <div className="p-1 lg:w-[25%]">
+      {/* <div className="p-1 lg:w-[25%]">
         <SectionOne
           details={details}
           onDatabase={onDatabase}
           tokenid={tokenid}
         />
-      </div>
+      </div> */}
 
       {/* <div className="divider divider-horizontal"></div> */}
       {/* Section 2 */}
 
-      <div className="p-1 lg:w-[50%]">
+      <div className="p-1 lg:w-[75%]">
         <SectionTwo details={details} onDatabase={onDatabase} />
       </div>
 

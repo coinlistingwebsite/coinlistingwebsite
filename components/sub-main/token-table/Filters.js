@@ -37,6 +37,14 @@ const Filters = () => {
 
         <Link href="/favourites">Favorites</Link>
       </li>
+      <li
+        className="px-3 text-[#35AF6D] rounded-full text-xs font-bold "
+        style={{ backgroundColor: "rgb(232 252 201)" }}
+      >
+        <StackedBarChartIcon className="text-xs" />
+
+        <Link href="/favourites">Cex Listed Projects</Link>
+      </li>
     </ul>
   );
 };
