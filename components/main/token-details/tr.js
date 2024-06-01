@@ -9,7 +9,7 @@ const Tr = ({ title, description, value }) => {
   return (
     <>
       <tr className="flex flex-row py-2 ">
-        <td className="flex flex-row text-xs my-auto opacity-75">
+        <td className="flex flex-row text-sm my-auto opacity-75">
           {title}
           <Tooltip title={description}>
             <InfoOutlinedIcon
@@ -19,7 +19,7 @@ const Tr = ({ title, description, value }) => {
           </Tooltip>
         </td>
 
-        <td className="flex-1 justify-end text-right text-sm my-auto line-clamp-1 truncate break-words">
+        <td className="flex-1 justify-end text-right text-lg my-auto">
           {/* ${formatNumber(value)}
           <br /> */}
           {/* {value} */}

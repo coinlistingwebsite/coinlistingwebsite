@@ -12,6 +12,7 @@ import React, { useContext, useState } from "react";
 
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
+import TokenMarketData from "./token-market-data";
 
 const SectionTwo = ({ details, onDatabase }) => {
   let { theme } = useContext(ThemeContext);
@@ -124,6 +125,25 @@ const SectionTwo = ({ details, onDatabase }) => {
       </div>
 
       <br />
+
+      <div className="bg-base-300 rounded-xl">
+        <table className="table table-zebra bg-base-300 p-2">
+          <tr className="border-b border-base-200">
+            <th>Description</th>
+          </tr>
+
+          <tr>
+            <td>
+              {onDatabase ? details.full_description : details.description}
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <br />
+
+      <TokenMarketData details={details} onDatabase={onDatabase} />
+
       <br />
 
       <div className="mb-1 flex flex-row gap-3">
