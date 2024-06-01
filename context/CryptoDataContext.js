@@ -5,13 +5,13 @@ import { createContext, useState, useLayoutEffect } from "react";
 export const CryptoDataContext = createContext();
 
 export default function CryptoDataProvider({ children }) {
-  const [cryptoData, setCryptoData] = useState(dummy_data);
+  const [cryptoData, setCryptoData] = useState([]);
   const [losers, setLosers] = useState([]);
   const [gainers, setGainers] = useState([]);
-  const [newTokens, setNewTokens] = useState(dummy_data);
+  const [newTokens, setNewTokens] = useState([]);
   const [news, setNews] = useState([]);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   let fetchCryptoData = async () => {
     try {
@@ -128,9 +128,9 @@ export default function CryptoDataProvider({ children }) {
   };
 
   useLayoutEffect(() => {
-    // setTimeout(() => {
-    //  fetchCryptoData();
-    // }, 4000);
+    setTimeout(() => {
+      fetchCryptoData();
+    }, 4000);
   }, []);
 
   return (

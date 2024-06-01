@@ -4,7 +4,7 @@ const TrInfo = ({ title, link, icon }) => {
   if (!link.props.children) return;
   return (
     <>
-      <tr className="flex flex-row py-2 w-full border border-green border-[1px] rounded-xl my-3">
+      <tr className="flex flex-row py-1 w-full border rounded-xl">
         <td>
           <ArrowRightIcon />
         </td>

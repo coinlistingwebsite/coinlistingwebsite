@@ -101,11 +101,13 @@ const SectionThree = ({ details, onDatabase }) => {
       <div className="bg-base-300 rounded-xl">
         <table className="table table-zebra bg-base-300 p-2">
           <tr className="border-b border-base-200">
-            <th>Aims of the Project</th>
+            <th>Description</th>
           </tr>
 
           <tr>
-            <td>{details?.urls?.aims}</td>
+            <td>
+              {onDatabase ? details.full_description : details.description}
+            </td>
           </tr>
         </table>
       </div>

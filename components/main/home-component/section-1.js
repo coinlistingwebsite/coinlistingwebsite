@@ -6,7 +6,7 @@ const SectionOne = () => {
     <div className=" max-w-7xl mx-auto">
       {/* Advert Section */}
 
-      <Marquee
+      {/* <Marquee
         direction="left"
         className="flex flex-col lg:flex-row rounded-xl h-20"
       >
@@ -25,9 +25,44 @@ const SectionOne = () => {
           alt="Banner"
           className="w-full h-full"
         />
+      </Marquee> */}
+
+      <Marquee direction="left" className="rounded-xl">
+        <img
+          src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
+          className="w-72 h-36 rounded-xl mx-1"
+        />
+        <img
+          src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
+          className="w-72 h-36 rounded-xl mx-1"
+        />
+        <img
+          src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
+          className="w-72 h-36 rounded-xl mx-1"
+        />
+        <img
+          src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
+          className="w-72 h-36 rounded-xl mx-1"
+        />
+        <img
+          src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
+          className="w-72 h-36 rounded-xl mx-1"
+        />
+        <img
+          src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
+          className="w-72 h-36 rounded-xl mx-1"
+        />
+        <img
+          src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
+          className="w-72 h-36 rounded-xl mx-1"
+        />
+        <img
+          src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
+          className="w-72 h-36 rounded-xl mx-1"
+        />
       </Marquee>
 
-      <div className="text-center text-md text-accent mt-1 mb-3 underline hover:cursor-pointer font-medium">
+      <div className="text-center text-xs text-accent mt-1 mb-3 underline hover:cursor-pointer font-medium">
         Your Banner here? Contact Us
       </div>
     </div>

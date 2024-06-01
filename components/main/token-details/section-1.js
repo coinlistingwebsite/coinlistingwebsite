@@ -136,15 +136,10 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
 
       <TokenMarketData details={details} onDatabase={onDatabase} />
 
-      <b className="font-bold">Social Media Links</b>
+      <b className="font-bold my-2">Social Media Links</b>
 
-      <table
-        className="table table-xs w-full p-1 bg-base-300 rounded-xl"
-        id="socials"
-      >
+      <table className="table table-xs w-full p-1 rounded-xl" id="socials">
         <tbody>
-         
-
           <TrInfo
             title="Website"
             link={

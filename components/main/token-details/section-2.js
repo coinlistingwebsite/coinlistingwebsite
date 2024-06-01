@@ -1,6 +1,7 @@
 import { ThemeContext } from "@/context/ThemeContext";
 import {
   ArrowForward,
+  BatteryChargingFull,
   GitHub,
   LanguageRounded,
   Telegram,
@@ -44,8 +45,12 @@ const SectionTwo = ({ details, onDatabase }) => {
   return (
     <div className="p-1">
       <div
-        class="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover bg-green mb-12 bg-[https://i.ibb.co/FWggPq1/banner.png]"
+        class="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover mb-12"
         // style={{'background-image: url("https://i.ibb.co/FWggPq1/banner.png");'}}
+        style={{
+          backgroundImage:
+            'url("https://photos.pinksale.finance/file/pinksale-logo-upload/1717209023837-99eff7a0d1ed2cb6e75da4b1181e0f50.png")',
+        }}
       >
         <div class="absolute -bottom-12 flex h-[88px] w-[88px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400">
           <img
@@ -63,6 +68,18 @@ const SectionTwo = ({ details, onDatabase }) => {
           </b>
           <small className="opacity-50">${details.symbol} </small>
           <br />
+        </div>
+
+        <div className="space-x-2 justify-center flex flex-row my-auto">
+          <span
+            href={details?.urls?.telegram}
+            target="_blank"
+            className="btn btn-sm btn-info my-auto"
+          >
+            <Telegram className="text-black animate-bounce" />
+            Chat
+          </span>
+
           <button
             className="outline-0 border-0 bg-none cursor-pointer mt-2"
             onClick={() => {
@@ -95,48 +112,15 @@ const SectionTwo = ({ details, onDatabase }) => {
               </defs>
             </svg>
           </button>
-        </div>
 
-        <div className="space-x-2">
-          {onDatabase ? (
-            <a href={details?.urls?.website} target="_blank">
-              <LanguageRounded className="text-green" />
-            </a>
-          ) : (
-            <a href={details?.urls?.website[0]} target="_blank">
-              <LanguageRounded className="text-green" />
-            </a>
-          )}
-
-          {onDatabase ? (
-            <a href={details?.urls?.telegram} target="_blank">
-              <Telegram className="text-blue-300" />
-            </a>
-          ) : (
-            <a href={details?.urls?.chat[0]} target="_blank">
-              <Telegram className="text-blue-300" />
-            </a>
-          )}
-
-          {onDatabase ? (
-            <a href={details?.urls?.twitter} target="_blank">
-              <X className="text-white" />
-            </a>
-          ) : (
-            <a href={details?.urls?.twitter[0]} target="_blank">
-              <X className="text-white" />
-            </a>
-          )}
-
-          {onDatabase ? (
-            <a href={details?.urls?.source_code} target="_blank">
-              <GitHub className="text-purple-500" />
-            </a>
-          ) : (
-            <a href={details?.urls?.source_code} target="_blank">
-              <GitHub className="text-purple-500" />
-            </a>
-          )}
+          <span
+            href={details?.urls?.chat[0]}
+            target="_blank"
+            className="btn btn-sm btn-primary my-auto"
+          >
+            Boost
+            <BatteryChargingFull className="text-black animate-spin" />
+          </span>
         </div>
       </div>
 
@@ -181,82 +165,6 @@ const SectionTwo = ({ details, onDatabase }) => {
           ></iframe>
         )}
       </div>
-      <div className="flex flex-row mt-5" id="about">
-        <b>About {onDatabase ? details.project_name : details.name}</b>{" "}
-        <span className="opacity-75 ml-3">({details.symbol})</span>
-      </div>
-      <div className="opacity-75 text-md leading-5 p-1 bg-base-300 rounded-xl">
-        {onDatabase ? details.full_description : details.description}
-      </div>
-
-      {/* Cex and Dex listing */}
-
-      {/* {onDatabase && (
-        <div className="overflow-x-auto border border-base-200 rounded-3xl my-10">
-          <table className="table table-zebra">
-            <thead>
-              <tr>
-                <th>Dex Listing</th>
-                <th>Cex Listing</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {onDatabase && details.urls.dex_link ? (
-                    <a
-                      href={details.urls.dex_link}
-                      className="btn btn-info btn-sm ml-3"
-                    >
-                      <CurrencyBitcoinIcon />
-                      {details.urls.dex_name}
-                    </a>
-                  ) : null}
-                </td>
-                <td>
-                  {onDatabase && details.urls.cex_link ? (
-                    <a
-                      href={details.urls.cex_link}
-                      className="btn btn-success btn-sm ml-3"
-                    >
-                      <CurrencyBitcoinIcon />
-                      {details.urls.cex_name}
-                    </a>
-                  ) : null}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )} */}
-
-      {details?.tags && <div className="mt-5">Tags</div>}
-
-      <div className="opacity-75 text-xs mt-2" id="tags">
-        {details.tags?.map((tag, index) => (
-          <span className="badge badge-ghost mr-3" key={index}>
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {onDatabase ? (
-        <>
-          <div className="mt-5">Public Verification Post</div>
-
-          <p className="text-xs opacity-75 my-2">
-            Public Verification Posts are made by Project owners to announce
-            their project
-          </p>
-
-          <a
-            href={details?.urls?.public_verification_post}
-            className="badge badge-info"
-          >
-            View Tweet <Twitter /> <ArrowForward />
-          </a>
-        </>
-      ) : null}
     </div>
   );
 };
