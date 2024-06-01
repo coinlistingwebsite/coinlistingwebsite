@@ -219,6 +219,11 @@ const SectionOne = ({ details, onDatabase, tokenid }) => {
           />
         </tbody>
       </table>
+
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/banners%2F197e0d89-a7c9-43a7-b206-2b002ef3e891%2F1%20kopyas%C4%B1.png615bf443-72cf-4acc-b309-80affaa23505?alt=media&token=9348bb01-7515-4727-b7aa-2f3d9fcfa59b"
+        className="rounded-xl my-4 w-full"
+      />
     </div>
   );
 };

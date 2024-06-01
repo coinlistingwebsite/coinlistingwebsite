@@ -22,6 +22,7 @@ const SectionThree = ({ details, onDatabase }) => {
     bullish: 1000,
     bearish: 0,
   });
+  const [allowed, setAllowed] = useState(false);
 
   const onBullish = async (vote) => {
     if (vote) {
@@ -121,6 +122,12 @@ const SectionThree = ({ details, onDatabase }) => {
           How do you feel about{" "}
           {onDatabase ? details.project_name : details.name} today ?
           <br />
+          <input
+            type="text"
+            className="input w-full input-md my-2 border border-1 border-base-200"
+            placeholder="Post on Twitter and share link *Mandatory"
+            onChange={(event) => setAllowed(event.target.value)}
+          />
           <br />
           <div className="flex flex-row gap-2" id="boost">
             <button
@@ -149,11 +156,6 @@ const SectionThree = ({ details, onDatabase }) => {
           </div>
         </div>
       </div>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/banners%2F197e0d89-a7c9-43a7-b206-2b002ef3e891%2F1%20kopyas%C4%B1.png615bf443-72cf-4acc-b309-80affaa23505?alt=media&token=9348bb01-7515-4727-b7aa-2f3d9fcfa59b"
-        className="rounded-xl my-4 w-full"
-      />
 
       <div
         className="border border-base-200 rounded-3xl p-3 w-full  text-center"

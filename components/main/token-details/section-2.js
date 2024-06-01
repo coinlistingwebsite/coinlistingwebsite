@@ -45,8 +45,7 @@ const SectionTwo = ({ details, onDatabase }) => {
   return (
     <div className="p-1">
       <div
-        class="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover mb-12"
-        // style={{'background-image: url("https://i.ibb.co/FWggPq1/banner.png");'}}
+        className="relative flex h-32 w-full justify-center rounded-xl bg-cover mb-12"
         style={{
           backgroundImage:
             'url("https://photos.pinksale.finance/file/pinksale-logo-upload/1717209023837-99eff7a0d1ed2cb6e75da4b1181e0f50.png")',
