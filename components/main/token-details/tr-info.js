@@ -4,23 +4,22 @@ const TrInfo = ({ title, link, icon }) => {
   if (!link.props.children) return;
   return (
     <>
-      <tr className="flex flex-row py-1 w-full border rounded-xl mb-1">
-        <td>
-          <ArrowRightIcon />
-        </td>
-        <td className="flex flex-row text-sm my-auto opacity-75">{title}</td>
+      <span className="flex flex-row p-1 border rounded-xl mb-1 mr-2">
+        <span className="lg:flex lg:flex-row text-sm my-auto opacity-75 hidden">
+          {title}
+        </span>
 
-        <td className="flex-1 justify-end text-right font-light text-sm my-auto">
+        <span className="flex-1 justify-end text-right font-light text-sm my-auto">
           <a
             href={link.props.children}
-            className="btn btn-neutral btn-xs break-words"
+            className="btn-xs break-words"
             target="_blank line-clamp-1"
           >
             {icon}
-            {link.props.children.substring(0, 20)}
+            {/* {link.props.children.substring(0, 20)} */}
           </a>
-        </td>
-      </tr>
+        </span>
+      </span>
     </>
   );
 };

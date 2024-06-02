@@ -8,11 +8,13 @@ import { CryptoDataContext } from "@/context/CryptoDataContext";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import Link from "next/link";
 import { RefreshOutlined } from "@mui/icons-material";
+import Promoted from "./promoted";
 
 const SectionTwo = () => {
   const [checked, setChecked] = useState(true);
   const { theme } = useContext(ThemeContext);
-  let { losers, gainers, cryptoData, loading } = useContext(CryptoDataContext);
+  let { losers, gainers, cryptoData, loading, dbTokens } =
+    useContext(CryptoDataContext);
 
   return (
     <>
@@ -42,15 +44,8 @@ const SectionTwo = () => {
       </div>
 
       {checked && (
-        <div className="flex flex-col lg:flex-row gap-1 my-5">
-          {/* <div className="hidden lg:inline flex-1">
-            <coingecko-coin-ticker-widget
-              coin-id="bitcoin"
-              currency="usd"
-              locale="en"
-              background-color={theme == "corporate" ? "#fff" : "#000"}
-            ></coingecko-coin-ticker-widget>
-          </div> */}
+        <div className="flex flex-col lg:flex-row gap-3 my-5">
+          <Promoted />
 
           <div
             className={`flex-1 border border-1  p-1 rounded-3xl ${
@@ -60,31 +55,8 @@ const SectionTwo = () => {
             <div className="flex flex-row p-3">
               <b className="flex-1 my-auto text-sm flex flex-row">
                 <img
-                  src="https://info.lexplore.com/hs-fs/hubfs/Rocket.gif"
-                  className="w-6 h-6 animate-bounce"
-                />
-                Promoted Tokens
-              </b>
-
-              <Link
-                href="/gainers-losers"
-                className="hover:text-accent text-xs font-bold hover:cursor-pointer"
-              >
-                View more <KeyboardArrowRightIcon />
-              </Link>
-            </div>
-          </div>
-
-          <div
-            className={`flex-1 border border-1  p-1 rounded-3xl ${
-              theme == "corporate" ? "border-base-300" : "border-accent"
-            }`}
-          >
-            <div className="flex flex-row p-3">
-              <b className="flex-1 my-auto text-sm flex flex-row">
-                <img
-                  src="https://info.lexplore.com/hs-fs/hubfs/Rocket.gif"
-                  className="w-6 h-6 animate-bounce"
+                  src="https://media1.giphy.com/media/ujpaHBFQxnZIALTObQ/giphy.gif?cid=6c09b952lsvk5hctuugdrig8xdkiny9gxxol3bjqcmncmx1s&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s"
+                  className="w-5 h-5"
                 />
                 Top Gainers
               </b>
@@ -139,10 +111,6 @@ const SectionTwo = () => {
           >
             <div className="flex flex-row p-3">
               <b className="flex-1 my-auto text-sm flex flex-row">
-                {/* <img
-                  src="https://media1.giphy.com/media/ujpaHBFQxnZIALTObQ/giphy.gif?cid=6c09b952lsvk5hctuugdrig8xdkiny9gxxol3bjqcmncmx1s&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s"
-                  className="w-5 h-5"
-                /> */}
                 <TrendingDownIcon className="text-red" />
                 Losers
               </b>

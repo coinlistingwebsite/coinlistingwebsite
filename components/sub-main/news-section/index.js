@@ -20,8 +20,8 @@ const NewsSection = () => {
               <div className="skeleton h-40 w-full"></div>
               <div className="skeleton h-8 w-full"></div>
               <div className="skeleton h-4 w-full"></div>
-
               <div className="skeleton h-4 w-1/2"></div>
+              <br />
             </div>
           ))}
         </div>

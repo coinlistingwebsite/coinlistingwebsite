@@ -10,6 +10,7 @@ export default function CryptoDataProvider({ children }) {
   const [gainers, setGainers] = useState([]);
   const [newTokens, setNewTokens] = useState([]);
   const [news, setNews] = useState([]);
+  const [dbTokens, setDbTokens] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -30,12 +31,13 @@ export default function CryptoDataProvider({ children }) {
 
     try {
       const response = await fetch("/api/fetch-api-tokens");
-      const { tokenData, losers, gainers, newTokens, error } =
+      const { tokenData, losers, gainers, newTokens, dbTokens, error } =
         await response.json();
       if (error) {
         setLoading(false);
         return;
       }
+      setDbTokens(dbTokens);
       setCryptoData(tokenData);
       setLosers(losers);
       setGainers(gainers);
@@ -140,6 +142,7 @@ export default function CryptoDataProvider({ children }) {
         losers,
         gainers,
         newTokens,
+        dbTokens,
         news,
         loading,
         addToFavourite,

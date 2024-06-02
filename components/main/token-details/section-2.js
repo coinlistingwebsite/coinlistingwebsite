@@ -2,6 +2,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 import {
   ArrowForward,
   BatteryChargingFull,
+  CurrencyBitcoin,
   GitHub,
   LanguageRounded,
   Telegram,
@@ -10,9 +11,14 @@ import {
 } from "@mui/icons-material";
 import React, { useContext, useState } from "react";
 
+import { Chat, Facebook, Reddit } from "@mui/icons-material";
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import TokenMarketData from "./token-market-data";
+import GpsFixedIcon from "@mui/icons-material/GpsFixed";
+import TrInfo from "./tr-info";
 
 const SectionTwo = ({ details, onDatabase }) => {
   let { theme } = useContext(ThemeContext);
@@ -48,8 +54,8 @@ const SectionTwo = ({ details, onDatabase }) => {
       <div
         className="relative flex h-48 w-full justify-center rounded-xl bg-cover mb-12"
         style={{
-          backgroundImage:
-            'url("https://photos.pinksale.finance/file/pinksale-logo-upload/1717209023837-99eff7a0d1ed2cb6e75da4b1181e0f50.png")',
+          backgroundImage: `url("${details.banner}")`,
+          backgroundSize: "cover",
         }}
       >
         <div class="absolute -bottom-12 flex h-[88px] w-[88px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400">
@@ -126,23 +132,183 @@ const SectionTwo = ({ details, onDatabase }) => {
 
       <br />
 
-      <div className="bg-base-300 rounded-xl">
-        <table className="table table-zebra bg-base-300 p-2">
-          <tr className="border-b border-base-200">
-            <th>Description</th>
-          </tr>
-
-          <tr>
-            <td>
-              {onDatabase ? details.full_description : details.description}
-            </td>
-          </tr>
-        </table>
+      <div className="flex flex-row mx-auto justify-center mb-1">
+        <TrInfo
+          title="Website"
+          link={
+            onDatabase ? (
+              <>{details.urls.website}</>
+            ) : (
+              <>{details.urls.website[0]}</>
+            )
+          }
+          icon={<LanguageRounded className="text-xs text-blue-500" />}
+        />
+        <TrInfo
+          title="Explorer"
+          link={
+            onDatabase ? (
+              <>{details.urls.etherscan}</>
+            ) : (
+              <>{details.urls.explorer[0]}</>
+            )
+          }
+          icon={<TravelExploreIcon className="text-xs text-yellow-300" />}
+        />
+        <TrInfo
+          title="Telegram"
+          link={
+            onDatabase ? <>{details.urls.chat}</> : <>{details.urls.chat[0]}</>
+          }
+          icon={<Chat className="text-xs text-blue-300" />}
+        />
+        <TrInfo
+          title="Twitter"
+          link={
+            onDatabase ? (
+              <>{details.urls.twitter}</>
+            ) : (
+              <>{details.urls.twitter[0]}</>
+            )
+          }
+          icon={<Twitter className="text-xs text-blue-500" />}
+        />
+        <TrInfo
+          title="Source Code"
+          link={
+            onDatabase ? (
+              <>{details.urls.source_code}</>
+            ) : (
+              <>{details.urls.source_code[0]}</>
+            )
+          }
+          icon={<GitHub className="text-xs text-purple-500" />}
+        />
+        <TrInfo
+          title="Reddit"
+          link={
+            onDatabase ? (
+              <>{details.urls.reddit}</>
+            ) : (
+              <>{details.urls.reddit[0]}</>
+            )
+          }
+          icon={<Reddit className="text-xs text-red" />}
+        />
+        <TrInfo
+          title="Facebook"
+          link={
+            onDatabase ? (
+              <>{details.urls.facebook}</>
+            ) : (
+              <>{details.urls.facebook[0]}</>
+            )
+          }
+          icon={<Facebook className="text-xs text-blue-600" />}
+        />
       </div>
 
-      <br />
+  
 
-      <TokenMarketData details={details} onDatabase={onDatabase} />
+      {onDatabase && (
+        <div className="flex flex-col lg:flex-row gap-2">
+          <table className="table table-zebra bg-base-300 p-2 lg:w-[25%]">
+            <tr className="border-b border-base-200">
+              <th>Cex Listing</th>
+            </tr>
+            {details?.urls?.cex_name_1 && (
+              <tr>
+                <td>
+                  <a
+                    href={details.urls.cex_link_1}
+                    target="_blank"
+                    className="btn btn-success btn-sm w-full"
+                  >
+                    <CurrencyBitcoin />
+                    {details?.urls?.cex_name_1}
+                  </a>
+                </td>
+              </tr>
+            )}
+            {details?.urls?.cex_name_2 && (
+              <tr>
+                <td>
+                  <a
+                    href={details.urls.cex_link_2}
+                    target="_blank"
+                    className="btn btn-info w-full btn-sm"
+                  >
+                    <CurrencyBitcoin />
+                    {details?.urls?.cex_name_2}
+                  </a>
+                </td>
+              </tr>
+            )}
+            {details?.urls?.cex_name_3 && (
+              <tr>
+                <td>
+                  <a
+                    href={details.urls.cex_link_3}
+                    target="_blank"
+                    className="btn btn-secondary w-full btn-sm"
+                  >
+                    <CurrencyBitcoin />
+                    {details?.urls?.cex_name_3}
+                  </a>
+                </td>
+              </tr>
+            )}
+          </table>
+
+          <table className="table table-zebra bg-base-300 p-2 lg:w-[25%]">
+            <tr className="border-b border-base-200">
+              <th className="">Target Cex Listing</th>
+            </tr>
+            {details?.urls?.cex_target_1 && (
+              <tr>
+                <td>
+                  <span className="btn btn-primary btn-sm w-full">
+                    <GpsFixedIcon />
+                    {details?.urls?.cex_target_1}
+                  </span>
+                </td>
+              </tr>
+            )}
+            {details?.urls?.cex_target_2 && (
+              <tr>
+                <td>
+                  <span className="btn btn-warning w-full btn-sm">
+                    <GpsFixedIcon />
+                    {details?.urls?.cex_target_2}
+                  </span>
+                </td>
+              </tr>
+            )}
+            {details?.urls?.cex_target_3 && (
+              <tr>
+                <td>
+                  <span className="btn btn-error w-full btn-sm">
+                    <GpsFixedIcon />
+                    {details?.urls?.cex_target_3}
+                  </span>
+                </td>
+              </tr>
+            )}
+          </table>
+
+          <table className="table table-zebra bg-base-300 p-2 lg:w-[50%] lg:flex-1">
+            <tr className="border-b border-base-200">
+              <th>Description</th>
+            </tr>
+
+            <tr>
+              <td className="line-clamp-10">
+                {onDatabase ? details.full_description : details.description}
+              </td>
+            </tr>
+          </table>
+        </div>
+      )}
 
       <br />
 
@@ -184,6 +350,86 @@ const SectionTwo = ({ details, onDatabase }) => {
           ></iframe>
         )}
       </div>
+
+     
+      {/* 
+      <div className="flex flex-row">
+        <TrInfo
+          title="Website"
+          link={
+            onDatabase ? (
+              <>{details.urls.website}</>
+            ) : (
+              <>{details.urls.website[0]}</>
+            )
+          }
+          icon={<LanguageRounded className="text-xs text-blue-500" />}
+        />
+        <TrInfo
+          title="Explorer"
+          link={
+            onDatabase ? (
+              <>{details.urls.etherscan}</>
+            ) : (
+              <>{details.urls.explorer[0]}</>
+            )
+          }
+          icon={<TravelExploreIcon className="text-xs text-yellow-300" />}
+        />
+        <TrInfo
+          title="Telegram"
+          link={
+            onDatabase ? <>{details.urls.chat}</> : <>{details.urls.chat[0]}</>
+          }
+          icon={<Chat className="text-xs text-blue-300" />}
+        />
+        <TrInfo
+          title="Twitter"
+          link={
+            onDatabase ? (
+              <>{details.urls.twitter}</>
+            ) : (
+              <>{details.urls.twitter[0]}</>
+            )
+          }
+          icon={<Twitter className="text-xs text-blue-500" />}
+        />
+        <TrInfo
+          title="Source Code"
+          link={
+            onDatabase ? (
+              <>{details.urls.source_code}</>
+            ) : (
+              <>{details.urls.source_code[0]}</>
+            )
+          }
+          icon={<GitHub className="text-xs text-purple-500" />}
+        />
+        <TrInfo
+          title="Reddit"
+          link={
+            onDatabase ? (
+              <>{details.urls.reddit}</>
+            ) : (
+              <>{details.urls.reddit[0]}</>
+            )
+          }
+          icon={<Reddit className="text-xs text-red" />}
+        />
+        <TrInfo
+          title="Facebook"
+          link={
+            onDatabase ? (
+              <>{details.urls.facebook}</>
+            ) : (
+              <>{details.urls.facebook[0]}</>
+            )
+          }
+          icon={<Facebook className="text-xs text-blue-600" />}
+        />
+      </div>
+
+      */}
     </div>
   );
 };

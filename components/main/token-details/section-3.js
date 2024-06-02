@@ -1,7 +1,6 @@
 import {
   ContentCopy,
   CurrencyBitcoin,
-  Hive,
   Info,
   Rocket,
   TrendingDown,
@@ -12,19 +11,9 @@ import { VotesById } from "@/lib/fetch-data";
 import DoughnutElement from "./chart";
 import HiveIcon from "@mui/icons-material/Hive";
 import AddIcon from "@mui/icons-material/Add";
-import EnhancedEncryptionIcon from "@mui/icons-material/EnhancedEncryption";
 
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
-
-import {
-  Chat,
-  Facebook,
-  GitHub,
-  LanguageRounded,
-  Reddit,
-  Twitter,
-} from "@mui/icons-material";
-import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import TokenMarketData from "./token-market-data";
 
 const SectionThree = ({ details, onDatabase }) => {
   const [loading, setLoading] = useState(false);
@@ -111,98 +100,11 @@ const SectionThree = ({ details, onDatabase }) => {
 
   return (
     <div>
-      {onDatabase && (
-        <div className="flex flex-row gap-2">
-          <table className="table table-zebra bg-base-300 p-2">
-            <tr className="border-b border-base-200">
-              <th>Cex Listing</th>
-            </tr>
-            {details?.urls?.cex_name_1 && (
-              <tr>
-                <td>
-                  <a
-                    href={details.urls.cex_link_1}
-                    target="_blank"
-                    className="btn btn-success btn-sm w-full"
-                  >
-                    <CurrencyBitcoin />
-                    {details?.urls?.cex_name_1}
-                  </a>
-                </td>
-              </tr>
-            )}
-            {details?.urls?.cex_name_2 && (
-              <tr>
-                <td>
-                  <a
-                    href={details.urls.cex_link_2}
-                    target="_blank"
-                    className="btn btn-info w-full btn-sm"
-                  >
-                    <CurrencyBitcoin />
-                    {details?.urls?.cex_name_2}
-                  </a>
-                </td>
-              </tr>
-            )}
-            {details?.urls?.cex_name_3 && (
-              <tr>
-                <td>
-                  <a
-                    href={details.urls.cex_link_3}
-                    target="_blank"
-                    className="btn btn-secondary w-full btn-sm"
-                  >
-                    <CurrencyBitcoin />
-                    {details?.urls?.cex_name_3}
-                  </a>
-                </td>
-              </tr>
-            )}
-          </table>
-
-          <table className="table table-zebra bg-base-300 p-2">
-            <tr className="border-b border-base-200">
-              <th>Target Cex Listing</th>
-            </tr>
-            {details?.urls?.cex_target_1 && (
-              <tr>
-                <td>
-                  <span className="btn btn-primary btn-sm w-full">
-                    <GpsFixedIcon />
-                    {details?.urls?.cex_target_1}
-                  </span>
-                </td>
-              </tr>
-            )}
-            {details?.urls?.cex_target_2 && (
-              <tr>
-                <td>
-                  <span className="btn btn-warning w-full btn-sm">
-                    <GpsFixedIcon />
-                    {details?.urls?.cex_target_2}
-                  </span>
-                </td>
-              </tr>
-            )}
-            {details?.urls?.cex_target_3 && (
-              <tr>
-                <td>
-                  <span className="btn btn-error w-full btn-sm">
-                    <GpsFixedIcon />
-                    {details?.urls?.cex_target_3}
-                  </span>
-                </td>
-              </tr>
-            )}
-          </table>
-        </div>
-      )}
+      <TokenMarketData details={details} onDatabase={onDatabase} />
 
       <br />
 
-     
-      <div className="bg-base-300 rounded-xl p-3 mt-5">
+      <div className="bg-base-300 rounded-xl p-3">
         <div className="text-xl font-bold">Boost Analysis</div>
 
         <DoughnutElement dataChart={chart} />
@@ -246,6 +148,8 @@ const SectionThree = ({ details, onDatabase }) => {
         </div>
       </div>
 
+      <br />
+
       <div
         className="border border-base-200 rounded-3xl p-3 w-full  text-center"
         id="safety"
@@ -265,12 +169,6 @@ const SectionThree = ({ details, onDatabase }) => {
             alert("Copied");
           }}
         >
-          {onDatabase ? (
-            <b className="text-xs">{details?.chain}</b>
-          ) : (
-            <>{details?.platform?.slug}</>
-          )}
-          :{" "}
           {onDatabase ? (
             <>{details?.contract_address.substr(0, 7)}...</>
           ) : (

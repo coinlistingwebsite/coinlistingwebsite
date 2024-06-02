@@ -94,7 +94,7 @@ const Navbar = () => {
       {/* <div className="border border-[1px] border-accent"></div> */}
       {/* <div className="divider p-0 m-0"></div> */}
 
-      <div className="navbar max-w-7xl mx-auto">
+      <div className="navbar max-w-[1500px] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

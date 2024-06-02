@@ -9,7 +9,7 @@ import FavouriteTable from "@/components/sub-main/favourite-table";
 
 const HomeComponent = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 lg:px-0">
+    <div className="max-w-[1500px] mx-auto px-4 lg:px-0">
       {/* Section 1 */}
 
       {/* Section 2 */}

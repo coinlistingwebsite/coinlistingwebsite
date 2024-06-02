@@ -8,7 +8,7 @@ import TestOne from "./test1";
 const TokenDetails = ({ details, onDatabase, tokenid }) => {
 
   return (
-    <div className="block lg:flex lg:flex-row my-5 lg:gap-4">
+    <div className="block lg:flex lg:flex-row my-5 lg:gap-3">
       {/* Section 1 */}
 
       {/* <div className="p-1 lg:w-[25%]">

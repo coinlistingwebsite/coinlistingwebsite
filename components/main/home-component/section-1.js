@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 const SectionOne = () => {
   return (
-    <div className=" max-w-7xl mx-auto">
+    <div className=" max-w-[1500px] mx-auto">
       {/* Advert Section */}
 
       {/* <Marquee
@@ -62,7 +62,7 @@ const SectionOne = () => {
         />
       </Marquee>
 
-      <div className="text-center text-xs text-gray-100 mt-1 mb-3 underline hover:cursor-pointer font-medium">
+      <div className="text-center text-xs text-gray-100 mt-1 mb-1 underline hover:cursor-pointer font-medium">
         Your Banner here? Contact Us
       </div>
     </div>

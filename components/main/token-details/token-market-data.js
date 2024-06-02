@@ -3,6 +3,7 @@ import Tr from "./tr";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { CurrencyBitcoin } from "@mui/icons-material";
 
 const TokenMarketData = ({ details, onDatabase }) => {
   const [market, setMarket] = useState();
@@ -37,7 +38,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
   var formatter = new Intl.NumberFormat("en-US", options);
 
   return (
-    <div className="p-2 bg-base-300 rounded-xl my-3">
+    <div className="p-2 bg-base-300 rounded-xl">
       {loading ? (
         <div className="w-full my-20 flex justify-center">
           <span className="loading loading-spinner loading-lg"></span>
@@ -46,27 +47,42 @@ const TokenMarketData = ({ details, onDatabase }) => {
         <>
           {market && (
             <>
-              <div>
-                <div className="text-xl"> ${market.price}</div>
-
-                <span
-                  className={
-                    market.percent_change_24h > 0
-                      ? "text-success py-4"
-                      : "text-red py-4"
-                  }
-                >
-                  {market.percent_change_24h > 0 ? (
-                    <ArrowDropUpIcon />
-                  ) : (
-                    <ArrowDropDownIcon />
-                  )}
-                  {Number(market.percent_change_24h).toFixed(2)}%
-                </span>
-              </div>
-
-              <table className="table table-xs w-full mt-5">
+              <table className="table table-xs w-full">
                 <tbody>
+                  <tr className="flex flex-row pb-2">
+                    <td className="flex flex-row text-sm my-auto opacity-75">
+                      <CurrencyBitcoin />
+                      Price
+                    </td>
+
+                    <td className="flex-1 justify-end text-right text-lg my-auto">
+                      ${market.price}
+                    </td>
+                  </tr>
+
+                  <tr className="flex flex-row py-2 ">
+                    <td className="flex flex-row text-sm my-auto opacity-75">
+                      Market Percent Change 24H
+                    </td>
+
+                    <td className="flex-1 justify-end text-right text-lg my-auto">
+                      <span
+                        className={
+                          market.percent_change_24h > 0
+                            ? "text-success py-4"
+                            : "text-red py-4"
+                        }
+                      >
+                        {market.percent_change_24h > 0 ? (
+                          <ArrowDropUpIcon />
+                        ) : (
+                          <ArrowDropDownIcon />
+                        )}
+                        {Number(market.percent_change_24h).toFixed(2)}%
+                      </span>
+                    </td>
+                  </tr>
+
                   <Tr
                     title="Market Cap"
                     description="Market Cap = Current Price x Circulating Supply. 

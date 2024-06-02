@@ -18,6 +18,7 @@ const SubmitTokenComponent = () => {
     full_description: "",
     platform: "",
     logo: "",
+    banner: "",
     website: "",
     website_2: "",
     chain: "",
@@ -46,7 +47,6 @@ const SubmitTokenComponent = () => {
     cex_link_2: "",
     cex_name_3: "",
     cex_link_3: "",
-
     cex_target_1: "",
     cex_target_2: "",
     cex_target_3: "",
@@ -92,7 +92,9 @@ const SubmitTokenComponent = () => {
     setLoading(false);
 
     if (errorStatus) {
-      setError(requestID);
+      setError(
+        "Error in submitting token, please try again or contact support"
+      );
       return;
     }
 
@@ -389,6 +391,29 @@ const SubmitTokenComponent = () => {
             (200x200); unequal dimensions will be rejected! (3) PNG format. If
             possible, it is recommended that you provide logo URLs ending with
             .png so that our system can extract the logo directly.
+          </span>
+        </div>
+      </label>
+
+      {/* ------------------------ */}
+      {/* Link To Banner */}
+
+      <label className="form-control w-full my-5">
+        <span className="submit_token_text">Link to Banner</span>
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              banner: event.target.value,
+            });
+          }}
+        />
+        <div className="label">
+          <span className="submit_token_text">
+            3 conditions MUST be met: (1) Transparent background; (2) Rectangle
+            (700x200);
           </span>
         </div>
       </label>

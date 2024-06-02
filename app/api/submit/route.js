@@ -32,10 +32,12 @@ export async function POST(request) {
     project_name: formData.project_name,
     symbol: formData.symbol,
     tags: tags,
+    date_added: Date.now(),
     short_description: formData.short_description,
     full_description: formData.full_description,
     platform: formData.platform,
     logo: formData.logo,
+    banner: formData.banner,
     urls: {
       website: formData.website,
       website_2: formData.website_2,
@@ -79,8 +81,8 @@ export async function POST(request) {
   if (!result) {
     return NextResponse.json({
       errorStatus: true,
-      requestID: request_id,
-      status: 200,
+      requestID: false,
+      status: 400,
     });
   }
 
