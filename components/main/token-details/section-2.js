@@ -19,6 +19,7 @@ import { CryptoDataContext } from "@/context/CryptoDataContext";
 import TokenMarketData from "./token-market-data";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import TrInfo from "./tr-info";
+import Link from "next/link";
 
 const SectionTwo = ({ details, onDatabase }) => {
   let { theme } = useContext(ThemeContext);
@@ -81,14 +82,14 @@ const SectionTwo = ({ details, onDatabase }) => {
         </div>
 
         <div className="space-x-2 justify-center flex flex-row my-auto">
-          <span
+          <a
             href={details?.urls?.telegram}
             target="_blank"
             className="btn btn-sm btn-info my-auto"
           >
             <Telegram className="text-black animate-bounce" />
             Chat
-          </span>
+          </a>
 
           <button
             className="outline-0 border-0 bg-none cursor-pointer mt-2"
@@ -123,14 +124,10 @@ const SectionTwo = ({ details, onDatabase }) => {
             </svg>
           </button>
 
-          <span
-            href={details?.urls?.chat[0]}
-            target="_blank"
-            className="btn btn-sm btn-primary my-auto"
-          >
+          <Link href="#boost" className="btn btn-sm btn-primary my-auto">
             Boost
             <BatteryChargingFull className="text-black animate-spin" />
-          </span>
+          </Link>
         </div>
       </div>
 
@@ -216,7 +213,7 @@ const SectionTwo = ({ details, onDatabase }) => {
         <div className="flex flex-col lg:flex-row gap-2">
           <table className="table table-zebra bg-base-300 p-2 lg:w-[25%]">
             <tr className="border-b border-base-200">
-              <th>Cex Listing</th>
+              <th className="text-center">Cex Listing</th>
             </tr>
             {details?.urls?.cex_name_1 && (
               <tr>
@@ -238,7 +235,7 @@ const SectionTwo = ({ details, onDatabase }) => {
                   <a
                     href={details.urls.cex_link_2}
                     target="_blank"
-                    className="btn btn-info w-full btn-sm"
+                    className="btn btn-success w-full btn-sm"
                   >
                     <CurrencyBitcoin />
                     {details?.urls?.cex_name_2}
@@ -252,7 +249,7 @@ const SectionTwo = ({ details, onDatabase }) => {
                   <a
                     href={details.urls.cex_link_3}
                     target="_blank"
-                    className="btn btn-secondary w-full btn-sm"
+                    className="btn btn-success w-full btn-sm"
                   >
                     <CurrencyBitcoin />
                     {details?.urls?.cex_name_3}
@@ -264,12 +261,12 @@ const SectionTwo = ({ details, onDatabase }) => {
 
           <table className="table table-zebra bg-base-300 p-2 lg:w-[25%]">
             <tr className="border-b border-base-200">
-              <th className="">Target Cex Listing</th>
+              <th className="text-center">Target Cex Listing</th>
             </tr>
             {details?.urls?.cex_target_1 && (
               <tr>
                 <td>
-                  <span className="btn btn-primary btn-sm w-full">
+                  <span className="btn btn-info btn-sm w-full">
                     <GpsFixedIcon />
                     {details?.urls?.cex_target_1}
                   </span>
@@ -279,7 +276,7 @@ const SectionTwo = ({ details, onDatabase }) => {
             {details?.urls?.cex_target_2 && (
               <tr>
                 <td>
-                  <span className="btn btn-warning w-full btn-sm">
+                  <span className="btn btn-info w-full btn-sm">
                     <GpsFixedIcon />
                     {details?.urls?.cex_target_2}
                   </span>
@@ -289,7 +286,7 @@ const SectionTwo = ({ details, onDatabase }) => {
             {details?.urls?.cex_target_3 && (
               <tr>
                 <td>
-                  <span className="btn btn-error w-full btn-sm">
+                  <span className="btn btn-info w-full btn-sm">
                     <GpsFixedIcon />
                     {details?.urls?.cex_target_3}
                   </span>

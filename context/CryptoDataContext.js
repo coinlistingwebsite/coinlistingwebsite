@@ -11,12 +11,11 @@ export default function CryptoDataProvider({ children }) {
   const [newTokens, setNewTokens] = useState([]);
   const [news, setNews] = useState([]);
   const [dbTokens, setDbTokens] = useState([]);
-
   const [loading, setLoading] = useState(true);
 
   let fetchCryptoData = async () => {
     try {
-      const response = await fetch("/api/news");
+      const response = await fetch("/api/news", { cache: "no-store" });
       const { news, error } = await response.json();
 
       if (!error) {
@@ -30,7 +29,9 @@ export default function CryptoDataProvider({ children }) {
     }
 
     try {
-      const response = await fetch("/api/fetch-api-tokens");
+      const response = await fetch("/api/fetch-api-tokens", {
+        cache: "no-store",
+      });
       const { tokenData, losers, gainers, newTokens, dbTokens, error } =
         await response.json();
       if (error) {

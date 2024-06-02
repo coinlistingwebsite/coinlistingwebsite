@@ -6,7 +6,6 @@ import SectionThree from "./section-3";
 import TestOne from "./test1";
 
 const TokenDetails = ({ details, onDatabase, tokenid }) => {
-
   return (
     <div className="block lg:flex lg:flex-row my-5 lg:gap-3">
       {/* Section 1 */}
