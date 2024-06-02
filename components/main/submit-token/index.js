@@ -207,7 +207,7 @@ const SubmitTokenComponent = () => {
       {/* ------------------------ */}
 
       {/* Project Launch Date */}
-
+{/* 
       <label className="form-control w-full">
         <div className="label">
           <span className="submit_token_text">Project Launch Date</span>
@@ -228,7 +228,7 @@ const SubmitTokenComponent = () => {
             formation of company, drafting of business plan).
           </span>
         </div>
-      </label>
+      </label> */}
 
       {/* ------------------------ */}
       {/* Project Name */}
