@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 const SectionOne = () => {
   return (
-    <div className=" max-w-[1500px] mx-auto">
+    <div className="max-w-[1500px] mx-auto">
       {/* Advert Section */}
 
       {/* <Marquee
@@ -27,7 +27,7 @@ const SectionOne = () => {
         />
       </Marquee> */}
 
-      <Marquee direction="left" className="rounded-xl">
+      <Marquee direction="left" className="rounded-xl z-0">
         <img
           src="https://www.loogooff.com/banner/turkey-1716172297.jpg"
           className="w-72 h-36 rounded-xl mx-1"

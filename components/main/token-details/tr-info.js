@@ -16,7 +16,6 @@ const TrInfo = ({ title, link, icon }) => {
             target="_blank line-clamp-1"
           >
             {icon}
-            {/* {link.props.children.substring(0, 20)} */}
           </a>
         </span>
       </span>

@@ -1,50 +1,25 @@
 import React from "react";
 import StackedBarChartIcon from "@mui/icons-material/StackedBarChart";
 import Link from "next/link";
+import { Checklist, Star } from "@mui/icons-material";
 
 const Filters = () => {
   return (
     <ul className="flex felx-row gap-2 my-5">
-      <li
-        className="px-3 text-[#000] rounded-full text-xs font-bold "
-        style={{ backgroundColor: "#35AF6D" }}
-      >
+      <a href="" className="badge badge-success badge-sm">
         <StackedBarChartIcon className="text-xs" />
+        Trending
+      </a>
 
-        <Link href="/newcryptocurrencies">Trending</Link>
-      </li>
-      <li
-        className="px-3 text-[#35AF6D] rounded-full text-xs font-bold "
-        style={{ backgroundColor: "rgb(232 252 201)" }}
-      >
-        <StackedBarChartIcon className="text-xs" />
+      <a href="/favourites" className="badge badge-info badge-sm">
+        <Star />
+        Favorites
+      </a>
 
-        <Link href="/newcryptocurrencies">Latest Listings</Link>
-      </li>
-      <li
-        className="px-3 text-[#35AF6D] rounded-full text-xs font-bold "
-        style={{ backgroundColor: "rgb(232 252 201)" }}
-      >
-        <StackedBarChartIcon className="text-xs" />
-
-        <Link href="/gainers-losers">Gainers & Losers</Link>
-      </li>
-      <li
-        className="px-3 text-[#35AF6D] rounded-full text-xs font-bold "
-        style={{ backgroundColor: "rgb(232 252 201)" }}
-      >
-        <StackedBarChartIcon className="text-xs" />
-
-        <Link href="/favourites">Favorites</Link>
-      </li>
-      <li
-        className="px-3 text-[#35AF6D] rounded-full text-xs font-bold "
-        style={{ backgroundColor: "rgb(232 252 201)" }}
-      >
-        <StackedBarChartIcon className="text-xs" />
-
-        <Link href="/favourites">Cex Listed Projects</Link>
-      </li>
+      <a href="/favourites" className="badge badge-primary badge-sm">
+        <Checklist className="text-xs" />
+        Cex Listed Project
+      </a>
     </ul>
   );
 };

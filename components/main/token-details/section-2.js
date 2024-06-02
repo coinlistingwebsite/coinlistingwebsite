@@ -54,7 +54,11 @@ const SectionTwo = ({ details, onDatabase }) => {
       <div
         className="relative flex h-48 w-full justify-center rounded-xl bg-cover mb-12"
         style={{
-          backgroundImage: `url("${details.banner}")`,
+          backgroundImage: `url("${
+            details.banner
+              ? details.banner
+              : "https://static.vecteezy.com/system/resources/previews/006/181/890/non_2x/crypto-currency-icons-background-digital-money-exchange-of-blockchain-technology-banner-cryptocurrency-mining-and-financial-concept-vector.jpg"
+          }")`,
           backgroundSize: "cover",
         }}
       >
@@ -208,8 +212,6 @@ const SectionTwo = ({ details, onDatabase }) => {
         />
       </div>
 
-  
-
       {onDatabase && (
         <div className="flex flex-col lg:flex-row gap-2">
           <table className="table table-zebra bg-base-300 p-2 lg:w-[25%]">
@@ -296,7 +298,7 @@ const SectionTwo = ({ details, onDatabase }) => {
             )}
           </table>
 
-          <table className="table table-zebra bg-base-300 p-2 lg:w-[50%] lg:flex-1">
+          <table className="table table-zebra bg-base-300 lg:w-[50%] lg:flex-1">
             <tr className="border-b border-base-200">
               <th>Description</th>
             </tr>
@@ -351,7 +353,6 @@ const SectionTwo = ({ details, onDatabase }) => {
         )}
       </div>
 
-     
       {/* 
       <div className="flex flex-row">
         <TrInfo
