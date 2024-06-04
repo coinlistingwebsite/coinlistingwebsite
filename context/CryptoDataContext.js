@@ -4,6 +4,9 @@ import axios from "axios";
 import { createContext, useState, useLayoutEffect } from "react";
 export const CryptoDataContext = createContext();
 
+export const dynamic = "force-dynamic";
+
+
 export default function CryptoDataProvider({ children }) {
   const [cryptoData, setCryptoData] = useState([]);
   const [losers, setLosers] = useState([]);
