@@ -2,6 +2,7 @@ import { db } from "@/firebase";
 import { NextResponse } from "next/server";
 import { getDoc, doc } from "firebase/firestore";
 
+export const dynamic = "force-dynamic";
 const newsdata = async () => {
   let results;
   try {

@@ -1,15 +1,11 @@
-import { fetchSubmittedTokens, fetchTokens } from "@/lib/fetch-data";
 import axios from "axios";
 import { NextResponse } from "next/server";
-
-export const dynamic = "force-dynamic";
 
 export async function GET() {
   let tokenData = [];
   let losers = [];
   let gainers = [];
   let newTokens = [];
-  let dbTokens = [];
 
   try {
     // Token Data
@@ -71,20 +67,12 @@ export async function GET() {
     console.log(error);
   }
 
-  try {
-    let response = await fetchTokens();
-    if (!response) throw new Error("Error fetching tokens");
-    dbTokens = response;
-  } catch (error) {
-    console.log(error);
-  }
-
   return NextResponse.json({
     tokenData,
     losers,
     gainers,
     newTokens,
-    dbTokens,
+
     status: 200,
     error: false,
   });

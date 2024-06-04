@@ -1,11 +1,9 @@
 "use client";
-import { dummy_data } from "@/dummy_data";
-import axios from "axios";
+
 import { createContext, useState, useLayoutEffect } from "react";
 export const CryptoDataContext = createContext();
 
 export const dynamic = "force-dynamic";
-
 
 export default function CryptoDataProvider({ children }) {
   const [cryptoData, setCryptoData] = useState([]);
@@ -33,24 +31,40 @@ export default function CryptoDataProvider({ children }) {
 
     try {
       const response = await fetch("/api/fetch-api-tokens", {
-        cache: "no-store",
+        next: { revalidate: 3600 },
       });
-      const { tokenData, losers, gainers, newTokens, dbTokens, error } =
+      const { tokenData, losers, gainers, newTokens, error } =
         await response.json();
       if (error) {
         setLoading(false);
         return;
       }
-      setDbTokens(dbTokens);
+
       setCryptoData(tokenData);
       setLosers(losers);
       setGainers(gainers);
       setNewTokens(newTokens);
-      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false);
     }
+
+    try {
+      const response = await fetch("/api/fetch-database-tokens", {
+        cache: "no-store",
+      });
+      const { dbTokens, error } = await response.json();
+
+      if (!error) {
+        const results = dbTokens.sort(
+          (a, b) => Number(b.date_added || 0) - Number(a.date_added || 0)
+        );
+        setDbTokens(results);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    setLoading(false);
   };
 
   const sortByPrice = async () => {
