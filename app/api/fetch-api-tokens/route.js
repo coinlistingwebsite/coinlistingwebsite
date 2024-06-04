@@ -2,6 +2,8 @@ import { fetchSubmittedTokens, fetchTokens } from "@/lib/fetch-data";
 import axios from "axios";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   let tokenData = [];
   let losers = [];
