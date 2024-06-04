@@ -25,7 +25,7 @@ const SectionTwo = () => {
         locale="en"
       ></coingecko-coin-price-marquee-widget> */}
 
-      <div className="my-5 flex flex-row">
+      <div className="mb-5 flex flex-row">
         <span className="flex-1 text-xl font-extrabold">
           Crytocurreny Highlights
         </span>

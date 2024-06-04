@@ -53,14 +53,16 @@ const SectionTwo = ({ details, onDatabase }) => {
   return (
     <div className="p-1">
       <div
-        className="relative flex h-48 w-full justify-center rounded-xl bg-cover mb-12"
+        className="relative flex h-48 w-full justify-center rounded-xl mb-12"
         style={{
           backgroundImage: `url("${
             details.banner
               ? details.banner
-              : "https://static.vecteezy.com/system/resources/previews/006/181/890/non_2x/crypto-currency-icons-background-digital-money-exchange-of-blockchain-technology-banner-cryptocurrency-mining-and-financial-concept-vector.jpg"
+              : "https://www.ibanet.org/medias/igi-jun-jul-22-crypto-banner.jpg?context=bWFzdGVyfHJvb3R8Nzc3MDR8aW1hZ2UvanBlZ3xhR000TDJnd1lpODRPRGszTlRjeE9URXpOelU0TDJsbmFTMXFkVzR0YW5Wc0xUSXlMV055ZVhCMGJ5MWlZVzV1WlhJdWFuQm58MDNlNDZlM2Q5ZjJiYzNkYTc4NjQ3ZGE1NmEzZjVmZDU4MjYyMzU1M2E3Nzc4MDRkOWMwNmFiMjBjODljMDZhMA"
           }")`,
           backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div class="absolute -bottom-12 flex h-[88px] w-[88px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400">
@@ -208,6 +210,18 @@ const SectionTwo = ({ details, onDatabase }) => {
           icon={<Facebook className="text-xs text-blue-600" />}
         />
       </div>
+
+      {!onDatabase && (
+        <table className="table table-zebra bg-base-300 w-[100%] my-5">
+          <tr className="border-b border-base-200">
+            <th>Description</th>
+          </tr>
+
+          <tr>
+            <td className="line-clamp-10">{details.description}</td>
+          </tr>
+        </table>
+      )}
 
       {onDatabase && (
         <div className="flex flex-col lg:flex-row gap-2">
