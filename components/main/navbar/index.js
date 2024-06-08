@@ -259,9 +259,9 @@ const Navbar = () => {
               className="outline-none placeholder:font-light bg-transparent flex-1 ml-2"
             />
           </div> */}
-          <button className="btn btn-info btn-sm">Edit Token</button>
+          {/* <button className="btn btn-info btn-sm">Edit Token</button> */}
           <Link href="/submityourtoken" className="btn btn-success btn-sm">
-            Submit Token
+            Get Listed
           </Link>
         </div>
       </div>

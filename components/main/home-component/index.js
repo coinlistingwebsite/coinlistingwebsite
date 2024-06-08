@@ -7,6 +7,7 @@ import TokenTable from "@/components/sub-main/token-table";
 import Link from "next/link";
 import FavouriteTable from "@/components/sub-main/favourite-table";
 import TrendSlider from "@/components/sub-main/trend-slider";
+import Marquee from "react-fast-marquee";
 
 const HomeComponent = () => {
   return (
@@ -26,13 +27,13 @@ const HomeComponent = () => {
         Open Your Next CEX GATE GEMS
       </div> */}
 
-      <div className="text-center flex">
+      <Marquee direction="left">
         <div className="divider flex-1"></div>
         <span className="badge badge-warning flex justify-center my-auto">
           Open Your Next CEX GATE GEMS
         </span>
         <div className="divider flex-1"></div>
-      </div>
+      </Marquee>
 
       {/* Tokens Table */}
       <TokenTable />

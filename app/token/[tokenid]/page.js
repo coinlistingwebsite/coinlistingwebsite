@@ -6,6 +6,12 @@ import React from "react";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: {
+    absolute: "Token Details",
+  },
+};
+
 export default async function TokenPage({ params }) {
   let tokenid = params.tokenid;
   const { details, onDatabase, error } = await fetchTokenDetails(tokenid);

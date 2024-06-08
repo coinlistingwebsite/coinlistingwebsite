@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Marquee from "react-fast-marquee";
 
@@ -62,9 +63,12 @@ const SectionOne = () => {
         />
       </Marquee>
 
-      <div className="text-center text-xs text-gray-100 mt-1 mb-1 underline hover:cursor-pointer font-medium">
+      <Link
+        href=""
+        className="text-center text-xs text-gray-100 mt-1 mb-1 underline hover:cursor-pointer font-medium"
+      >
         Your Banner here? Contact Us
-      </div>
+      </Link>
     </div>
   );
 };
