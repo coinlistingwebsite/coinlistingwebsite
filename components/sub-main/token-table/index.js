@@ -21,7 +21,7 @@ const TokenTable = () => {
   } = useContext(CryptoDataContext);
 
   const [page, setPage] = useState(0);
-  const [perPage, setPerPage] = useState(20);
+  const [perPage, setPerPage] = useState(100);
   const [reset, setReset] = useState();
 
   useEffect(() => {}, [reset]);
@@ -47,17 +47,13 @@ const TokenTable = () => {
     <>
       <Filters />
 
-      <div
-        className={`${
-          theme == "corporate" ? "border-base-300" : "border-accent"
-        } overflow-x-auto rounded-3xl border`}
-      >
+      <div className={` overflow-x-auto rounded-xl border border-success`}>
         <table className={`table table-sm  p-1`}>
           {/* head */}
           <thead>
             <tr>
               <th>Favourite</th>
-              {/* <th>Rank</th> */}
+              <th>Rank</th>
               <th>Name/symbol</th>
               <th
                 className="text-left hover:cursor-pointer"
@@ -95,7 +91,7 @@ const TokenTable = () => {
                 <ArrowDropDownIcon />
                 24h
               </th>
-             
+
               <th
                 className="text-left hover:cursor-pointer"
                 onClick={() => {

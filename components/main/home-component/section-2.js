@@ -18,12 +18,7 @@ const SectionTwo = () => {
 
   return (
     <>
-      {/* <coingecko-coin-price-marquee-widget
-        coin-ids="bitcoin,ethereum,eos,ripple,litecoin"
-        currency="usd"
-        background-color={theme == "corporate" ? "#fff" : "#000"}
-        locale="en"
-      ></coingecko-coin-price-marquee-widget> */}
+     
 
       <div className="mb-5 flex flex-row">
         <span className="flex-1 text-xl font-extrabold">
@@ -48,7 +43,7 @@ const SectionTwo = () => {
           <Promoted />
 
           <div
-            className={`flex-1 border border-1  p-1 rounded-3xl ${
+            className={`flex-1 border border-1  p-1 rounded-xl ${
               theme == "corporate" ? "border-base-300" : "border-accent"
             }`}
           >
@@ -105,7 +100,7 @@ const SectionTwo = () => {
           </div>
 
           <div
-            className={`flex-1 border border-1 rounded-3xl p-1 ${
+            className={`flex-1 border border-1 rounded-xl p-1 ${
               theme == "corporate" ? "border-base-300" : "border-accent"
             }`}
           >

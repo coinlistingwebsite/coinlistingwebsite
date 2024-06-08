@@ -60,14 +60,6 @@ const Footer = () => {
           </div>
         </aside>
       </footer>
-
-      <div className="py-2 max-w-7xl mx-auto text-sm">
-        <b>DISCLAIMER: </b>
-        All content provided herein our website, hyperlinked sites, associated
-        applications, forums, blogs, social media accounts and other platforms
-        (“Site”) is for your general information only, procured from third party
-        sources and It is not any financial advice. #Dyor
-      </div>
     </div>
   );
 };

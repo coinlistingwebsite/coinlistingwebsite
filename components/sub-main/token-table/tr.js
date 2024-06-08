@@ -79,6 +79,8 @@ const Tr = ({ index, token }) => {
           </button>
         </th>
 
+        <td>#{index + 1}</td>
+
         <td>
           <Link href={`/token/${token.id}`} className="hover:underline">
             {token.name}
@@ -102,7 +104,7 @@ const Tr = ({ index, token }) => {
 
         <td>
           {token?.platform?.name ? (
-            <span className="badge badge-ghost badge-xs">
+            <span className="badge badge-primary badge-xs">
               {token.platform.name.substr(0, 10)}
             </span>
           ) : (

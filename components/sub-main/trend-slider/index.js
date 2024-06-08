@@ -31,7 +31,7 @@ const TrendSlider = () => {
                 />
               </span>
               <span className="badge badge-success badge-outline my-auto badge-md">
-                # - {token.project_name}
+                # {index + 1} - {token.project_name}
               </span>
             </Link>
           </>

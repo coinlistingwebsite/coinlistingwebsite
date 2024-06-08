@@ -10,7 +10,7 @@ const Promoted = () => {
 
   return (
     <>
-      <div className={`flex-1 border border-1  p-1 rounded-3xl border-accent`}>
+      <div className={`flex-1 border border-1  p-1 rounded-xl border-accent`}>
         <div className="flex flex-row p-3">
           <b className="flex-1 my-auto text-sm flex flex-row">
             <img
@@ -38,6 +38,8 @@ const Promoted = () => {
               <tbody>
                 {dbTokens.slice(0, 20).map((token, index) => (
                   <tr className="flex flex-row ">
+                    <th className="my-auto">#{index + 1}</th>
+
                     <td className="flex flex-row ">
                       <div className="avatar">
                         <div className="mask mask-squircle w-8 h-8 mr-2">
@@ -63,7 +65,7 @@ const Promoted = () => {
                       </span>
                     </td>
 
-                    <th className="flex-1 justify-end text-right">
+                    <th className="flex-1 justify-end text-right my-auto">
                       <span className="badge badge-info badge-xs">
                         <Moment fromNow>{token.date_added}</Moment>
                       </span>
