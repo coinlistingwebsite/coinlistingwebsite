@@ -6,11 +6,22 @@ import React from "react";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = {
-  title: {
-    absolute: "Token Details",
-  },
-};
+export async function generateMetadata({ params }) {
+  let tokenid = params.tokenid;
+  const { details, onDatabase, error } = await fetchTokenDetails(tokenid);
+
+  return {
+    title: onDatabase ? details.project_name : details.name,
+    description: onDatabase ? details.full_description : details.description,
+    openGraph: {
+      images: [
+        {
+          url: details.logo,
+        },
+      ],
+    },
+  };
+}
 
 export default async function TokenPage({ params }) {
   let tokenid = params.tokenid;
