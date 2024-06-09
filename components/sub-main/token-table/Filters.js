@@ -5,7 +5,7 @@ import { Add, Checklist, Star } from "@mui/icons-material";
 
 const Filters = () => {
   return (
-    <ul className="hidden lg:flex lg:flex-row gap-2 my-5">
+    <ul className="hidden lg:flex lg:flex-row gap-2 mb-5">
       <a href="" className="badge badge-success badge-lg">
         <StackedBarChartIcon className="text-xs" />
         Trending

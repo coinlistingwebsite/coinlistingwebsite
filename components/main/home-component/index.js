@@ -1,31 +1,20 @@
 "use client";
-
-import NewsSection from "@/components/sub-main/news-section";
-import SectionOne from "./section-1";
 import SectionTwo from "./section-2";
 import TokenTable from "@/components/sub-main/token-table";
-import Link from "next/link";
-import FavouriteTable from "@/components/sub-main/favourite-table";
-import TrendSlider from "@/components/sub-main/trend-slider";
 import Marquee from "react-fast-marquee";
 
 const HomeComponent = () => {
   return (
     <div className="max-w-[1500px] mx-auto px-4 lg:px-0">
-      {/* Section 1 */}
+     
 
-      <TrendSlider />
+    
 
       {/* Section 2 */}
       <SectionTwo />
-      <br />
+    
 
-      {/* <Tweets />
-
-      <br /> */}
-      {/* <div className="rounded-3xl mb-10 border border-base-200 border-[1px] text-sm p-5 leading-6 text-center">
-        Open Your Next CEX GATE GEMS
-      </div> */}
+     
 
       <Marquee direction="left">
         <div className="divider flex-1"></div>
@@ -37,9 +26,8 @@ const HomeComponent = () => {
 
       {/* Tokens Table */}
       <TokenTable />
-      <br />
-      {/* Mews Section */}
-      {/* <NewsSection /> */}
+     
+    
     </div>
   );
 };

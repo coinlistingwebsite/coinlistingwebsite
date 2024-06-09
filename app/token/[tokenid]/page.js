@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
   const { details, onDatabase, error } = await fetchTokenDetails(tokenid);
 
   return {
-    title: onDatabase ? details.project_name : details.name,
+    title: `CexGate - ${onDatabase ? details.project_name : details.name}`,
     description: onDatabase ? details.full_description : details.description,
     openGraph: {
       images: [

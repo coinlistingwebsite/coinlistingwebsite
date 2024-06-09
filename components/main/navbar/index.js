@@ -25,6 +25,7 @@ import Link from "next/link";
 import { useContext } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
 import SectionOne from "../home-component/section-1";
+import TrendSlider from "@/components/sub-main/trend-slider";
 
 const Navbar = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
@@ -269,6 +270,8 @@ const Navbar = () => {
       <div className="divider p-0 m-0"></div>
 
       <SectionOne />
+
+      <TrendSlider />
     </>
   );
 };

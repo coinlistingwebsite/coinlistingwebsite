@@ -18,8 +18,6 @@ const SectionTwo = () => {
 
   return (
     <>
-     
-
       <div className="mb-5 flex flex-row">
         <span className="flex-1 text-xl font-extrabold">
           Crytocurreny Highlights
@@ -39,7 +37,7 @@ const SectionTwo = () => {
       </div>
 
       {checked && (
-        <div className="flex flex-col lg:flex-row gap-3 my-5">
+        <div className="flex flex-col lg:flex-row gap-3">
           <Promoted />
 
           <div

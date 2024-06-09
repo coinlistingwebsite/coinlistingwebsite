@@ -37,7 +37,7 @@ const Promoted = () => {
             <table className="table table-xs">
               <tbody>
                 {dbTokens.slice(0, 20).map((token, index) => (
-                  <tr className="flex flex-row ">
+                  <tr className="flex flex-row" key={index}>
                     <th className="my-auto">#{index + 1}</th>
 
                     <td className="flex flex-row ">

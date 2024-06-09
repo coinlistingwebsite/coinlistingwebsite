@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
           <ClientThemeWrapper>
             <CryptoDataProvider>
               <Navbar />
+
               {children}
               <Footer />
             </CryptoDataProvider>

@@ -8,7 +8,7 @@ const Tr = ({ title, description, value }) => {
 
   return (
     <>
-      <tr className="flex flex-row py-2 ">
+      <tr className="flex flex-col lg:flex-row py-2">
         <td className="flex flex-row text-sm my-auto opacity-75">
           {title}
           <Tooltip title={description}>
@@ -20,9 +20,6 @@ const Tr = ({ title, description, value }) => {
         </td>
 
         <td className="flex-1 justify-end text-right text-lg my-auto">
-          {/* ${formatNumber(value)}
-          <br /> */}
-          {/* {value} */}
           {formatter.format(value)}
         </td>
       </tr>
