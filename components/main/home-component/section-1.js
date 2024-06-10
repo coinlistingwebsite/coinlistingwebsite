@@ -1,10 +1,12 @@
+import { CryptoDataContext } from "@/context/CryptoDataContext";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 
 const SectionOne = () => {
   const [loading, setLoading] = useState(true);
   const [banners, setBanners] = useState([]);
+  let { setBannerrs } = useContext(CryptoDataContext);
 
   const fetchBanners = async () => {
     const response = await fetch("/api/fetch-banners", {
@@ -17,6 +19,7 @@ const SectionOne = () => {
     }
 
     setBanners(banners);
+    setBannerrs(banners);
     setLoading(false);
   };
 
@@ -79,7 +82,7 @@ const SectionOne = () => {
       </Marquee>
 
       <div className="text-center text-xs text-gray-100 mt-1 mb-1 underline hover:cursor-pointer font-medium">
-        <Link href="" className="">
+        <Link href="/adverts" className="">
           Your Banner here? Contact Us
         </Link>
       </div>

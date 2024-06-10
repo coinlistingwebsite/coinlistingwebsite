@@ -12,6 +12,7 @@ export default function CryptoDataProvider({ children }) {
   const [newTokens, setNewTokens] = useState([]);
   const [news, setNews] = useState([]);
   const [dbTokens, setDbTokens] = useState([]);
+  const [banners, setBannerrs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   let fetchCryptoData = async () => {
@@ -164,6 +165,8 @@ export default function CryptoDataProvider({ children }) {
         news,
         loading,
         addToFavourite,
+        banners,
+        setBannerrs,
 
         sortByPrice,
         setCryptoData,

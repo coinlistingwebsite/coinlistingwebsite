@@ -19,7 +19,7 @@ const Tr = ({ index, token }) => {
     if (!favorite) return;
     let fav = favorite.split(",");
     const checkData = fav.filter((fa) => {
-      return fa == token.symbol;
+      return fa.toLowerCase() == token.symbol.toLowerCase();
     });
     if (checkData.length > 0) {
       return true;

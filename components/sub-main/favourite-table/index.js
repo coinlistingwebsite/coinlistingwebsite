@@ -4,7 +4,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Link from "next/link";
-import Filters from "./Filters";
+import Filters from "../token-table/Filters";
 
 const FavouriteTable = ({ data }) => {
   let { theme } = useContext(ThemeContext);

@@ -2,15 +2,20 @@
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import { ThemeContext } from "@/context/ThemeContext";
 import React, { useContext } from "react";
+
 import NewTokenMarquee from "@/components/elements/new-token-marquee";
 import { RefreshOutlined } from "@mui/icons-material";
-import TrTwo from "./tr-2";
+import TrTwo from "../newcryptocurrencies/tr-2";
 import Filters from "@/components/sub-main/token-table/Filters";
 
-const NewCryptocurrency = () => {
+const CexListed = () => {
   const { dbTokens, loading } = useContext(CryptoDataContext);
 
-  const latestTokens = dbTokens.sort(
+  const result = dbTokens.filter((token) => {
+    return token.urls.cex_name_1 != "";
+  });
+
+  const latestTokens = result.sort(
     (a, b) => Number(b.date_added) - Number(a.date_added)
   );
 
@@ -44,8 +49,7 @@ const NewCryptocurrency = () => {
       <NewTokenMarquee />
 
       <div className="rounded-3xl my-10 border border-base-200 border-[1px] text-sm p-5 leading-6">
-        Introducing the top new cryptocurrencies shaking up the digital asset
-        landscape.
+        Cryptocurrencies with CEX listings and targets
       </div>
 
       <Filters />
@@ -59,4 +63,4 @@ const NewCryptocurrency = () => {
   );
 };
 
-export default NewCryptocurrency;
+export default CexListed;

@@ -6,22 +6,25 @@ import { Add, Checklist, Star } from "@mui/icons-material";
 const Filters = () => {
   return (
     <ul className="hidden lg:flex lg:flex-row gap-2 mb-5">
-      <a href="" className="badge badge-success badge-lg">
+      <Link href="/" className="badge badge-success badge-lg">
         <StackedBarChartIcon className="text-xs" />
         Trending
-      </a>
+      </Link>
 
-      <a href="/favourites" className="badge badge-info badge-lg">
+      <Link href="/favourites" className="badge badge-info badge-lg">
         <Star />
         Favorites
-      </a>
+      </Link>
 
-      <a href="/favourites" className="badge badge-primary badge-lg">
+      <Link href="/cexlisted" className="badge badge-primary badge-lg">
         <Checklist className="text-xs" />
         Cex Listed Project
-      </a>
+      </Link>
 
-      <Link href="/newcryptocurrencies" className="badge badge-secondary badge-lg">
+      <Link
+        href="/newcryptocurrencies"
+        className="badge badge-secondary badge-lg"
+      >
         <Add className="text-xs" />
         Recently Added projects
       </Link>

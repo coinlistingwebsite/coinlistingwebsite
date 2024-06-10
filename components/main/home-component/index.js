@@ -6,28 +6,19 @@ import Marquee from "react-fast-marquee";
 const HomeComponent = () => {
   return (
     <div className="max-w-[1500px] mx-auto px-4 lg:px-0">
-     
-
-    
-
       {/* Section 2 */}
       <SectionTwo />
-    
 
-     
-
-      <Marquee direction="left">
+      <div className="flex flex-row my-5">
         <div className="divider flex-1"></div>
         <span className="badge badge-warning flex justify-center my-auto">
           Open Your Next CEX GATE GEMS
         </span>
         <div className="divider flex-1"></div>
-      </Marquee>
+      </div>
 
       {/* Tokens Table */}
       <TokenTable />
-     
-    
     </div>
   );
 };

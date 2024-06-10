@@ -1,24 +1,62 @@
-import React from "react";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { CryptoDataContext } from "@/context/CryptoDataContext";
 import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
 import Moment from "react-moment";
-import { formatNumber } from "@/lib/validations/validations";
 
-const Tr = ({ index, token }) => {
+const TrTwo = ({ index, token }) => {
   if (!token) return;
 
-  var options = { style: "currency", currency: "USD" };
-  var formatter = new Intl.NumberFormat("en-US", options);
+  let { addToFavourite } = useContext(CryptoDataContext);
+  const [favourite, setFavourite] = useState(false);
+  const [reset, setReset] = useState();
+
+  const checkFavourite = () => {
+    let favorite = localStorage.getItem("bmc_favourite");
+    if (!favorite) return;
+    let fav = favorite.split(",");
+    const checkData = fav.filter((fa) => {
+      return fa.toLowerCase() == token.symbol.toLowerCase();
+    });
+    if (checkData.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const removeFavorite = () => {
+    let favorite = localStorage.getItem("bmc_favourite");
+    let fav = favorite.split(",");
+    const checkData = fav.filter((fa) => {
+      return fa != token.symbol;
+    });
+    localStorage.setItem("bmc_favourite", checkData);
+    setReset(Math.random());
+  };
+
+  useEffect(() => {}, [reset]);
 
   return (
     <>
-      <tr>
+      <div className="flex flex-row border-b border-base-200 gap-2 py-3 m-3">
         <th>
           {" "}
-          <button className="outline-0 border-0 bg-none cursor-pointer">
+          <button
+            className="outline-0 border-0 bg-none cursor-pointer"
+            onClick={() => {
+              if (checkFavourite()) {
+                removeFavorite();
+              } else {
+                addToFavourite(token.symbol);
+                checkFavourite();
+                setReset(Math.random());
+              }
+            }}
+          >
             <svg
-              className="w-[1.5rem] ml-1.5 fill-gray-100 hover:fill-cyan"
+              className={`w-[1.5rem] ml-1.5  ${
+                checkFavourite() ? "fill-cyan" : "fill-gray-100"
+              } hover:fill-cyan`}
               width="30"
               height="30"
               viewBox="0 0 30 30"
@@ -37,15 +75,14 @@ const Tr = ({ index, token }) => {
           </button>
         </th>
 
-        <td>#{index + 1}</td>
+        <div className="flex flex-row flex-1">
+          <span className="my-auto mr-1">#{index + 1}</span>
 
-        <td className="flex flex-row ">
           <div className="avatar">
             <div className="mask mask-squircle w-8 h-8 mr-2">
               <img src={token.logo} alt="" />
             </div>
           </div>
-
           <span className="flex flex-row flex-1 my-auto gap-1">
             <Link
               href={`/token/${token.request_id}`}
@@ -62,14 +99,14 @@ const Tr = ({ index, token }) => {
               </span>
             ) : null}
           </span>
-        </td>
+        </div>
 
-        <td className="max-w-48">
+        <span className="my-auto">
           {token?.urls?.cex_name_1 && (
             <a
               href={token?.urls?.cex_link_1}
               target="_blank"
-              className="badge badge-info badge-sm m-1"
+              className="badge badge-info badge-sm mx-1 my-auto"
             >
               {token?.urls?.cex_name_1}
             </a>
@@ -78,7 +115,7 @@ const Tr = ({ index, token }) => {
             <a
               href={token?.urls?.cex_link_2}
               target="_blank"
-              className="badge badge-secondary badge-sm m-1"
+              className="badge badge-secondary badge-sm mx-1"
             >
               {token?.urls?.cex_name_2}
             </a>
@@ -88,28 +125,19 @@ const Tr = ({ index, token }) => {
             <a
               href={token?.urls?.cex_link_3}
               target="_blank"
-              className="badge badge-warning badge-sm m-1"
+              className="badge badge-warning badge-sm mx-1"
             >
               {token?.urls?.cex_name_3}
             </a>
           )}
-        </td>
+        </span>
 
-        <td>
-          <span className="badge badge-primary">{token?.chain}</span>
-        </td>
-
-        <td>fid</td>
-
-        <td>fid</td>
-        <td>fid</td>
-
-        <td className="text-xs">
+        <span className="text-xs flex-end my-auto">
           <Moment fromNow>{token.date_added}</Moment>
-        </td>
-      </tr>
+        </span>
+      </div>
     </>
   );
 };
 
-export default Tr;
+export default TrTwo;

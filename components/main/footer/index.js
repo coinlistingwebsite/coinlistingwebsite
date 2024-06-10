@@ -1,8 +1,25 @@
-import React from "react";
+"use client";
+import { CryptoDataContext } from "@/context/CryptoDataContext";
+import React, { useContext } from "react";
 
 const Footer = () => {
+  let { banners, loading } = useContext(CryptoDataContext);
+  console.log(banners);
+
   return (
     <div>
+      {banners && (
+        <div className="flex flex-col md:flex-row gap-4 max-w-[1500px] mx-auto">
+          <a href={banners?.banner_8?.link || "/"} target="_blank flex-1">
+            <img src={banners?.banner_8?.logo} className="w-[100%]" />
+          </a>
+
+          <a href={banners?.banner_9?.link || "/"} target="_blank flex-1">
+            <img src={banners?.banner_9?.logo} className="w-[100%]" />
+          </a>
+        </div>
+      )}
+
       <div className="divider p-0 m-0"></div>
 
       <footer className="footer p-10 flex justify-center mx-auto max-w-4xl text-base-content">
