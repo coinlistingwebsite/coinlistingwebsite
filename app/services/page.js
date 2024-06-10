@@ -13,7 +13,7 @@ import Image from "next/image";
 
 const Services = () => {
   return (
-    <main className="max-w-7xl mx-auto min-h-[70vh] my-10">
+    <main className="max-w-[1500px] mx-auto min-h-[70vh] my-10">
       {/* Information */}
       <div className=" mb-10 border border-base-200 border-[1px] text-sm p-5 rounded-3xl">
         Welcome to <b>BullishMarketCap</b> Services, where innovation meets
