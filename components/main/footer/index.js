@@ -1,4 +1,5 @@
 "use client";
+import PartnersSlider from "@/components/sub-main/partners-slider";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import React, { useContext } from "react";
 
@@ -8,6 +9,8 @@ const Footer = () => {
 
   return (
     <div>
+      <PartnersSlider />
+
       {banners && (
         <div className="flex flex-col md:flex-row gap-4 max-w-[1500px] mx-auto">
           <a href={banners?.banner_8?.link || "/"} target="_blank flex-1">
@@ -20,7 +23,7 @@ const Footer = () => {
         </div>
       )}
 
-      <div className="divider p-0 m-0"></div>
+      {/* <div className="divider p-0 m-0"></div> */}
 
       <footer className="footer p-10 flex justify-center mx-auto max-w-4xl text-base-content">
         <aside>

@@ -45,8 +45,6 @@ export default async function TokenPage({ params }) {
         onDatabase={onDatabase}
         tokenid={tokenid}
       />
-
-      <NewsSection />
     </main>
   );
 }
