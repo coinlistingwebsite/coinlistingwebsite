@@ -144,7 +144,9 @@ const Navbar = () => {
 
         <div className="navbar-start hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-5">
-            <li className="badge badge-lg badge-outline">OPEN CEX GATE AND DISCOVER NEXT REAL DIAMOND</li>
+            <li className="badge badge-outline badge-xs lg:badge-lg">
+              OPEN CEX GATE AND DISCOVER NEXT REAL DIAMOND
+            </li>
 
             {/* 
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
