@@ -16,19 +16,19 @@ export default function CryptoDataProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   let fetchCryptoData = async () => {
-    try {
-      const response = await fetch("/api/news", { cache: "no-store" });
-      const { news, error } = await response.json();
+    // try {
+    //   const response = await fetch("/api/news", { cache: "no-store" });
+    //   const { news, error } = await response.json();
 
-      if (!error) {
-        const results = news.sort(
-          (a, b) => Number(b.date_added || 0) - Number(a.date_added || 0)
-        );
-        setNews(results);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    //   if (!error) {
+    //     const results = news.sort(
+    //       (a, b) => Number(b.date_added || 0) - Number(a.date_added || 0)
+    //     );
+    //     setNews(results);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     try {
       const response = await fetch("/api/fetch-api-tokens", {

@@ -1,7 +1,7 @@
 "use client";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import { ThemeContext } from "@/context/ThemeContext";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import NewTokenMarquee from "@/components/elements/new-token-marquee";
 import { RefreshOutlined } from "@mui/icons-material";
@@ -10,6 +10,7 @@ import Filters from "@/components/sub-main/token-table/Filters";
 
 const CexListed = () => {
   const { dbTokens, loading } = useContext(CryptoDataContext);
+  const [perPage, setPerPage] = useState(20);
 
   const result = dbTokens.filter((token) => {
     return token.urls.cex_name_1 != "";
@@ -55,9 +56,13 @@ const CexListed = () => {
       <Filters />
 
       <div className="grid grid-cols-1 md:grid-cols-2">
-        {latestTokens?.slice(0, 100).map((token, index) => (
+        {latestTokens?.slice(0, perPage).map((token, index) => (
           <TrTwo key={index} index={index} token={token} />
         ))}
+      </div>
+
+      <div className="text-center" onClick={() => setPerPage(perPage + 20)}>
+        <button className="btn btn-accent">View More</button>
       </div>
     </>
   );

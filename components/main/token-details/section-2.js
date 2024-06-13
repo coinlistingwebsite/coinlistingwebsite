@@ -9,7 +9,7 @@ import {
   Twitter,
   X,
 } from "@mui/icons-material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Chat, Facebook, Reddit } from "@mui/icons-material";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
@@ -49,6 +49,8 @@ const SectionTwo = ({ details, onDatabase }) => {
     localStorage.setItem("bmc_favourite", checkData);
     setReset(Math.random());
   };
+
+
 
   return (
     <div className="p-1">
@@ -315,8 +317,10 @@ const SectionTwo = ({ details, onDatabase }) => {
             </tr>
 
             <tr>
-              <td className="line-clamp-10">
-                {onDatabase ? details.full_description : details.description}
+              <td className="">
+                {onDatabase
+                  ? details.full_description.substr(0, 600)
+                  : details.description.substr(0, 600)}
               </td>
             </tr>
           </table>

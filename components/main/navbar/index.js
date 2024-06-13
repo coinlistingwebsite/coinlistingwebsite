@@ -22,14 +22,10 @@ import LinkIcon from "@mui/icons-material/Link";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import Link from "next/link";
-import { useContext } from "react";
-import { ThemeContext } from "@/context/ThemeContext";
 import SectionOne from "../home-component/section-1";
 import TrendSlider from "@/components/sub-main/trend-slider";
 
 const Navbar = () => {
-  const { theme, changeTheme } = useContext(ThemeContext);
-
   return (
     <>
       {/* <div className="hidden md:flex flex-row max-w-[1500px] mx-auto p-2 ">
@@ -148,6 +144,9 @@ const Navbar = () => {
 
         <div className="navbar-start hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-5">
+            <li className="badge badge-lg badge-outline">OPEN CEX GATE AND DISCOVER NEXT REAL DIAMOND</li>
+
+            {/* 
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
               Cryptocurrencies
               <ul
@@ -181,6 +180,8 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
+
+         
 
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
               Exchanges
@@ -249,6 +250,8 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
+
+ */}
           </ul>
         </div>
         <div className=" hidden lg:flex navbar-end lg:gap-3">
@@ -259,8 +262,8 @@ const Navbar = () => {
               placeholder="Search a token ..."
               className="outline-none placeholder:font-light bg-transparent flex-1 ml-2"
             />
-          </div> */}
-          {/* <button className="btn btn-info btn-sm">Edit Token</button> */}
+          </div> 
+           <button className="btn btn-info btn-sm">Edit Token</button> */}
           <Link href="/submityourtoken" className="btn btn-success btn-sm">
             Get Listed
           </Link>
