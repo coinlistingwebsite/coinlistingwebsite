@@ -3,7 +3,7 @@ import React from "react";
 
 export default function CexListedPage() {
   return (
-    <main className="max-w-[1500px] mx-auto">
+    <main className="max-w-[1400px] mx-auto">
       <CexListed />
     </main>
   );

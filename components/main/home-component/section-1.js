@@ -35,7 +35,7 @@ const SectionOne = () => {
   if (banners.length == 0) return;
 
   return (
-    <div className="max-w-[1500px] mx-auto">
+    <div className="max-w-[1400px] mx-auto">
       <Marquee direction="left" className="rounded-xl z-0">
         <a href={banners.banner_1?.link} target="_blank">
           <img

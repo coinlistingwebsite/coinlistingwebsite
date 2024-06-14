@@ -39,7 +39,7 @@ export default async function TokenPage({ params }) {
   }
 
   return (
-    <main className="max-w-[1500px] mx-auto my-10">
+    <main className="max-w-[1400px] mx-auto my-10">
       <TokenDetails
         details={details}
         onDatabase={onDatabase}

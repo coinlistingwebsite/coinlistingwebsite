@@ -21,7 +21,7 @@ const Promoted = () => {
           </b>
 
           <Link
-            href="/gainers-losers"
+            href="/newcryptocurrencies"
             className="hover:text-accent text-xs font-bold hover:cursor-pointer"
           >
             View more <KeyboardArrowRightIcon />

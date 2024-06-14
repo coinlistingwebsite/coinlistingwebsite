@@ -70,9 +70,7 @@ const Favourites = () => {
     <div>
       <FavouriteTable data={data} />
 
-      <br />
-      {/* Mews Section */}
-      <NewsSection />
+     
     </div>
   );
 };

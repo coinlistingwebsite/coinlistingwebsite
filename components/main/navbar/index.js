@@ -91,7 +91,7 @@ const Navbar = () => {
       {/* <div className="border border-[1px] border-accent"></div> */}
       {/* <div className="divider p-0 m-0"></div> */}
 
-      <div className="navbar max-w-[1500px] mx-auto">
+      <div className="navbar max-w-[1400px] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -115,9 +115,14 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Item 1</a>
+                <Link
+                  href="/submityourtoken"
+                  className="btn btn-success btn-sm"
+                >
+                  Get Listed
+                </Link>
               </li>
-              <li>
+              {/* <li>
                 <a>Parent</a>
                 <ul className="p-2">
                   <li>
@@ -130,7 +135,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a>Item 3</a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <Link href="/" className="btn btn-ghost text-xl">
@@ -144,7 +149,7 @@ const Navbar = () => {
 
         <div className="navbar-start hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-5">
-            <li className="badge badge-outline badge-xs lg:badge-lg">
+            <li className="badge badge-success badge-outline badge-xs lg:badge-lg">
               OPEN CEX GATE AND DISCOVER NEXT REAL DIAMOND
             </li>
 

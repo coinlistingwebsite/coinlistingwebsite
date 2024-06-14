@@ -5,7 +5,7 @@ import { Telegram } from "@mui/icons-material";
 
 const AdvertPage = () => {
   return (
-    <div className="max-w-[1500px] mx-auto text-center p-3">
+    <div className="max-w-[1400px] mx-auto text-center p-3">
       <h1 className="my-2 text-3xl">Engage your audience with CEX GATE Ads</h1>
       <p>
         Discover and inspire the crypto community to drive action for your brand

@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function NewCryptocurrenciesPage() {
   return (
-    <main className="max-w-[1500px] mx-auto px-2 lg:px-0">
+    <main className="max-w-[1400px] mx-auto px-2 lg:px-0">
       <NewCryptocurrency />
     </main>
   );

@@ -112,7 +112,22 @@ const SectionThree = ({ details, onDatabase }) => {
         <div className="text-md font-bold">
           How do you feel about{" "}
           {onDatabase ? details.project_name : details.name} today ?
-          <br />
+          <a
+            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+            class="twitter-share-button"
+            target="_blank"
+            data-size="large"
+            data-text="🚀Hereby, We  applied to list on @BullishMarktCap. Our team ready take our project to the 🌙 MOON."
+            data-hashtags="bullishmarketcap"
+            data-show-count="false"
+          >
+            Tweet now
+          </a>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
           <input
             type="text"
             className="input w-full input-md my-2 border border-1 border-base-200"

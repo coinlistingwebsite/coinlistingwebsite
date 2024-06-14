@@ -6,7 +6,7 @@ import Marquee from "react-fast-marquee";
 const PartnersSlider = () => {
   return (
     <>
-      <div className="my-5 max-w-[1500px] mx-auto rounded-2xl">
+      <div className="my-5 max-w-[1400px] mx-auto rounded-2xl">
         <div className="overflow-y-auto mb-1 rounded-lg">
           <Marquee direction="right" speed={50} delay={1}>
             {exchanges.map((part, index) => (

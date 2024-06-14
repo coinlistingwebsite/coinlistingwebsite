@@ -7,12 +7,12 @@ const TrendSlider = () => {
   let { dbTokens, loading } = useContext(CryptoDataContext);
 
   if (loading)
-    return <div className="max-w-[1500px] mx-auto skeleton h-10 mt-3"></div>;
+    return <div className="max-w-[1400px] mx-auto skeleton h-10 mt-3"></div>;
 
   if (dbTokens.length == 0) return null;
 
   return (
-    <div className="max-w-[1500px] mx-auto flex flex-row border border-2 border-base-200 rounded-xl my-3">
+    <div className="max-w-[1400px] mx-auto flex flex-row border border-2 border-base-200 rounded-xl my-3">
       <span className="my-auto mx-3">#Trending</span>
       <Marquee direction="left" pauseOnHover>
         {dbTokens.map((token, index) => (

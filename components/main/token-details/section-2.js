@@ -50,8 +50,6 @@ const SectionTwo = ({ details, onDatabase }) => {
     setReset(Math.random());
   };
 
-
-
   return (
     <div className="p-1">
       <div
@@ -330,13 +328,10 @@ const SectionTwo = ({ details, onDatabase }) => {
       <br />
 
       <div className="mb-1 flex flex-row gap-3">
-        <span className="badge badge-neutral badge-sm">Chart</span>
         <a href="#about" className="badge badge-neutral badge-sm">
           About {onDatabase ? <>{details.project_name}</> : <>{details.name}</>}
         </a>
-        <a href="#tags" className="badge badge-neutral badge-sm">
-          Tags
-        </a>
+
         <a href="#boost" className="badge badge-neutral badge-sm">
           Boost
         </a>
@@ -351,19 +346,11 @@ const SectionTwo = ({ details, onDatabase }) => {
       <div id="dexscreener-embed">
         {onDatabase ? (
           <iframe
-            src={`https://dexscreener.com/${details?.chain}/${
-              details?.contract_address
-            }?embed=1&trades=1&info=0&chart=1&theme=${
-              theme != "corporate" ? "dark" : "light"
-            }`}
+            src={`https://dexscreener.com/${details?.chain}/${details?.contract_address}?embed=1&trades=1&info=0&chart=1&theme=dark`}
           ></iframe>
         ) : (
           <iframe
-            src={`https://dexscreener.com/${details?.platform?.slug}/${
-              details?.platform?.token_address
-            }?embed=1&trades=1&info=0&chart=1&theme=${
-              theme != "corporate" ? "dark" : "light"
-            }`}
+            src={`https://dexscreener.com/${details?.platform?.slug}/${details?.platform?.token_address}?embed=1&trades=1&info=0&chart=1&theme=dark`}
           ></iframe>
         )}
       </div>
