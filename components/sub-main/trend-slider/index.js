@@ -15,7 +15,7 @@ const TrendSlider = () => {
     <div className="max-w-[1400px] mx-auto flex flex-row border border-2 border-base-200 rounded-xl my-3">
       <span className="my-auto mx-3">#Trending</span>
       <Marquee direction="left" pauseOnHover>
-        {dbTokens.map((token, index) => (
+        {dbTokens.slice(0, 19).map((token, index) => (
           <Link
             href={`/token/${token.request_id}`}
             className="avatar-group my-auto mr-3"
