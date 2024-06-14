@@ -117,7 +117,7 @@ const SectionThree = ({ details, onDatabase }) => {
             class="twitter-share-button"
             target="_blank"
             data-size="large"
-            data-text="🚀Hereby, We  applied to list on @BullishMarktCap. Our team ready take our project to the 🌙 MOON."
+            data-text="🚀We have successfully applied for listing on @Cex_Gate. We are ready to be for next real CEX GATE Diamond."
             data-hashtags="bullishmarketcap"
             data-show-count="false"
           >
