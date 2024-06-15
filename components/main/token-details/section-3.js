@@ -117,7 +117,11 @@ const SectionThree = ({ details, onDatabase }) => {
             class="twitter-share-button"
             target="_blank"
             data-size="large"
-            data-text="🚀We have successfully applied for listing on @Cex_Gate. We are ready to be for next real CEX GATE Diamond."
+            data-text="🚀I feel very bullish about #coinname today. Let's take to moon 🌝 together. 
+
+🚀 Project CEX Gate link: 
+
+#cexgate #cexgateio #bullish"
             data-hashtags="bullishmarketcap"
             data-show-count="false"
           >
