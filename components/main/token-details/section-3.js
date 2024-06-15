@@ -121,8 +121,8 @@ const SectionThree = ({ details, onDatabase }) => {
 
 🚀 Project CEX Gate link: 
 
-#cexgate #cexgateio #bullish"
-            data-hashtags="bullishmarketcap"
+ #cexgateio #bullish"
+            data-hashtags="cexgate"
             data-show-count="false"
           >
             Tweet now

@@ -52,6 +52,16 @@ const Footer = () => {
             >
               <Telegram />
             </a>
+            <a
+              className="avatar h-8"
+              href="https://medium.com/@cexgate"
+              target="_blank"
+            >
+              <img
+                src="https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png"
+                className="rounded-full h-8"
+              />
+            </a>
           </div>
         </aside>
       </footer>
