@@ -9,25 +9,27 @@ import {
   Twitter,
 } from "@mui/icons-material";
 import ForumIcon from "@mui/icons-material/Forum";
-import Image from "next/image";
+
+export const metadata = {
+  title: "CexGate Services",
+};
 
 const Services = () => {
   return (
     <main className="max-w-[1400px] mx-auto min-h-[70vh] my-10">
       {/* Information */}
       <div className=" mb-10 border border-base-200 border-[1px] text-sm p-5 rounded-3xl">
-        Welcome to <b>BullishMarketCap</b> Services, where innovation meets
-        expertise in Fullstack Development, Graphics, and Blockchain Contract
-        Creation. Our dedicated team brings together a blend of technical
-        prowess and creative vision to elevate your digital presence and empower
-        your blockchain initiatives. Whether you're envisioning a dynamic
-        website, captivating graphics, or need smart contracts deployed on the
-        blockchain, <b>BullishMarketCap</b> is your go-to partner for
-        cutting-edge solutions. With a deep understanding of the evolving
-        digital landscape and a commitment to excellence, we tailor our services
-        to exceed your expectations and drive your success. Join forces with{" "}
-        <b>BullishMarketCap</b> and unleash the full potential of your digital
-        endeavors.
+        Welcome to <b>CexGate</b> Services, where innovation meets expertise in
+        Fullstack Development, Graphics, and Blockchain Contract Creation. Our
+        dedicated team brings together a blend of technical prowess and creative
+        vision to elevate your digital presence and empower your blockchain
+        initiatives. Whether you're envisioning a dynamic website, captivating
+        graphics, or need smart contracts deployed on the blockchain,{" "}
+        <b>Cexgate</b> is your go-to partner for cutting-edge solutions. With a
+        deep understanding of the evolving digital landscape and a commitment to
+        excellence, we tailor our services to exceed your expectations and drive
+        your success. Join forces with <b>Cexgate</b> and unleash the full
+        potential of your digital endeavors.
       </div>
 
       {/* Services Card */}
