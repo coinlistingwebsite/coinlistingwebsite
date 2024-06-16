@@ -10,10 +10,6 @@ import {
 } from "@mui/icons-material";
 import ForumIcon from "@mui/icons-material/Forum";
 
-export const metadata = {
-  title: "CexGate Services",
-};
-
 const Services = () => {
   return (
     <main className="max-w-[1400px] mx-auto min-h-[70vh] my-10">
