@@ -22,9 +22,6 @@ const TokenMarketData = ({ details, onDatabase }) => {
 
     const { data, error } = await response.json();
 
-    console.log(details);
-    console.log(data);
-
     if (error) {
       setLoading(false);
     }

@@ -58,7 +58,7 @@ const SectionTwo = ({ details, onDatabase }) => {
           backgroundImage: `url("${
             details.banner
               ? details.banner
-              : "https://www.ibanet.org/medias/igi-jun-jul-22-crypto-banner.jpg?context=bWFzdGVyfHJvb3R8Nzc3MDR8aW1hZ2UvanBlZ3xhR000TDJnd1lpODRPRGszTlRjeE9URXpOelU0TDJsbmFTMXFkVzR0YW5Wc0xUSXlMV055ZVhCMGJ5MWlZVzV1WlhJdWFuQm58MDNlNDZlM2Q5ZjJiYzNkYTc4NjQ3ZGE1NmEzZjVmZDU4MjYyMzU1M2E3Nzc4MDRkOWMwNmFiMjBjODljMDZhMA"
+              : "https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2Fphoto_2024-06-17%203.55.25%E2%80%AFPM.jpeg?alt=media&token=a6f3668f-1e48-4906-81c0-b247abc00ebe"
           }")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
