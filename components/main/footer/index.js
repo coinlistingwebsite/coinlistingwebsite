@@ -59,7 +59,7 @@ const Footer = () => {
             >
               <img
                 src="https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png"
-                className="rounded-full h-8"
+                className="rounded-full h-8 w-8"
               />
             </a>
           </div>
