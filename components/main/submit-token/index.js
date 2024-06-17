@@ -821,8 +821,8 @@ const SubmitTokenComponent = () => {
             class="twitter-share-button"
             target="_blank"
             data-size="large"
-            data-text="🚀I feel very bullish about #coinname today. Let's take to moon 🌝 together. 🚀 Project CEX Gate link: 
-#cexgate #cexgateio #bullish"
+            data-text="🚀We successfully has applied to listing on @Cex_Gate platform. ✨ Our target exchanges has defined and we are ready to the moon 🌝 
+ #cexgateio #realdiamond"
             data-hashtags="cexgate"
             data-show-count="false"
           >
