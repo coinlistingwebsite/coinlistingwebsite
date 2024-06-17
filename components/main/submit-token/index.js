@@ -207,7 +207,7 @@ const SubmitTokenComponent = () => {
       {/* ------------------------ */}
 
       {/* Project Launch Date */}
-{/* 
+      {/* 
       <label className="form-control w-full">
         <div className="label">
           <span className="submit_token_text">Project Launch Date</span>
@@ -486,16 +486,9 @@ const SubmitTokenComponent = () => {
         />
         <div className="label">
           <span className="submit_token_text">
-            Insert a valid URL with the CONTRACT ADDRESS, e.g.
-            <a
-              href="https://etherscan.io/token/0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
-              target="_blank"
-              className="underline text-secondary"
-            >
-              https://etherscan.io/token/0x2260fac5e5542a773aa44fbcfedf7c193bc2c599{" "}
-            </a>
-            This is a mandatory field for projects that are already trading on
-            an exchange.
+            Insert a valid URL with the CONTRACT ADDRESS, e.g. This is a
+            mandatory field for projects that are already trading on an
+            exchange.
           </span>
         </div>
       </label>
@@ -828,8 +821,9 @@ const SubmitTokenComponent = () => {
             class="twitter-share-button"
             target="_blank"
             data-size="large"
-            data-text="🚀Hereby, We  applied to list on @BullishMarktCap. Our team ready take our project to the 🌙 MOON."
-            data-hashtags="bullishmarketcap"
+            data-text="🚀I feel very bullish about #coinname today. Let's take to moon 🌝 together. 🚀 Project CEX Gate link: 
+#cexgate #cexgateio #bullish"
+            data-hashtags="cexgate"
             data-show-count="false"
           >
             Tweet now
