@@ -6,6 +6,12 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   let dbTokens = [];
 
+  return NextResponse.json({
+    dbTokens,
+    status: 200,
+    error: false,
+  });
+
   try {
     let response = await fetchTokens();
     if (!response) throw new Error("Error fetching tokens");
