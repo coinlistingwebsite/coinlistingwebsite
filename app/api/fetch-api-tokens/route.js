@@ -8,16 +8,6 @@ export async function GET() {
   let newTokens = [];
 
 
-  return NextResponse.json({
-    tokenData,
-    losers,
-    gainers,
-    newTokens,
-
-    status: 200,
-    error: false,
-  });
-
   try {
     // Token Data
     let response = await axios.get(
