@@ -89,7 +89,7 @@ const SectionThree = ({ details, onDatabase }) => {
     }
 
     setChart({
-      bullish: parseInt(bullish) + 1000,
+      bullish: parseInt(bullish) + parseInt(details.votes),
       bearish: bearish,
     });
   };
