@@ -38,6 +38,7 @@ export async function POST(request) {
     platform: formData.platform,
     logo: formData.logo,
     banner: formData.banner,
+    votes: 1000,
     urls: {
       website: formData.website,
       website_2: formData.website_2,

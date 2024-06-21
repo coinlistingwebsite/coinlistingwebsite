@@ -24,7 +24,9 @@ const TokenTable = () => {
   const [perPage, setPerPage] = useState(100);
   const [reset, setReset] = useState();
 
-  useEffect(() => {}, [reset]);
+  useEffect(() => {
+    sortByPrice();
+  }, [reset]);
 
   if (loading)
     return (
