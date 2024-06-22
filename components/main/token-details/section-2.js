@@ -58,7 +58,7 @@ const SectionTwo = ({ details, onDatabase }) => {
           backgroundImage: `url("${
             details.banner
               ? details.banner
-              : "https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2Fphoto_2024-06-17%203.55.25%E2%80%AFPM.jpeg?alt=media&token=a6f3668f-1e48-4906-81c0-b247abc00ebe"
+              : "https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2Fphoto_2024-06-22%205.35.36%E2%80%AFPM.jpeg?alt=media&token=fd9e3c24-9df5-44c5-8996-eeb042a19000"
           }")`,
           backgroundSize: "cover",
           backgroundPosition: "center",

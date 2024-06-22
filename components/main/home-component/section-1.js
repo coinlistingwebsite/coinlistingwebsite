@@ -29,7 +29,7 @@ const SectionOne = () => {
 
   if (loading)
     return (
-      <div className="max-w-[1500px] mx-auto skeleton h-24 lg:h-36 mt-3"></div>
+      <div className="max-w-[1400px] mx-auto skeleton h-24 lg:h-36 mt-3"></div>
     );
 
   if (banners.length == 0) return;
