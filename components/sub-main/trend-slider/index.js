@@ -11,7 +11,11 @@ const TrendSlider = () => {
 
   if (dbTokens.length == 0) return null;
 
-  const promoted = dbTokens.sort((a, b) => Number(b.votes) - Number(a.votes));
+  //  const promoted = dbTokens.sort((a, b) => Number(b.votes) - Number(a.votes));
+
+  const promoted = dbTokens.sort(
+    (a, b) => Number(b.date_added) - Number(a.date_added)
+  );
 
   return (
     <div className="max-w-[1400px] mx-auto flex flex-row border border-2 border-base-200 rounded-xl my-3">

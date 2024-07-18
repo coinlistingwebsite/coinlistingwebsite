@@ -8,6 +8,14 @@ import Moment from "react-moment";
 const Promoted = () => {
   let { loading, dbTokens } = useContext(CryptoDataContext);
 
+  // fix array
+
+  //  if (loading || dbTokens.length < 1) return;
+
+  const newListed = dbTokens.sort(
+    (a, b) => Number(b.date_added) - Number(a.date_added)
+  );
+
   return (
     <>
       <div className={`flex-1 border border-1  p-1 rounded-xl border-accent`}>
@@ -29,7 +37,7 @@ const Promoted = () => {
         </div>
 
         <div className="overflow-y-auto h-[170px]">
-          {loading && dbTokens.length == 0 ? (
+          {loading && newListed.length == 0 ? (
             <div className="w-full flex justify-center">
               <span className="loading loading-spinner loading-lg my-10"></span>
             </div>
