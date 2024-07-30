@@ -813,7 +813,7 @@ const SubmitTokenComponent = () => {
         <div className="label flex flex-row">
           <span className="submit_token_text">
             Public Verification Post (Twitter). Please Post a Tweet, copy the
-            tweet link, and paste in the box
+            tweet link, and paste in the box.
           </span>
 
           <a
