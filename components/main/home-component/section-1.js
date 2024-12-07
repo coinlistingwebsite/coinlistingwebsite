@@ -34,6 +34,8 @@ const SectionOne = () => {
 
   if (banners.length == 0) return;
 
+  console.log(banners);
+
   return (
     <div className="max-w-[1400px] mx-auto">
       <Marquee direction="left" className="rounded-xl z-0">

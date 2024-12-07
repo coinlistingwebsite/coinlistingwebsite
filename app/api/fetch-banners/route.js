@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const fetchCexBanners = async () => {
   let results;
   try {
-    const docRef = doc(db, "cexBanners", process.env.NEXT_PUBLIC_CEX_BANNERS);
+    const docRef = doc(db, "banners", process.env.NEXT_PUBLIC_DB_BANNERS);
     const docSnap = await getDoc(docRef);
     results = { ...docSnap.data() };
   } catch (err) {

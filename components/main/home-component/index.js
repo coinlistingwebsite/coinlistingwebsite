@@ -5,7 +5,7 @@ import Marquee from "react-fast-marquee";
 
 const HomeComponent = () => {
   return (
-    <div className="max-w-[1400px] mx-auto px-4 lg:px-0">
+    <div className="max-w-[1400px] mx-auto">
       {/* Section 2 */}
       <SectionTwo />
 
