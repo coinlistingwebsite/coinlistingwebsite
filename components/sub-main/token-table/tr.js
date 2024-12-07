@@ -4,8 +4,10 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Link from "next/link";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import { formatNumber } from "@/lib/validations/validations";
+import { fetchTokenLogo } from "@/lib/fetch-data";
 
 const Tr = ({ index, token }) => {
+  const [logo, setLogo] = useState("");
   if (!token) return;
 
   let { addToFavourite } = useContext(CryptoDataContext);
@@ -38,7 +40,27 @@ const Tr = ({ index, token }) => {
     setReset(Math.random());
   };
 
+  const getLogo = async () => {
+    try {
+      const response = await fetch(`/api/token-logo?id=${token.id}`);
+      const { logo, error } = await response.json();
+      if (!error) {
+        setLogo(logo);
+      }
+
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getLogo();
+  }, []);
+
   useEffect(() => {}, [reset]);
+
+  if (!logo) return;
 
   return (
     <>
@@ -81,18 +103,29 @@ const Tr = ({ index, token }) => {
 
         <td>#{index + 1}</td>
 
-        <td>
-          <Link href={`/token/${token.id}`} className="hover:underline">
-            {token.name}
-          </Link>{" "}
-          <small className=" badge badge-success badge-xs">
-            ${token.symbol}
-          </small>
-          {token?.platform?.symbol ? (
-            <span className="badge badge-ghost badge-xs">
-              {token.platform.symbol}
+        <td className="flex items-center h-full py-4">
+          <div className="flex items-center">
+            <div className="mask mask-squircle w-8 h-8 mr-2">
+              <img src={logo} alt="" />
+            </div>
+          </div>
+
+          <span className="flex flex-row items-center gap-1">
+            <Link
+              href={`/token/${token.id}`}
+              className="text-md hover:underline hover:cursor-pointer"
+            >
+              {token.name}
+            </Link>
+            <span className="badge badge-xs badge-success">
+              ${token.symbol}
             </span>
-          ) : null}
+            {token?.platform?.symbol ? (
+              <span className="badge badge-ghost badge-xs">
+                {token.platform.symbol}
+              </span>
+            ) : null}
+          </span>
         </td>
 
         <td>
