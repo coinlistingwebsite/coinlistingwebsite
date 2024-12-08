@@ -55,7 +55,7 @@ const Tr = ({ index, token }) => {
   };
 
   return (
-    <tr className="hover:bg-gray-50 transition-colors duration-150">
+    <tr className=" transition-colors duration-150">
       <td>
         <button
           className="outline-0 border-0 bg-none cursor-pointer p-2 rounded-full hover:bg-gray-100"
