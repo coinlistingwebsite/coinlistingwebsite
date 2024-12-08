@@ -14,144 +14,156 @@ export default function CryptoDataProvider({ children }) {
   const [dbTokens, setDbTokens] = useState([]);
   const [banners, setBannerrs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tokenLogos, setTokenLogos] = useState({});
+
+  // Batch fetch logos for multiple tokens
+  const fetchTokenLogos = async (tokens) => {
+    try {
+      const logoPromises = tokens.map((token) =>
+        fetch(`/api/token-logo?id=${token.id}`)
+          .then((res) => res.json())
+          .then((data) => ({
+            id: token.id,
+            logo: data.error ? null : data.logo,
+          }))
+          .catch(() => ({ id: token.id, logo: null }))
+      );
+
+      const logos = await Promise.all(logoPromises);
+      const logoMap = logos.reduce((acc, { id, logo }) => {
+        acc[id] = logo;
+        return acc;
+      }, {});
+
+      setTokenLogos(logoMap);
+      return logoMap;
+    } catch (error) {
+      console.error("Error fetching logos:", error);
+      return {};
+    }
+  };
 
   let fetchCryptoData = async () => {
-    // try {
-    //   const response = await fetch("/api/news", { cache: "no-store" });
-    //   const { news, error } = await response.json();
-
-    //   if (!error) {
-    //     const results = news.sort(
-    //       (a, b) => Number(b.date_added || 0) - Number(a.date_added || 0)
-    //     );
-    //     setNews(results);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
+    setLoading(true);
     try {
       const response = await fetch("/api/fetch-api-tokens", {
         next: { revalidate: 3600 },
       });
       const { tokenData, losers, gainers, newTokens, error } =
         await response.json();
+
       if (error) {
         setLoading(false);
         return;
       }
 
-      setCryptoData(tokenData);
+      // Fetch logos for all tokens at once
+      const logoMap = await fetchTokenLogos(tokenData);
+
+      // Add logos to token data and sort by price initially
+      const enhancedTokenData = tokenData
+        .map((token) => ({
+          ...token,
+          logo: logoMap[token.id],
+        }))
+        .sort((a, b) => Number(b.quote.USD.price) - Number(a.quote.USD.price));
+
+      setCryptoData(enhancedTokenData);
       setLosers(losers);
       setGainers(gainers);
       setNewTokens(newTokens);
-    } catch (error) {
-      console.log(error);
-    }
 
-    try {
-      const response = await fetch("/api/fetch-database-tokens", {
-        cache: "no-store",
-      });
-      const { dbTokens, error } = await response.json();
+      // Fetch database tokens
+      try {
+        const dbResponse = await fetch("/api/fetch-database-tokens", {
+          cache: "no-store",
+        });
+        const { dbTokens, error: dbError } = await dbResponse.json();
 
-      if (!error) {
-        const results = dbTokens.sort(
-          (a, b) => Number(b.date_added || 0) - Number(a.date_added || 0)
-        );
-        setDbTokens(results);
+        if (!dbError) {
+          const results = dbTokens.sort(
+            (a, b) => Number(b.date_added || 0) - Number(a.date_added || 0)
+          );
+          setDbTokens(results);
+        }
+      } catch (error) {
+        console.error("Error fetching DB tokens:", error);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching crypto data:", error);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
-  const sortByPrice = async () => {
+  // Sorting functions with immutable updates
+  const sortByPrice = () => {
     if (!cryptoData) return;
-
-    const gainers = cryptoData.sort(
+    const sorted = [...cryptoData].sort(
       (a, b) => Number(b.quote.USD.price) - Number(a.quote.USD.price)
     );
-
-    setCryptoData(gainers);
+    setCryptoData(sorted);
   };
 
-  const sortBy1hPercent = async () => {
+  const sortBy1hPercent = () => {
     if (!cryptoData) return;
-
-    const gainers = cryptoData.sort(
+    const sorted = [...cryptoData].sort(
       (a, b) =>
         Number(b.quote.USD.percent_change_1h) -
         Number(a.quote.USD.percent_change_1h)
     );
-
-    setCryptoData(gainers);
+    setCryptoData(sorted);
   };
 
-  const sortBy24hPercent = async () => {
+  const sortBy24hPercent = () => {
     if (!cryptoData) return;
-
-    const gainers = cryptoData.sort(
+    const sorted = [...cryptoData].sort(
       (a, b) =>
         Number(b.quote.USD.percent_change_24h) -
         Number(a.quote.USD.percent_change_24h)
     );
-
-    setCryptoData(gainers);
+    setCryptoData(sorted);
   };
 
-  const sortBy7dPercent = async () => {
+  const sortBy7dPercent = () => {
     if (!cryptoData) return;
-
-    const gainers = cryptoData.sort(
+    const sorted = [...cryptoData].sort(
       (a, b) =>
         Number(b.quote.USD.percent_change_7d) -
         Number(a.quote.USD.percent_change_7d)
     );
-
-    setCryptoData(gainers);
+    setCryptoData(sorted);
   };
 
-  const sortBy24VPercent = async () => {
+  const sortBy24VPercent = () => {
     if (!cryptoData) return;
-
-    const gainers = cryptoData.sort(
+    const sorted = [...cryptoData].sort(
       (a, b) => Number(b.quote.USD.volume_24h) - Number(a.quote.USD.volume_24h)
     );
-
-    setCryptoData(gainers);
+    setCryptoData(sorted);
   };
 
-  const sortByMarketcap = async () => {
+  const sortByMarketcap = () => {
     if (!cryptoData) return;
-
-    const gainers = cryptoData.sort(
+    const sorted = [...cryptoData].sort(
       (a, b) => Number(b.quote.USD.market_cap) - Number(a.quote.USD.market_cap)
     );
-
-    setCryptoData(gainers);
+    setCryptoData(sorted);
   };
 
-  const addToFavourite = async (symbol) => {
+  const addToFavourite = (symbol) => {
     let favourite = localStorage.getItem("bmc_favourite");
+    let fav = favourite ? favourite.split(",") : [];
 
-    let fav = [];
-
-    if (favourite) {
-      fav = [favourite];
+    if (!fav.includes(symbol)) {
+      fav.push(symbol);
+      localStorage.setItem("bmc_favourite", fav.join(","));
     }
-
-    fav.push(symbol);
-
-    localStorage.setItem("bmc_favourite", fav);
   };
 
   useLayoutEffect(() => {
-    setTimeout(() => {
-      fetchCryptoData();
-    }, 4000);
+    // Remove setTimeout and fetch immediately
+    fetchCryptoData();
   }, []);
 
   return (
@@ -167,7 +179,6 @@ export default function CryptoDataProvider({ children }) {
         addToFavourite,
         banners,
         setBannerrs,
-
         sortByPrice,
         setCryptoData,
         sortBy1hPercent,
