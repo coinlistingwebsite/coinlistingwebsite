@@ -62,11 +62,11 @@ const SubmitTokenComponent = () => {
     setError(false);
     setRequestid("");
 
-    const recaptchaValue = recaptchaRef.current.getValue();
-    if (!recaptchaValue) {
-      setError("Please interact with RECAPTCHA");
-      return;
-    }
+    // const recaptchaValue = recaptchaRef.current.getValue();
+    // if (!recaptchaValue) {
+    //   setError("Please interact with RECAPTCHA");
+    //   return;
+    // }
 
     const { response, message } = await validateSubmitForm(formData);
 
@@ -114,18 +114,6 @@ const SubmitTokenComponent = () => {
         (optional).
       </span>
 
-      <select
-        className="select select-bordered w-full my-2 outline-none"
-        onChange={(event) => {
-          setFormData({ ...formData, request: event.target.value });
-        }}
-      >
-        <option value={true}>[New Listing] Add cryptoasset</option>
-        <option value={false}>[Update] Project Info</option>
-      </select>
-
-      {/* ------------------------ */}
-      <hr className="my-5" />
       {/* Your Email Address */}
 
       <span className="submit_token_text">Your Email Address</span>
@@ -821,9 +809,9 @@ const SubmitTokenComponent = () => {
             class="twitter-share-button"
             target="_blank"
             data-size="large"
-            data-text="🚀We successfully has applied to listing on @Cex_Gate platform. ✨ Our target exchanges has defined and we are ready to the moon 🌝 
+            data-text="🚀We successfully has applied to listing and we are ready to the moon 🌝 
  #cexgateio #realdiamond"
-            data-hashtags="cexgate"
+            data-hashtags="coinlisting"
             data-show-count="false"
           >
             Tweet now
@@ -848,12 +836,12 @@ const SubmitTokenComponent = () => {
 
       {/* ------------------------------- */}
 
-      <div>
+      {/* <div>
         <ReCAPTCHA
           sitekey={process.env.NEXT_PUBLIC_SITE_KEY}
           ref={recaptchaRef}
         />
-      </div>
+      </div> */}
 
       {/* ------------------------------- */}
       {error && (

@@ -11,9 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: {
-    default: "CEX GATE TOKEN LISTING WEBSITE",
+    default: "TOKEN LISTING WEBSITE",
   },
-  description: "OPEN CEX GATE AND DISCOVER NEXT REAL DIAMOND",
+  description: "DISCOVER NEXT REAL DIAMOND",
   twitter: {
     card: "summary_large_image",
   },

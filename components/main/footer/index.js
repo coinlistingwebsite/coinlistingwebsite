@@ -6,7 +6,6 @@ import React, { useContext } from "react";
 
 const Footer = () => {
   let { banners, loading } = useContext(CryptoDataContext);
-  console.log(banners);
 
   return (
     <div>
@@ -28,11 +27,11 @@ const Footer = () => {
 
       <footer className="p-10 text-center">
         <aside>
-          <p>© 2024 Cex Gate. All Rights Reserved.</p>
+          <p>© 2024. All Rights Reserved.</p>
           <div className="flex justify-center text-center gap-3">
             <a
               className="avatar h-10"
-              href="https://t.me/cexgate"
+              href=""
               target="_blank"
             >
               <Telegram />
@@ -40,21 +39,21 @@ const Footer = () => {
 
             <a
               className="avatar h-10"
-              href="https://x.com/Cex_Gate"
+              href=""
               target="_blank"
             >
               <X />
             </a>
             <a
               className="avatar h-10"
-              href="https://t.me/cexgateannouncement"
+              href=""
               target="_blank"
             >
               <Telegram />
             </a>
             <a
               className="avatar h-8"
-              href="https://medium.com/@cexgate"
+              href=""
               target="_blank"
             >
               <img

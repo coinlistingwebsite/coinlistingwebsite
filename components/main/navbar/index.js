@@ -57,7 +57,7 @@ const Navbar = () => {
                 if (event.target.checked) {
                   changeTheme("dark");
                 } else {
-                  changeTheme("corporate");
+                  changeTheme("light");
                 }
               }}
             />
@@ -184,7 +184,7 @@ const Navbar = () => {
               </ul>
             </li>
 
-            <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
+            {/* <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
               Exchanges
               <ul
                 tabIndex={0}
@@ -197,7 +197,7 @@ const Navbar = () => {
                   </span>
                 </li>
               </ul>
-            </li>
+            </li> */}
 
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
               <Link href="/services">Services</Link>
@@ -207,38 +207,38 @@ const Navbar = () => {
                 className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
               >
                 <li className="rounded-lg flex flex-row">
-                  <Link href="/services" className="my-auto flex-1 flex">
+                  <Link href="/adverts" className="my-auto flex-1 flex">
                     <SmartToy className="text-sm" />
                     <span className="flex-1">Bot Services</span>
                   </Link>
                 </li>
                 <li className="rounded-lg flex flex-row">
-                  <Link href="/services" className="my-auto flex-1 flex">
+                  <Link href="/adverts" className="my-auto flex-1 flex">
                     <GitHub className="text-sm" />
                     <span className="flex-1">Fullstack Developer</span>
                   </Link>
                 </li>
                 <li className="rounded-lg flex flex-row">
-                  <Link href="/services" className="my-auto flex-1 flex">
+                  <Link href="/adverts" className="my-auto flex-1 flex">
                     <CurrencyBitcoin className="text-sm" />
                     <span className="flex-1">Blockchain Developer</span>
                   </Link>
                 </li>
 
                 <li className="rounded-lg flex flex-row">
-                  <Link href="/services" className="my-auto flex-1 flex">
+                  <Link href="/adverts" className="my-auto flex-1 flex">
                     <Brush className="text-sm" />
                     <span className="flex-1">Crypto Designer</span>
                   </Link>
                 </li>
                 <li className="rounded-lg flex flex-row">
-                  <Link href="/services" className="my-auto flex-1 flex">
+                  <Link href="/adverts" className="my-auto flex-1 flex">
                     <Telegram className="text-sm" />
                     <span className="flex-1">Telegram Shilling</span>
                   </Link>
                 </li>
                 <li className="rounded-lg flex flex-row">
-                  <Link href="/services" className="my-auto flex-1 flex">
+                  <Link href="/adverts" className="my-auto flex-1 flex">
                     <Twitter className="text-sm" />
                     <span className="flex-1">Twitter Shilling</span>
                   </Link>

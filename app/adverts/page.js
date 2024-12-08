@@ -6,7 +6,7 @@ import { Telegram } from "@mui/icons-material";
 const AdvertPage = () => {
   return (
     <div className="max-w-[1400px] mx-auto text-center p-3">
-      <h1 className="my-2 text-3xl">Engage your audience with CEX GATE Ads</h1>
+      <h1 className="my-2 text-3xl">Engage your audience with Ads</h1>
       <p>
         Discover and inspire the crypto community to drive action for your brand
         at the most popular crypto data aggregation platform.
@@ -61,13 +61,12 @@ const AdvertPage = () => {
         <div className="collapse collapse-plus">
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title text-xl font-medium">
-            Can I advertise my project on Cex Gate?
+            Can I advertise my project on ?
           </div>
           <div className="collapse-content">
             <p>
               As per our Advertising Policy, we currently only accept
-              advertisements from projects that are currently listed on Cex
-              Gate.
+              advertisements from projects that are currently listed.
             </p>
           </div>
         </div>
@@ -86,7 +85,7 @@ const AdvertPage = () => {
         <div className="collapse collapse-plus">
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title text-xl font-medium">
-            How fast can an ad be served or changed on Cex Gate?
+            How fast can an ad be served or changed?
           </div>
           <div className="collapse-content">
             <p>
@@ -108,10 +107,7 @@ const AdvertPage = () => {
           service on Telegram
         </p>
 
-        <a
-          href="https://t.me/BMC_Support_now"
-          className="btn btn-wide btn-accent mt-5"
-        >
+        <a href="" className="btn btn-wide btn-accent mt-5">
           Message us on
           <Telegram />
         </a>
