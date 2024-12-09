@@ -16,6 +16,7 @@ const TokenTable = () => {
     sortBy24hPercent,
     sortBy7dPercent,
     sortBy24VPercent,
+    sortByTotalSupply,
     sortByMarketcap,
   } = useContext(CryptoDataContext);
 
@@ -103,6 +104,16 @@ const TokenTable = () => {
                 <div className="flex items-center gap-1">
                   <ArrowDropDownIcon />
                   24h Volume
+                </div>
+              </th>
+
+              <th
+                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                onClick={() => handleSort(sortByTotalSupply)}
+              >
+                <div className="flex items-center gap-1">
+                  <ArrowDropDownIcon />
+                  Total Supply
                 </div>
               </th>
 

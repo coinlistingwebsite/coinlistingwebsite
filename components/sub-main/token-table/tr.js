@@ -3,7 +3,10 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Link from "next/link";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
-import { formatNumber } from "@/lib/validations/validations";
+import {
+  formatNumber,
+  LargeNumberDisplay,
+} from "@/lib/validations/validations";
 
 const Tr = ({ index, token }) => {
   const { addToFavourite } = useContext(CryptoDataContext);
@@ -55,7 +58,7 @@ const Tr = ({ index, token }) => {
   };
 
   return (
-    <tr className=" transition-colors duration-150">
+    <tr className=" transition-colors duration-150 font-mono">
       <td>
         <button
           className="outline-0 border-0 bg-none cursor-pointer p-2 rounded-full hover:bg-gray-100"
@@ -153,15 +156,27 @@ const Tr = ({ index, token }) => {
       </td>
 
       <td className="whitespace-nowrap">
-        {token.quote.USD.volume_24h
-          ? `$ ${formatNumber(token.quote.USD.volume_24h)}`
-          : "-"}
+        {token.quote.USD.volume_24h ? (
+          <LargeNumberDisplay price={token.quote.USD.volume_24h} />
+        ) : (
+          "-"
+        )}
       </td>
 
       <td className="whitespace-nowrap">
-        {token.quote.USD.market_cap
-          ? `$ ${formatNumber(token.quote.USD.market_cap)}`
-          : "-"}
+        {token.total_supply ? (
+          <LargeNumberDisplay price={token.total_supply} />
+        ) : (
+          "-"
+        )}
+      </td>
+
+      <td className="whitespace-nowrap">
+        {token.quote.USD.market_cap ? (
+          <LargeNumberDisplay price={token.quote.USD.market_cap} />
+        ) : (
+          "-"
+        )}
       </td>
     </tr>
   );

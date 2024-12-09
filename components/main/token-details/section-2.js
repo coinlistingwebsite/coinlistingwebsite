@@ -50,6 +50,32 @@ const SectionTwo = ({ details, onDatabase }) => {
     setReset(Math.random());
   };
 
+  const getContractAddress = () => {
+    if (onDatabase) {
+      return details?.contract_address;
+    }
+    return details?.contract_address?.[0]?.contract_address;
+  };
+
+  // Helper function to get the chain/platform
+  const getChainPlatform = () => {
+    if (onDatabase) {
+      return details?.chain;
+    }
+    return details?.contract_address?.[0]?.platform.coin.slug;
+  };
+
+  const contractAddress = getContractAddress();
+  const chainPlatform = getChainPlatform();
+
+  console.log(contractAddress, chainPlatform);
+  console.log(details);
+
+  // Only render if we have both required values
+  if (!contractAddress || !chainPlatform) {
+    return null;
+  }
+
   return (
     <div className="p-1">
       <div
@@ -344,15 +370,11 @@ const SectionTwo = ({ details, onDatabase }) => {
       </div>
 
       <div id="dexscreener-embed">
-        {onDatabase ? (
-          <iframe
-            src={`https://dexscreener.com/${details?.chain}/${details?.contract_address}?embed=1&trades=1&info=0&chart=1&theme=dark`}
-          ></iframe>
-        ) : (
-          <iframe
-            src={`https://dexscreener.com/${details?.platform?.slug}/${details?.platform?.token_address}?embed=1&trades=1&info=0&chart=1&theme=dark`}
-          ></iframe>
-        )}
+        <iframe
+          src={`https://dexscreener.com/${chainPlatform}/${contractAddress}?embed=1&trades=1&info=0&chart=1&theme=dark`}
+          className="w-full h-full border-0"
+          title="DexScreener Chart"
+        />
       </div>
 
       {/* 

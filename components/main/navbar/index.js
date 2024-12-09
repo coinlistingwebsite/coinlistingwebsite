@@ -30,12 +30,11 @@ import { CryptoDataContext } from "@/context/CryptoDataContext";
 
 const Navbar = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
-
   let { dbTokens, loading } = useContext(CryptoDataContext);
 
   return (
     <>
-      <div className="hidden md:flex flex-row max-w-[1500px] mx-auto p-2">
+      <div className="hidden md:flex flex-row max-w-[1500px] mx-auto p-1">
         <div className="flex flex-row text-xs gap-3 flex-1">
           <span className="my-auto">
             {loading ? (
@@ -49,7 +48,7 @@ const Navbar = () => {
         </div>
 
         <div className="my-auto space-x-1">
-          <label className="swap swap-rotate  h-full">
+          <label className="swap swap-rotate h-full">
             <input
               type="checkbox"
               checked={theme == "dark" ? false : true}
@@ -79,16 +78,15 @@ const Navbar = () => {
             </svg>
           </label>
 
-          {/* <button className="btn btn-info btn-sm">Edit Token</button> */}
           <Link href="/submityourtoken" className="btn btn-success btn-sm">
             Submit Token
           </Link>
         </div>
       </div>
 
-      <div className="border border-[1px] border-accent"></div>
+      <div className="border border-[1px] border-accent my-0"></div>
 
-      <div className="navbar max-w-[1400px] mx-auto">
+      <div className="navbar max-w-[1400px] mx-auto py-0">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -119,23 +117,9 @@ const Navbar = () => {
                   Get Listed
                 </Link>
               </li>
-              {/* <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li> */}
             </ul>
           </div>
-          <Link href="/" className="btn btn-ghost text-xl">
+          <Link href="/" className="btn btn-ghost text-xl py-0">
             <img
               src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2F1.png?alt=media&token=db69211a-ec64-4dca-8eb5-5ef0a015a045"
               className="rounded-full h-full"
@@ -146,10 +130,6 @@ const Navbar = () => {
 
         <div className="navbar-start hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-5">
-            {/* <li className="badge badge-success badge-outline badge-xs lg:badge-lg">
-              CEX GATE
-            </li> */}
-
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
               Cryptocurrencies
               <ul
@@ -184,21 +164,6 @@ const Navbar = () => {
               </ul>
             </li>
 
-            {/* <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
-              Exchanges
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
-              >
-                <li className="rounded-lg flex flex-row">
-                  <span className="my-auto flex-1 flex">
-                    <BarChartIcon className="text-sm" />
-                    <span className="flex-1">Crypto Exchanges</span>
-                  </span>
-                </li>
-              </ul>
-            </li> */}
-
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
               <Link href="/services">Services</Link>
 
@@ -224,7 +189,6 @@ const Navbar = () => {
                     <span className="flex-1">Blockchain Developer</span>
                   </Link>
                 </li>
-
                 <li className="rounded-lg flex flex-row">
                   <Link href="/adverts" className="my-auto flex-1 flex">
                     <Brush className="text-sm" />
@@ -253,27 +217,22 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className=" hidden lg:flex navbar-end lg:gap-3">
-          {/* <div className="border rounded-full p-2 w-1/2 flex flex-row focus:w-full hover:w-full ease-in duration-700">
-            <Search />
-            <input
-              type="text"
-              placeholder="Search a token ..."
-              className="outline-none placeholder:font-light bg-transparent flex-1 ml-2"
-            />
-          </div> 
-           <button className="btn btn-info btn-sm">Edit Token</button> */}
+        <div className="hidden lg:flex navbar-end lg:gap-3">
           <Link href="/submityourtoken" className="btn btn-success btn-sm">
             Get Listed
           </Link>
         </div>
       </div>
 
-      <div className="divider p-0 m-0"></div>
+      <div className="divider my-0 p-0"></div>
 
-      <SectionOne />
+      <div className="mt-1">
+        <SectionOne />
+      </div>
 
-      <TrendSlider />
+      <div className="mt-2">
+        <TrendSlider />
+      </div>
     </>
   );
 };

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Tr from "./tr";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { CurrencyBitcoin } from "@mui/icons-material";
+import { ThemeContext } from "@/context/ThemeContext";
 
 const TokenMarketData = ({ details, onDatabase }) => {
   const [market, setMarket] = useState();
   const [loading, setLoading] = useState(true);
+  const { theme } = useContext(ThemeContext);
 
   const fetchMarketData = async () => {
     const response = await fetch("/api/fetch-market-data", {
@@ -38,7 +40,13 @@ const TokenMarketData = ({ details, onDatabase }) => {
   var formatter = new Intl.NumberFormat("en-US", options);
 
   return (
-    <div className="p-2 bg-base-300 rounded-xl">
+    <div
+      className={`p-2 rounded-xl ${
+        theme === "light"
+          ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+          : " border-gray-400 border"
+      }`}
+    >
       {loading ? (
         <div className="w-full my-20 flex justify-center">
           <span className="loading loading-spinner loading-lg"></span>

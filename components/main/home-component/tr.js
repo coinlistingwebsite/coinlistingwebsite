@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { PriceDisplay } from "@/lib/validations/validations";
 
 const Tr = ({ details, index }) => {
   if (!details) return;
@@ -9,7 +10,7 @@ const Tr = ({ details, index }) => {
 
   return (
     <>
-      <tr className="flex flex-row ">
+      <tr className="flex flex-row font-mono">
         <td className="my-auto font-bold">{index + 1}</td>
 
         <td className="flex flex-row ">
@@ -36,10 +37,12 @@ const Tr = ({ details, index }) => {
         </td>
 
         <th className="flex-1 justify-end text-right">
-          {new Intl.NumberFormat("en-IN", {
+          {/* {new Intl.NumberFormat("en-IN", {
             style: "currency",
             currency: "USD",
-          }).format(details?.quote?.USD?.price)}
+          }).format(details?.quote?.USD?.price)} */}
+
+          <PriceDisplay price={details?.quote?.USD?.price} />
 
           <span
             className={

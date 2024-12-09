@@ -36,50 +36,20 @@ const SectionOne = () => {
 
   return (
     <div className="max-w-[1400px] mx-auto">
-      <Marquee direction="left" className="rounded-xl z-0">
+      <div className="rounded-xl z-0 flex flex-col md:flex-row gap-5">
         <a href={banners.banner_1?.link} target="_blank">
           <img
             src={banners.banner_1?.logo}
-            className="h-24 lg:h-36 rounded-xl mx-1"
+            className="h-24 lg:h-24 rounded-xl mx-1 flex-1"
           />
         </a>
         <a href={banners.banner_2?.link} target="_blank">
           <img
             src={banners.banner_2?.logo}
-            className="h-24 lg:h-36 rounded-xl mx-1"
+            className="h-24 lg:h-24 rounded-xl mx-1 flex-1"
           />
         </a>
-        <a href={banners.banner_3?.link} target="_blank">
-          <img
-            src={banners.banner_3?.logo}
-            className="h-24 lg:h-36 rounded-xl mx-1"
-          />
-        </a>
-        <a href={banners.banner_4?.link} target="_blank">
-          <img
-            src={banners.banner_4?.logo}
-            className="h-24 lg:h-36 rounded-xl mx-1"
-          />
-        </a>
-        <a href={banners.banner_5?.link} target="_blank">
-          <img
-            src={banners.banner_5?.logo}
-            className="h-24 lg:h-36 rounded-xl mx-1"
-          />
-        </a>
-        <a href={banners.banner_6?.link} target="_blank">
-          <img
-            src={banners.banner_6?.logo}
-            className="h-24 lg:h-36 rounded-xl mx-1"
-          />
-        </a>
-        <a href={banners.banner_7?.link} target="_blank">
-          <img
-            src={banners.banner_7?.logo}
-            className="h-24 lg:h-36 rounded-xl mx-1"
-          />
-        </a>
-      </Marquee>
+      </div>
 
       <div className="text-center text-xs text-gray-100 mt-1 mb-1 underline hover:cursor-pointer font-medium">
         <Link href="/adverts" className="">

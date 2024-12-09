@@ -1,10 +1,12 @@
 import { CryptoDataContext } from "@/context/CryptoDataContext";
+import { ThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 import React, { useContext } from "react";
 import Marquee from "react-fast-marquee";
 
 const TrendSlider = () => {
   let { dbTokens, loading } = useContext(CryptoDataContext);
+  const { theme } = useContext(ThemeContext);
 
   if (loading)
     return <div className="max-w-[1400px] mx-auto skeleton h-10 mt-3"></div>;
@@ -18,8 +20,14 @@ const TrendSlider = () => {
   );
 
   return (
-    <div className="max-w-[1400px] mx-auto flex flex-row border border-2 border-base-200 rounded-xl my-3">
-      <span className="my-auto mx-3">#Trending</span>
+    <div
+      className={`max-w-[1400px] mx-auto flex flex-row rounded-xl my-3 py-1 ${
+        theme === "light"
+          ? "shadow-[0_2px_5px_rgba(0,0,0,0.2)] border-black"
+          : " border-gray-400 border"
+      }`}
+    >
+      <span className="my-auto mx-3 text-lg">Trending</span>
       <Marquee direction="left" pauseOnHover>
         {promoted.slice(0, 19).map((token, index) => (
           <Link
@@ -34,8 +42,9 @@ const TrendSlider = () => {
                 className="w-6 h-6 lg:w-12 lg:h-12 mask mask-hexagon"
               />
             </span>
-            <span className="badge badge-success badge-outline my-auto badge-sm lg:badge-md">
-              # {index + 1} - {token.project_name}
+            <span className="my-auto shadow-sm">
+              <small className="font-bold">{index + 1} </small> {token.symbol}/
+              {token.platform}
             </span>
           </Link>
         ))}

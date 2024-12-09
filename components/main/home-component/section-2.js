@@ -120,7 +120,7 @@ const SectionTwo = () => {
               </Link>
             </div>
 
-            <div className="overflow-y-auto h-[170px]">
+            <div className="overflow-y-auto h-[170px] scrollbar-hide">
               {loading && losers.length == 0 ? (
                 <div className="w-full flex justify-center">
                   <span className="loading loading-spinner loading-lg my-10"></span>

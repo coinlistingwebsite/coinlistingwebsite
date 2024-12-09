@@ -74,7 +74,8 @@ export default function CryptoDataProvider({ children }) {
 
       // Enhance all datasets with logos
       const enhancedTokenData = enhanceTokensWithLogos(tokenData, logoMap).sort(
-        (a, b) => Number(b.quote.USD.price) - Number(a.quote.USD.price)
+        (a, b) =>
+          Number(b.quote.USD.market_cap) - Number(a.quote.USD.market_cap)
       );
 
       const enhancedGainers = enhanceTokensWithLogos(gainers, logoMap);
@@ -157,6 +158,14 @@ export default function CryptoDataProvider({ children }) {
     setCryptoData(sorted);
   };
 
+  const sortByTotalSupply = () => {
+    if (!cryptoData) return;
+    const sorted = [...cryptoData].sort(
+      (a, b) => Number(b.total_supply || 0) - Number(a.total_supply || 0)
+    );
+    setCryptoData(sorted);
+  };
+
   const sortByMarketcap = () => {
     if (!cryptoData) return;
     const sorted = [...cryptoData].sort(
@@ -198,6 +207,7 @@ export default function CryptoDataProvider({ children }) {
         sortBy24hPercent,
         sortBy7dPercent,
         sortBy24VPercent,
+        sortByTotalSupply,
         sortByMarketcap,
       }}
     >
