@@ -2,12 +2,11 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { symbol } = await request.json();
+  const { symbol, id } = await request.json();
 
   try {
- 
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical?symbol=${symbol.toLowerCase()}&count=1`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical?id=${id}&count=1`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,

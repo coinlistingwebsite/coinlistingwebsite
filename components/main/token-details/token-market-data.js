@@ -11,6 +11,8 @@ const TokenMarketData = ({ details, onDatabase }) => {
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
 
+  console.log(details);
+
   const fetchMarketData = async () => {
     const response = await fetch("/api/fetch-market-data", {
       method: "POST",
@@ -19,6 +21,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
       },
       body: JSON.stringify({
         symbol: details.symbol,
+        id: details.id,
       }),
     });
 
