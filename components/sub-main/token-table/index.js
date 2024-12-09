@@ -23,7 +23,6 @@ const TokenTable = () => {
   const [page, setPage] = useState(0);
   const [perPage, setPerPage] = useState(100);
 
-  // Loading state with better UI feedback
   if (loading) {
     return (
       <div className="w-full mx-auto max-w-[1300px] min-h-[50vh] flex flex-col items-center justify-center gap-4">
@@ -33,7 +32,6 @@ const TokenTable = () => {
     );
   }
 
-  // Error state when no data is available
   if (!cryptoData || cryptoData.length === 0) {
     return (
       <main className="max-w-7xl mx-auto py-40 text-center">
@@ -48,9 +46,8 @@ const TokenTable = () => {
     );
   }
 
-  // Handler functions for sorting and pagination
   const handleSort = (sortFunction) => {
-    setPage(0); // Reset to first page when sorting
+    setPage(0);
     sortFunction();
   };
 
@@ -58,12 +55,12 @@ const TokenTable = () => {
     <>
       <Filters />
 
-      <div className="overflow-x-auto rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black">
-        <table className="table table-sm p-1 table-zebra">
+      <div className="lg:overflow-x-auto overflow-hidden rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black">
+        <table className="table table-sm p-1 table-zebra w-full">
           <thead>
             <tr>
               <th>Favourite</th>
-              <th>Rank</th>
+              <th className="hidden lg:table-cell">Rank</th>
               <th>Name/symbol</th>
               <th
                 className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
@@ -76,7 +73,7 @@ const TokenTable = () => {
               </th>
 
               <th
-                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hidden lg:table-cell text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortBy1hPercent)}
               >
                 <div className="flex items-center gap-1">
@@ -86,7 +83,7 @@ const TokenTable = () => {
               </th>
 
               <th
-                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200 hidden lg:table-cell"
                 onClick={() => handleSort(sortBy24hPercent)}
               >
                 <div className="flex items-center gap-1">
@@ -96,7 +93,7 @@ const TokenTable = () => {
               </th>
 
               <th
-                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hidden lg:table-cell text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortBy24VPercent)}
               >
                 <div className="flex items-center gap-1">
@@ -106,7 +103,7 @@ const TokenTable = () => {
               </th>
 
               <th
-                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hidden lg:table-cell text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortByTotalSupply)}
               >
                 <div className="flex items-center gap-1">
@@ -116,7 +113,7 @@ const TokenTable = () => {
               </th>
 
               <th
-                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hidden lg:table-cell text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortByMarketcap)}
               >
                 <div className="flex items-center gap-1">
@@ -134,7 +131,6 @@ const TokenTable = () => {
         </table>
       </div>
 
-      {/* Pagination Controls */}
       <div className="join flex flex-row justify-center items-center gap-2 mt-5">
         <button
           className="join-item btn btn-primary"
@@ -159,7 +155,7 @@ const TokenTable = () => {
           value={perPage}
           onChange={(e) => {
             setPerPage(Number(e.target.value));
-            setPage(0); // Reset to first page when changing items per page
+            setPage(0);
           }}
         >
           <option value={50}>50 per page</option>

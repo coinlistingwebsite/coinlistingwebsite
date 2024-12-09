@@ -14,8 +14,6 @@ const TokenDetails = ({ details, onDatabase, tokenid }) => {
 
   if (!mounted) return <p>loading</p>;
 
-  console.log(details);
-
   return (
     <div className="block lg:flex lg:flex-row my-5 lg:gap-3">
       <div className="p-1 lg:w-[75%]">

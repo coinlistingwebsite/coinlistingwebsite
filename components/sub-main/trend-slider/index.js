@@ -1,5 +1,7 @@
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import { ThemeContext } from "@/context/ThemeContext";
+import { ElectricBolt, EnergySavingsLeaf } from "@mui/icons-material";
+import { LightbulbIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useContext } from "react";
 import Marquee from "react-fast-marquee";
@@ -32,19 +34,24 @@ const TrendSlider = () => {
         {promoted.slice(0, 19).map((token, index) => (
           <Link
             href={`/token/${token.request_id}`}
-            className="avatar-group my-auto mr-3"
+            className="avatar-group my-auto mr-5"
             key={index}
           >
-            <span className="avatar w-6 lg:w-12">
-              <img
-                src={token.logo}
-                alt="logo"
-                className="w-6 h-6 lg:w-12 lg:h-12 mask mask-hexagon"
-              />
-            </span>
-            <span className="my-auto shadow-sm">
-              <small className="font-bold">{index + 1} </small> {token.symbol}/
-              {token.platform}
+            <span className="my-auto shadow-sm flex flex-row">
+              <small className="font-bold text-gray-100">#{index + 1} </small>
+              <span className="avatar w-7">
+                <img
+                  src={token.logo}
+                  alt="logo"
+                  className="w-7 h-7 mask mask-hexagon"
+                />
+              </span>
+              <small className="font-bold text-orange-500 my-auto">
+                {token.symbol}
+              </small>
+              <ElectricBolt size={12} className="my-auto text-orange-500" />
+              <small className="text-gray-100">{token.platform}</small>
+              <EnergySavingsLeaf size={12} className="my-auto text-green" />
             </span>
           </Link>
         ))}

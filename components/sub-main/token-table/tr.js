@@ -14,11 +14,9 @@ const Tr = ({ index, token }) => {
 
   if (!token) return null;
 
-  // Favorite management functions
   const checkFavourite = useCallback(() => {
     const favorite = localStorage.getItem("bmc_favourite");
     if (!favorite) return false;
-
     const fav = favorite.split(",");
     return fav.includes(token.symbol);
   }, [token.symbol]);
@@ -26,7 +24,6 @@ const Tr = ({ index, token }) => {
   const removeFavorite = useCallback(() => {
     const favorite = localStorage.getItem("bmc_favourite");
     if (!favorite) return;
-
     const fav = favorite.split(",");
     const updatedFav = fav.filter((fa) => fa !== token.symbol);
     localStorage.setItem("bmc_favourite", updatedFav.join(","));
@@ -42,8 +39,18 @@ const Tr = ({ index, token }) => {
     }
   };
 
-  // Format price and numbers
   const formatPrice = (price) => {
+    // Handle prices >= 100
+    if (price >= 100) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(price);
+    }
+
+    // Handle prices < 100
     return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
@@ -52,13 +59,12 @@ const Tr = ({ index, token }) => {
     }).format(price);
   };
 
-  // Format percentage changes
   const formatPercentage = (value) => {
     return Number(value).toFixed(2);
   };
 
   return (
-    <tr className=" transition-colors duration-150">
+    <tr className="transition-colors duration-150">
       <td>
         <button
           className="outline-0 border-0 bg-none cursor-pointer p-2 rounded-full hover:bg-gray-100"
@@ -89,63 +95,91 @@ const Tr = ({ index, token }) => {
         </button>
       </td>
 
-      <td className="font-bold">{index + 1}</td>
+      <td className="font-bold hidden lg:table-cell">{index + 1}</td>
 
-      <td className="flex items-center h-full py-4">
-        <div className="flex items-center gap-2">
-          {token.logo && (
-            <div className="mask mask-squircle w-8 h-8">
-              <img src={token.logo} alt={`${token.name} logo`} />
-            </div>
-          )}
-          <span className="flex flex-row items-center gap-1">
-            <Link
-              href={`/token/${token.id}`}
-              className="text-md hover:underline hover:cursor-pointer"
-            >
-              {token.symbol}
-            </Link>
-
-            {token?.platform?.symbol && (
-              <small className="text-xs my-auto text-gray-500">
-                {token.platform.symbol}
-              </small>
+      <td className="pl-2">
+        <div className="flex flex-col gap-1 text-left">
+          <div className="flex items-center gap-2">
+            {token.logo && (
+              <div className="mask mask-squircle w-8 h-8">
+                <img src={token.logo} alt={`${token.name} logo`} />
+              </div>
             )}
-          </span>
+            <span className=" gap-1">
+              <span className="flex flex-row items-center">
+                <Link
+                  href={`/token/${token.id}`}
+                  className="text-md hover:underline hover:cursor-pointer"
+                >
+                  {token.symbol}
+                </Link>
+
+                {token?.platform?.symbol && (
+                  <small className="text-xs my-auto text-gray-500">
+                    {token.platform.symbol}
+                  </small>
+                )}
+              </span>
+              <small className="text-gray-500">
+                {formatNumber(token.quote.USD.market_cap)}
+              </small>
+            </span>
+          </div>
         </div>
       </td>
 
       <td className="whitespace-nowrap">
         {formatPrice(token.quote.USD.price)}
+        <br />
+        <span
+          className={` text-xs lg:hidden
+            ${
+              token.quote.USD.percent_change_24h > 0
+                ? "text-success"
+                : "text-red"
+            }
+          `}
+        >
+          {token.quote.USD.percent_change_24h > 0 ? (
+            <ArrowDropUpIcon />
+          ) : (
+            <ArrowDropDownIcon />
+          )}
+          {formatPercentage(token.quote.USD.percent_change_24h)}%
+        </span>
       </td>
 
-      <td
-        className={`whitespace-nowrap ${
-          token.quote.USD.percent_change_1h > 0 ? "text-success" : "text-red"
-        } py-4`}
-      >
-        {token.quote.USD.percent_change_1h > 0 ? (
-          <ArrowDropUpIcon />
-        ) : (
-          <ArrowDropDownIcon />
-        )}
-        {formatPercentage(token.quote.USD.percent_change_1h)}%
+      <td className="hidden lg:table-cell whitespace-nowrap">
+        <span
+          className={
+            token.quote.USD.percent_change_1h > 0 ? "text-success" : "text-red"
+          }
+        >
+          {token.quote.USD.percent_change_1h > 0 ? (
+            <ArrowDropUpIcon />
+          ) : (
+            <ArrowDropDownIcon />
+          )}
+          {formatPercentage(token.quote.USD.percent_change_1h)}%
+        </span>
       </td>
 
-      <td
-        className={`whitespace-nowrap ${
-          token.quote.USD.percent_change_24h > 0 ? "text-success" : "text-red"
-        } py-4`}
-      >
-        {token.quote.USD.percent_change_24h > 0 ? (
-          <ArrowDropUpIcon />
-        ) : (
-          <ArrowDropDownIcon />
-        )}
-        {formatPercentage(token.quote.USD.percent_change_24h)}%
+      <td className="whitespace-nowrap hidden lg:table-cell">
+        <span
+          className={
+            token.quote.USD.percent_change_24h > 0 ? "text-success" : "text-red"
+          }
+        >
+          {token.quote.USD.percent_change_24h > 0 ? (
+            <ArrowDropUpIcon />
+          ) : (
+            <ArrowDropDownIcon />
+          )}
+          {formatPercentage(token.quote.USD.percent_change_24h)}%
+        </span>
       </td>
 
-      <td className="whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap">
         {token.quote.USD.volume_24h ? (
           <LargeNumberDisplay price={token.quote.USD.volume_24h} />
         ) : (
@@ -153,7 +187,7 @@ const Tr = ({ index, token }) => {
         )}
       </td>
 
-      <td className="whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap">
         {token.total_supply ? (
           <LargeNumberDisplay price={token.total_supply} />
         ) : (
@@ -161,7 +195,7 @@ const Tr = ({ index, token }) => {
         )}
       </td>
 
-      <td className="whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap">
         {token.quote.USD.market_cap ? (
           <LargeNumberDisplay price={token.quote.USD.market_cap} />
         ) : (

@@ -125,12 +125,10 @@ const SectionThree = ({ details, onDatabase }) => {
             class="twitter-share-button"
             target="_blank"
             data-size="large"
-            data-text="🚀I feel very bullish about #coinname today. Let's take to moon 🌝 together. 
-
-🚀 Project CEX Gate link: 
-
- #cexgateio #bullish"
-            data-hashtags="cexgate"
+            data-text={`🚀I feel very bullish about ${
+              onDatabase ? details.project_name : details.name
+            } today. Let's take to moon 🌝 together.  #bullish`}
+            data-hashtags="bullish"
             data-show-count="false"
           >
             Tweet now
