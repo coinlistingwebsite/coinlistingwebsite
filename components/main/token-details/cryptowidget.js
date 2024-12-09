@@ -30,8 +30,8 @@ const CryptoFeed = ({ symbol = "BTC" }) => {
     container.className = "crypto-feed-wrapper";
     container.style.width = "100%";
     container.style.maxWidth = "100%";
-    container.style.height = "400px";
-    container.style.overflow = "hidden";
+    container.style.height = "600px";
+  //  container.style.overflow = "hidden";
 
     document.getElementById("crypto-feed-container").appendChild(container);
     container.appendChild(s);
@@ -46,7 +46,7 @@ const CryptoFeed = ({ symbol = "BTC" }) => {
   return (
     <div
       id="crypto-feed-container"
-      className="w-full h-96 overflow-hidden border rounded-lg"
+      className="w-full overflow-hidden border rounded-lg"
     />
   );
 };

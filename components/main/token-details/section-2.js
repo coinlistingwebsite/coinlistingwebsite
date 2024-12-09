@@ -73,7 +73,7 @@ const SectionTwo = ({ details, onDatabase }) => {
             <h1 className="text-2xl font-bold">
               {onDatabase ? details.project_name : details.name}
             </h1>
-            <span className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+            <span className="text-sm px-3 py-1 rounded-full text-gray-600 dark:text-gray-300">
               ${details.symbol}
             </span>
           </div>
