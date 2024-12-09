@@ -75,8 +75,6 @@ const TokenTable = () => {
                 </div>
               </th>
 
-              <th>Chain</th>
-
               <th
                 className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortBy1hPercent)}

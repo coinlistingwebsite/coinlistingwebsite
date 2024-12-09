@@ -10,7 +10,7 @@ const Tr = ({ details, index }) => {
 
   return (
     <>
-      <tr className="flex flex-row font-mono">
+      <tr className="flex flex-row">
         <td className="my-auto font-bold">{index + 1}</td>
 
         <td className="flex flex-row ">

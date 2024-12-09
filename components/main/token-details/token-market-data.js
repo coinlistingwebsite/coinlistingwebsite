@@ -70,7 +70,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
 
                   <tr className="flex flex-row py-2 ">
                     <td className="flex flex-row text-sm my-auto opacity-75">
-                      Market Percent Change 24H
+                      Percent Change 24H
                     </td>
 
                     <td className="flex-1 justify-end text-right text-lg my-auto">

@@ -58,7 +58,7 @@ const Tr = ({ index, token }) => {
   };
 
   return (
-    <tr className=" transition-colors duration-150 font-mono">
+    <tr className=" transition-colors duration-150">
       <td>
         <button
           className="outline-0 border-0 bg-none cursor-pointer p-2 rounded-full hover:bg-gray-100"
@@ -115,18 +115,8 @@ const Tr = ({ index, token }) => {
         </div>
       </td>
 
-      <td className="whitespace-nowrap font-medium">
+      <td className="whitespace-nowrap">
         {formatPrice(token.quote.USD.price)}
-      </td>
-
-      <td>
-        {token?.platform?.name ? (
-          <span className="badge badge-primary badge-xs">
-            {token.platform.name.substring(0, 10)}
-          </span>
-        ) : (
-          "-"
-        )}
       </td>
 
       <td

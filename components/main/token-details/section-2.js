@@ -20,6 +20,7 @@ import TokenMarketData from "./token-market-data";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import TrInfo from "./tr-info";
 import Link from "next/link";
+import CryptoFeed from "./cryptowidget";
 
 const SectionTwo = ({ details, onDatabase }) => {
   let { theme } = useContext(ThemeContext);
@@ -66,15 +67,14 @@ const SectionTwo = ({ details, onDatabase }) => {
   };
 
   const contractAddress = getContractAddress();
-  const chainPlatform = getChainPlatform();
+  let chainPlatform = getChainPlatform();
+
+  if (chainPlatform === "bnb") {
+    chainPlatform = "bsc";
+  }
 
   console.log(contractAddress, chainPlatform);
   console.log(details);
-
-  // Only render if we have both required values
-  if (!contractAddress || !chainPlatform) {
-    return null;
-  }
 
   return (
     <div className="p-1">
@@ -238,7 +238,13 @@ const SectionTwo = ({ details, onDatabase }) => {
       </div>
 
       {!onDatabase && (
-        <table className="table table-zebra bg-base-300 w-[100%] my-5">
+        <table
+          className={`table ${
+            theme === "light"
+              ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+              : " border-gray-400 border"
+          }  w-[100%] my-5 rounded-xl`}
+        >
           <tr className="border-b border-base-200">
             <th>Description</th>
           </tr>
@@ -335,8 +341,8 @@ const SectionTwo = ({ details, onDatabase }) => {
             )}
           </table>
 
-          <table className="table table-zebra bg-base-300 lg:w-[50%] lg:flex-1">
-            <tr className="border-b border-base-200">
+          <table className="table table-zebra bg-base-300 lg:w-[50%] lg:flex-1  rounded-xl">
+            <tr className="border-b border-base-200  rounded-xl">
               <th>Description</th>
             </tr>
 
@@ -369,12 +375,16 @@ const SectionTwo = ({ details, onDatabase }) => {
         </a>
       </div>
 
-      <div id="dexscreener-embed">
-        <iframe
-          src={`https://dexscreener.com/${chainPlatform}/${contractAddress}?embed=1&trades=1&info=0&chart=1&theme=dark`}
-          className="w-full h-full border-0"
-          title="DexScreener Chart"
-        />
+      <div id="dexscreener-embed" className="w-full overflow-hidden">
+        {contractAddress && chainPlatform ? (
+          <iframe
+            src={`https://dexscreener.com/${chainPlatform}/${contractAddress}?embed=1&trades=1&info=0&chart=1&theme=dark`}
+            className="w-full h-full border-0"
+            title="DexScreener Chart"
+          />
+        ) : (
+          <CryptoFeed symbol={details.symbol} />
+        )}
       </div>
 
       {/* 

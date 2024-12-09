@@ -5,7 +5,7 @@ import {
   Rocket,
   TrendingDown,
 } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import { VotesById } from "@/lib/fetch-data";
 import DoughnutElement from "./chart";
@@ -14,6 +14,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import TokenMarketData from "./token-market-data";
+import { ThemeContext } from "@/context/ThemeContext";
 
 const SectionThree = ({ details, onDatabase }) => {
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ const SectionThree = ({ details, onDatabase }) => {
     bearish: 0,
   });
   const [allowed, setAllowed] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
   const onBullish = async (vote) => {
     if (vote) {
@@ -104,7 +106,13 @@ const SectionThree = ({ details, onDatabase }) => {
 
       <br />
 
-      <div className="bg-base-300 rounded-xl p-3">
+      <div
+        className={`${
+          theme === "light"
+            ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+            : " border-gray-400 border"
+        } rounded-xl p-3`}
+      >
         <div className="text-xl font-bold">Boost Analysis</div>
 
         <DoughnutElement dataChart={chart} />

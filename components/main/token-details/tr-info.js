@@ -4,7 +4,7 @@ const TrInfo = ({ title, link, icon }) => {
   if (!link.props.children) return;
   return (
     <>
-      <span className="flex flex-row p-1 border rounded-xl mb-1 mr-2">
+      <span className="flex flex-row p-1 rounded-xl mb-1 mr-2">
         <span className="lg:flex lg:flex-row text-sm my-auto opacity-75 hidden">
           {title}
         </span>
