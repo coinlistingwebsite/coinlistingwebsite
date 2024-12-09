@@ -4,9 +4,11 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Moment from "react-moment";
+import { ThemeContext } from "@/context/ThemeContext";
 
 const Promoted = () => {
   let { loading, dbTokens } = useContext(CryptoDataContext);
+  const { theme } = useContext(ThemeContext);
 
   // fix array
 
@@ -18,7 +20,13 @@ const Promoted = () => {
 
   return (
     <>
-      <div className={`flex-1 border border-1  p-1 rounded-xl border-accent`}>
+      <div
+        className={`flex-1 p-1 rounded-xl border-1 ${
+          theme === "light"
+            ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+            : " border-gray-400 border"
+        }`}
+      >
         <div className="flex flex-row p-3">
           <b className="flex-1 my-auto text-sm flex flex-row">
             <img
@@ -60,15 +68,13 @@ const Promoted = () => {
                           href={`/token/${token.request_id}`}
                           className="text-md hover:underline hover:cursor-pointer"
                         >
-                          {token.project_name.substr(0, 20)}
+                          {token.symbol}
                         </Link>
-                        <span className="badge badge-xs badge-success my-auto">
-                          ${token.symbol}
-                        </span>
-                        {token?.platform?.symbol ? (
-                          <span className="badge badge-ghost badge-xs my-auto">
-                            {token.platform.symbol}
-                          </span>
+
+                        {token?.platform ? (
+                          <small className="text-xs my-auto text-gray-500">
+                            {token.platform}
+                          </small>
                         ) : null}
                       </span>
                     </td>

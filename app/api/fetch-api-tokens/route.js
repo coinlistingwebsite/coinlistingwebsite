@@ -7,11 +7,10 @@ export async function GET() {
   let gainers = [];
   let newTokens = [];
 
-
   try {
     // Token Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/latest?time_period=7d&limit=200`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/latest?time_period=7d&limit=100`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,
@@ -41,7 +40,7 @@ export async function GET() {
   try {
     // Losers Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/gainers-losers?sort_dir=asc&limit=100`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/gainers-losers?sort_dir=asc&limit=50`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,
@@ -56,7 +55,7 @@ export async function GET() {
   try {
     // Gainers Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/gainers-losers?sort_dir=desc&limit=100`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/gainers-losers?sort_dir=desc&limit=50`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,

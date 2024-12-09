@@ -57,8 +57,8 @@ const TokenTable = () => {
     <>
       <Filters />
 
-      <div className="overflow-x-auto rounded-xl border border-success">
-        <table className="table table-sm p-1">
+      <div className="overflow-x-auto rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black">
+        <table className="table table-sm p-1 table-zebra">
           <thead>
             <tr>
               <th>Favourite</th>

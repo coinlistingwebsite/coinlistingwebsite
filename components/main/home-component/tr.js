@@ -5,25 +5,32 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const Tr = ({ details, index }) => {
   if (!details) return;
+  if (!details.logo) return;
+
   return (
     <>
       <tr className="flex flex-row ">
-        <td className="my-auto">#{index + 1}</td>
+        <td className="my-auto font-bold">{index + 1}</td>
+
         <td className="flex flex-row ">
+          <div className="avatar">
+            <div className="mask mask-squircle w-8 h-8 mr-2">
+              <img src={details.logo} alt="" />
+            </div>
+          </div>
+
           <span className="flex flex-row flex-1 my-auto gap-1">
             <Link
               href={`/token/${details.id}`}
               className="text-md hover:underline hover:cursor-pointer"
             >
-              {details.name.substr(0, 20)}
+              {details.symbol}
             </Link>
-            <span className="badge badge-xs badge-success my-auto">
-              ${details.symbol}
-            </span>
+
             {details?.platform?.symbol ? (
-              <span className="badge badge-ghost badge-xs my-auto">
+              <small className="text-xs my-auto text-gray-500">
                 {details.platform.symbol}
-              </span>
+              </small>
             ) : null}
           </span>
         </td>

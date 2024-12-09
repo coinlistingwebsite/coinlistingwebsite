@@ -86,7 +86,7 @@ const Tr = ({ index, token }) => {
         </button>
       </td>
 
-      <td>#{index + 1}</td>
+      <td className="font-bold">{index + 1}</td>
 
       <td className="flex items-center h-full py-4">
         <div className="flex items-center gap-2">
@@ -100,21 +100,19 @@ const Tr = ({ index, token }) => {
               href={`/token/${token.id}`}
               className="text-md hover:underline hover:cursor-pointer"
             >
-              {token.name}
+              {token.symbol}
             </Link>
-            <span className="badge badge-xs badge-success">
-              ${token.symbol}
-            </span>
+
             {token?.platform?.symbol && (
-              <span className="badge badge-ghost badge-xs">
+              <small className="text-xs my-auto text-gray-500">
                 {token.platform.symbol}
-              </span>
+              </small>
             )}
           </span>
         </div>
       </td>
 
-      <td className="whitespace-nowrap">
+      <td className="whitespace-nowrap font-medium">
         {formatPrice(token.quote.USD.price)}
       </td>
 

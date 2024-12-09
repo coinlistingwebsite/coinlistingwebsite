@@ -35,12 +35,20 @@ export default function CryptoDataProvider({ children }) {
         return acc;
       }, {});
 
-      setTokenLogos(logoMap);
+      setTokenLogos((prevLogos) => ({ ...prevLogos, ...logoMap }));
       return logoMap;
     } catch (error) {
       console.error("Error fetching logos:", error);
       return {};
     }
+  };
+
+  // Helper function to enhance tokens with logos
+  const enhanceTokensWithLogos = (tokens, logoMap) => {
+    return tokens.map((token) => ({
+      ...token,
+      logo: logoMap[token.id],
+    }));
   };
 
   let fetchCryptoData = async () => {
@@ -57,21 +65,27 @@ export default function CryptoDataProvider({ children }) {
         return;
       }
 
-      // Fetch logos for all tokens at once
-      const logoMap = await fetchTokenLogos(tokenData);
+      // Fetch logos for all tokens, gainers, and losers
+      const allTokens = [...tokenData, ...gainers, ...losers];
+      const uniqueTokens = Array.from(
+        new Map(allTokens.map((token) => [token.id, token])).values()
+      );
+      const logoMap = await fetchTokenLogos(uniqueTokens);
 
-      // Add logos to token data and sort by price initially
-      const enhancedTokenData = tokenData
-        .map((token) => ({
-          ...token,
-          logo: logoMap[token.id],
-        }))
-        .sort((a, b) => Number(b.quote.USD.price) - Number(a.quote.USD.price));
+      // Enhance all datasets with logos
+      const enhancedTokenData = enhanceTokensWithLogos(tokenData, logoMap).sort(
+        (a, b) => Number(b.quote.USD.price) - Number(a.quote.USD.price)
+      );
 
+      const enhancedGainers = enhanceTokensWithLogos(gainers, logoMap);
+      const enhancedLosers = enhanceTokensWithLogos(losers, logoMap);
+      const enhancedNewTokens = enhanceTokensWithLogos(newTokens, logoMap);
+
+      // Update state with enhanced data
       setCryptoData(enhancedTokenData);
-      setLosers(losers);
-      setGainers(gainers);
-      setNewTokens(newTokens);
+      setGainers(enhancedGainers);
+      setLosers(enhancedLosers);
+      setNewTokens(enhancedNewTokens);
 
       // Fetch database tokens
       try {
@@ -162,7 +176,6 @@ export default function CryptoDataProvider({ children }) {
   };
 
   useLayoutEffect(() => {
-    // Remove setTimeout and fetch immediately
     fetchCryptoData();
   }, []);
 

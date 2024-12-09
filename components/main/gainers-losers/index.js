@@ -35,7 +35,6 @@ const GainersLosers = () => {
 
   return (
     <div>
-     
 
       <div className="text-md breadcrumbs">
         <ul>

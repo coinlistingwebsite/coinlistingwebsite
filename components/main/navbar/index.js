@@ -52,12 +52,12 @@ const Navbar = () => {
           <label className="swap swap-rotate  h-full">
             <input
               type="checkbox"
-              checked={theme == "corporate" ? false : true}
+              checked={theme == "dark" ? false : true}
               onChange={(event) => {
                 if (event.target.checked) {
-                  changeTheme("dark");
-                } else {
                   changeTheme("light");
+                } else {
+                  changeTheme("dark");
                 }
               }}
             />

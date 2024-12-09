@@ -41,8 +41,10 @@ const SectionTwo = () => {
           <Promoted />
 
           <div
-            className={`flex-1 border border-1  p-1 rounded-xl ${
-              theme == "corporate" ? "border-base-300" : "border-accent"
+            className={`flex-1 p-1 rounded-xl border-1 ${
+              theme === "light"
+                ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+                : " border-gray-400 border"
             }`}
           >
             <div className="flex flex-row p-3">
@@ -62,7 +64,7 @@ const SectionTwo = () => {
               </Link>
             </div>
 
-            <div className="overflow-y-auto h-[170px]">
+            <div className="overflow-y-auto h-[170px] scrollbar-hide">
               {loading && gainers.length == 0 ? (
                 <div className="w-full flex justify-center">
                   <span className="loading loading-spinner loading-lg my-10"></span>
@@ -98,8 +100,10 @@ const SectionTwo = () => {
           </div>
 
           <div
-            className={`flex-1 border border-1 rounded-xl p-1 ${
-              theme == "corporate" ? "border-base-300" : "border-accent"
+            className={`flex-1 p-1 rounded-xl border-1 ${
+              theme === "light"
+                ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+                : " border-gray-400 border"
             }`}
           >
             <div className="flex flex-row p-3">
