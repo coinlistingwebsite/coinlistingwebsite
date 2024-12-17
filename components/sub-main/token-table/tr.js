@@ -7,12 +7,18 @@ import {
   formatNumber,
   LargeNumberDisplay,
 } from "@/lib/validations/validations";
+import { useRouter } from "next/navigation";
 
 const Tr = ({ index, token }) => {
+  const router = useRouter();
   const { addToFavourite } = useContext(CryptoDataContext);
   const [forceUpdate, setForceUpdate] = useState(0);
 
   if (!token) return null;
+
+  const handleClick = () => {
+    router.push(`/token/${token.id}`);
+  };
 
   const checkFavourite = useCallback(() => {
     const favorite = localStorage.getItem("bmc_favourite");
@@ -64,7 +70,10 @@ const Tr = ({ index, token }) => {
   };
 
   return (
-    <tr className="transition-colors duration-150 font-bold">
+    <tr
+      className="transition-colors duration-150 font-bold "
+      onClick={handleClick}
+    >
       <td>
         <button
           className="outline-0 border-0 bg-none cursor-pointer p-2 rounded-full hover:bg-gray-100"
@@ -125,7 +134,7 @@ const Tr = ({ index, token }) => {
         </div>
       </td>
 
-      <td className="whitespace-nowrap">
+      <td className="whitespace-nowrap text-right">
         {formatPrice(token.quote.USD.price)}
         <br />
         <span
@@ -146,7 +155,7 @@ const Tr = ({ index, token }) => {
         </span>
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap text-right">
         <span
           className={
             token.quote.USD.percent_change_1h > 0 ? "text-success" : "text-red"
@@ -161,7 +170,7 @@ const Tr = ({ index, token }) => {
         </span>
       </td>
 
-      <td className="whitespace-nowrap hidden lg:table-cell">
+      <td className="whitespace-nowrap hidden lg:table-cell text-right">
         <span
           className={
             token.quote.USD.percent_change_24h > 0 ? "text-success" : "text-red"
@@ -176,7 +185,7 @@ const Tr = ({ index, token }) => {
         </span>
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap text-right pr-4">
         {token.quote.USD.volume_24h ? (
           <LargeNumberDisplay price={token.quote.USD.volume_24h} />
         ) : (
@@ -184,7 +193,7 @@ const Tr = ({ index, token }) => {
         )}
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap text-right pr-4">
         {token.total_supply ? (
           <LargeNumberDisplay price={token.total_supply} />
         ) : (

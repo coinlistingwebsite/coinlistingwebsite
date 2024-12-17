@@ -1,19 +1,30 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { PriceDisplay } from "@/lib/validations/validations";
+import { useRouter } from "next/navigation";
 
 const Tr = ({ details, index }) => {
   if (!details) return;
   if (!details.logo) return;
 
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/token/${details.id}`);
+  };
+
   return (
     <>
-      <tr className="flex flex-row">
+      <tr
+        className="flex flex-row hover:underline hover:cursor-pointer"
+        onClick={handleClick}
+      >
         <td className="my-auto font-bold">{index + 1}</td>
 
-        <td className="flex flex-row ">
+        <td className="flex flex-row">
           <div className="avatar">
             <div className="mask mask-squircle w-8 h-8 mr-2">
               <img src={details.logo} alt="" />
@@ -23,7 +34,7 @@ const Tr = ({ details, index }) => {
           <span className="flex flex-row flex-1 my-auto gap-1">
             <Link
               href={`/token/${details.id}`}
-              className="text-md hover:underline hover:cursor-pointer"
+              className="text-md hover:underline hover:cursor-pointer capitalize"
             >
               {details.symbol}
             </Link>
@@ -36,12 +47,7 @@ const Tr = ({ details, index }) => {
           </span>
         </td>
 
-        <th className="flex-1 justify-end text-right">
-          {/* {new Intl.NumberFormat("en-IN", {
-            style: "currency",
-            currency: "USD",
-          }).format(details?.quote?.USD?.price)} */}
-
+        <th className="flex-1 text-right my-auto">
           <PriceDisplay price={details?.quote?.USD?.price} />
 
           <span

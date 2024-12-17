@@ -65,62 +65,62 @@ const TokenTable = () => {
               <th className="hidden lg:table-cell">Rank</th>
               <th>Name/symbol</th>
               <th
-                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200 text-right"
                 onClick={() => handleSort(sortByPrice)}
               >
-                <div className="flex items-center gap-1">
-                  <ArrowDropDownIcon />
+                <div className="flex items-center gap-1 justify-end">
                   Price
+                  <ArrowDropDownIcon />
                 </div>
               </th>
 
               <th
-                className="hidden lg:table-cell text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hidden lg:table-cell text-right hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortBy1hPercent)}
               >
-                <div className="flex items-center gap-1">
-                  <ArrowDropDownIcon />
+                <div className="flex items-center gap-1 justify-end">
                   1h
+                  <ArrowDropDownIcon />
                 </div>
               </th>
 
               <th
-                className="text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200 hidden lg:table-cell"
+                className="text-right hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200 hidden lg:table-cell"
                 onClick={() => handleSort(sortBy24hPercent)}
               >
-                <div className="flex items-center gap-1">
-                  <ArrowDropDownIcon />
+                <div className="flex items-center gap-1 justify-end">
                   24h
+                  <ArrowDropDownIcon />
                 </div>
               </th>
 
               <th
-                className="hidden lg:table-cell text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hidden lg:table-cell text-right hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortBy24VPercent)}
               >
-                <div className="flex items-center gap-1">
-                  <ArrowDropDownIcon />
+                <div className="flex items-center gap-1 justify-end">
                   24h Volume
+                  <ArrowDropDownIcon />
                 </div>
               </th>
 
               <th
-                className="hidden lg:table-cell text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hidden lg:table-cell text-right hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortByTotalSupply)}
               >
-                <div className="flex items-center gap-1">
-                  <ArrowDropDownIcon />
+                <div className="flex items-center gap-1 justify-end">
                   Total Supply
+                  <ArrowDropDownIcon />
                 </div>
               </th>
 
               <th
-                className="hidden lg:table-cell text-left hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                className="hidden lg:table-cell text-right hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => handleSort(sortByMarketcap)}
               >
-                <div className="flex items-center gap-1">
-                  <ArrowDropDownIcon />
+                <div className="flex items-center gap-1 justify-end">
                   Market Cap
+                  <ArrowDropDownIcon />
                 </div>
               </th>
             </tr>
