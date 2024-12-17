@@ -58,11 +58,16 @@ const TokenTable = () => {
       <Filters />
 
       <div className="lg:overflow-x-auto overflow-hidden rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black">
-        <table className="table table-sm p-1 w-full">
+        <table className="table table-xs lg:table-sm p-1 w-full">
           <thead>
             <tr>
-              <th>Favourite</th>
-              <th className="hidden lg:table-cell">Rank</th>
+              <th>
+                <span className="hidden lg:inline">Favourite</span>
+              </th>
+              <th className="lg:table-cell">
+                <span className="lg:hidden">#</span>
+                <span className="hidden lg:inline">Rank</span>
+              </th>
               <th>Name/symbol</th>
               <th
                 className="hover:cursor-pointer hover:bg-gray-100 transition-colors duration-200 text-right"

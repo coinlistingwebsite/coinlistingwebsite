@@ -71,7 +71,7 @@ const Tr = ({ index, token }) => {
 
   return (
     <tr
-      className="transition-colors duration-150 font-bold "
+      className="transition-colors duration-150 font-bold hover:cursor-pointer"
       onClick={handleClick}
     >
       <td>
@@ -104,7 +104,7 @@ const Tr = ({ index, token }) => {
         </button>
       </td>
 
-      <td className="font-bold hidden lg:table-cell">{index + 1}</td>
+      <td className="font-bold lg:table-cell">{index + 1}</td>
 
       <td className="pl-2">
         <div className="flex flex-col gap-1 text-left">
@@ -120,7 +120,7 @@ const Tr = ({ index, token }) => {
                   href={`/token/${token.id}`}
                   className="text-md hover:underline hover:cursor-pointer"
                 >
-                  {token.name} {token.id}
+                  {token.name.substr(0, 10)}
                   <small className="text-[10px] my-auto text-gray-500 my-auto ml-2">
                     {token.symbol}
                   </small>
@@ -201,7 +201,7 @@ const Tr = ({ index, token }) => {
         )}
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap text-right pr-4">
         {token.quote.USD.market_cap ? (
           <LargeNumberDisplay price={token.quote.USD.market_cap} />
         ) : (

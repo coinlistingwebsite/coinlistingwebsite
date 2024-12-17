@@ -47,8 +47,8 @@ const Navbar = () => {
           </span>
         </div>
 
-        <div className="my-auto space-x-1">
-          <label className="swap swap-rotate h-full">
+        <div className="flex items-center space-x-1">
+          <label className="swap swap-rotate">
             <input
               type="checkbox"
               checked={theme == "dark" ? false : true}

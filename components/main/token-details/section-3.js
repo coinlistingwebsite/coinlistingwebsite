@@ -118,7 +118,7 @@ const SectionThree = ({ details, onDatabase }) => {
         <DoughnutElement dataChart={chart} />
 
         <div className="text-md font-bold">
-          How do you feel about{" "}
+          {/* How do you feel about{" "}
           {onDatabase ? details.project_name : details.name} today ?
           <a
             href="https://twitter.com/share?ref_src=twsrc%5Etfw"
@@ -144,7 +144,7 @@ const SectionThree = ({ details, onDatabase }) => {
             placeholder="Post on Twitter and share link *Mandatory"
             onChange={(event) => setAllowed(event.target.value)}
           />
-          <br />
+          <br /> */}
           <div className="flex flex-row gap-2" id="boost">
             <button
               className="btn btn-success btn-sm flex-1"
