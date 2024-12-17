@@ -1,89 +1,95 @@
-import React, { useContext, useEffect, useState } from "react";
+// FavoriteTable.jsx
+import React, { useContext, useState } from "react";
 import Tr from "./tr";
+import Filters from "./Filters";
 import { ThemeContext } from "@/context/ThemeContext";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Link from "next/link";
-import Filters from "../token-table/Filters";
 
-const FavouriteTable = ({ data }) => {
-  let { theme } = useContext(ThemeContext);
-
+const FavoriteTable = ({ data }) => {
+  const { theme } = useContext(ThemeContext);
   const [page, setPage] = useState(0);
-  const [perPage, setPerPage] = useState(20);
-  const [reset, setReset] = useState();
+  const [perPage, setPerPage] = useState(100);
 
-  //  useEffect(() => {}, [reset]);
-
-  if (!data || data.length == 0)
+  if (!data || data.length === 0) {
     return (
       <main className="max-w-7xl mx-auto py-40 text-center">
-        <h1 className="text-3xl">404 - Page Not Found</h1>
-        <p>Sorry, the page you are looking for could not be found.</p>
-
-        <Link href="/">Return to home Page</Link>
+        <h1 className="text-3xl mb-4">No Favorites Found</h1>
+        <p className="mb-8">
+          You haven't added any cryptocurrencies to your favorites yet.
+        </p>
+        <Link href="/" className="text-blue-500 hover:underline">
+          Return to Home Page
+        </Link>
       </main>
     );
+  }
 
   return (
     <>
       <Filters />
 
-      <div
-        className={`${
-          theme == "corporate" ? "border-base-300" : "border-accent"
-        } overflow-x-auto rounded-3xl border`}
-      >
-        <table className={`table table-sm  p-1`}>
-          {/* head */}
+      <div className="lg:overflow-x-auto overflow-hidden rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black">
+        <table className="table table-sm p-1 w-full">
           <thead>
             <tr>
-              <th>Favourite</th>
-              {/* <th>Rank</th> */}
+              <th>Favorite</th>
               <th>Name/symbol</th>
-              <th className="text-left hover:cursor-pointer">Price</th>
-
-              <th>Chain</th>
-
-              <th className="text-left hover:cursor-pointer">1h</th>
-              <th className="text-left hover:cursor-pointer">24h</th>
-              <th className="text-left hover:cursor-pointer">7d</th>
-              <th className="text-left hover:cursor-pointer">24h Volume</th>
-              <th className="text-left hover:cursor-pointer">Market Cap</th>
+              <th className="text-left">Price</th>
+              <th className="text-left hidden lg:table-cell">Chain</th>
+              <th className="hidden lg:table-cell text-left">1h</th>
+              <th className="text-left hidden lg:table-cell">24h</th>
+              <th className="hidden lg:table-cell text-left">7d</th>
+              <th className="hidden lg:table-cell text-left">24h Volume</th>
+              <th className="hidden lg:table-cell text-left">Market Cap</th>
             </tr>
           </thead>
           <tbody>
             {data?.slice(page, page + perPage).map((token, index) => (
-              <Tr key={index} index={index} token={token[0]} />
+              <Tr
+                key={token[0]?.id || index}
+                index={page + index}
+                token={token[0]}
+              />
             ))}
           </tbody>
         </table>
       </div>
 
-      <span className="join flex flex-row justify-center mt-5">
+      <div className="join flex flex-row justify-center items-center gap-2 mt-5">
         <button
-          className="join-item btn"
-          disabled={page == 0 ? true : false}
+          className="join-item btn btn-primary"
+          disabled={page === 0}
           onClick={() => setPage(page - perPage)}
         >
           «
         </button>
-        <button className="join-item btn">Page {page / perPage + 1}</button>
+
+        <span className="px-4 py-2">Page {Math.floor(page / perPage) + 1}</span>
 
         <button
-          className="join-item btn"
-          disabled={
-            data.slice(page + perPage, page + perPage * 2).length == 0
-              ? true
-              : false
-          }
+          className="join-item btn btn-primary"
+          disabled={page + perPage >= data.length}
           onClick={() => setPage(page + perPage)}
         >
           »
         </button>
-      </span>
+
+        <select
+          className="select select-bordered ml-4"
+          value={perPage}
+          onChange={(e) => {
+            setPerPage(Number(e.target.value));
+            setPage(0);
+          }}
+        >
+          <option value={50}>50 per page</option>
+          <option value={100}>100 per page</option>
+          <option value={200}>200 per page</option>
+        </select>
+      </div>
     </>
   );
 };
 
-export default FavouriteTable;
+export default FavoriteTable;

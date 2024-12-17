@@ -32,6 +32,8 @@ const TokenTable = () => {
     );
   }
 
+  console.log(cryptoData.length);
+
   if (!cryptoData || cryptoData.length === 0) {
     return (
       <main className="max-w-7xl mx-auto py-40 text-center">
@@ -40,7 +42,7 @@ const TokenTable = () => {
           Unable to fetch cryptocurrency data at this time.
         </p>
         <Link href="/" className="text-blue-500 hover:underline">
-          Return to Home Page
+          Reload Page
         </Link>
       </main>
     );
@@ -56,7 +58,7 @@ const TokenTable = () => {
       <Filters />
 
       <div className="lg:overflow-x-auto overflow-hidden rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black">
-        <table className="table table-sm p-1 table-zebra w-full">
+        <table className="table table-sm p-1 w-full">
           <thead>
             <tr>
               <th>Favourite</th>

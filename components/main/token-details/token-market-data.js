@@ -62,7 +62,6 @@ const TokenMarketData = ({ details, onDatabase }) => {
                 <tbody>
                   <tr className="flex flex-row pb-2">
                     <td className="flex flex-row text-sm my-auto opacity-75">
-                      <CurrencyBitcoin />
                       Price
                     </td>
 

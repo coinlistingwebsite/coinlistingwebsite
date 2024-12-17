@@ -10,7 +10,7 @@ export async function GET() {
   try {
     // Token Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/latest?time_period=7d&limit=100`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/most-visited?limit=50`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,

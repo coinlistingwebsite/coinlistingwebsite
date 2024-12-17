@@ -74,7 +74,7 @@ const Tr = ({ index, token }) => {
           }
         >
           <svg
-            className={`w-[1.5rem] ml-1.5 ${
+            className={`w-[1.5rem] ${
               checkFavourite() ? "fill-cyan" : "fill-gray-100"
             } hover:fill-cyan transition-colors duration-200`}
             width="30"
@@ -111,16 +111,13 @@ const Tr = ({ index, token }) => {
                   href={`/token/${token.id}`}
                   className="text-md hover:underline hover:cursor-pointer"
                 >
-                  {token.symbol}
-                </Link>
-
-                {token?.platform?.symbol && (
-                  <small className="text-xs my-auto text-gray-500">
-                    {token.platform.symbol}
+                  {token.name} {token.id}
+                  <small className="text-[10px] my-auto text-gray-500 my-auto ml-2">
+                    {token.symbol}
                   </small>
-                )}
+                </Link>
               </span>
-              <small className="text-gray-500">
+              <small className="text-gray-500 lg:hidden">
                 {formatNumber(token.quote.USD.market_cap)}
               </small>
             </span>

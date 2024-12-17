@@ -22,13 +22,13 @@ const Filters = () => {
         <span>Favorites</span>
       </Link>
 
-      <Link
+      {/* <Link
         href="/cexlisted"
         className="flex items-center gap-1 p-2 rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black text-sm"
       >
         <Checklist size={16} />
         <span>Cex Listed Project</span>
-      </Link>
+      </Link> */}
 
       <Link
         href="/newcryptocurrencies"

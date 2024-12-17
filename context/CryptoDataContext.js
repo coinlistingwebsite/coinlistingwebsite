@@ -25,6 +25,7 @@ export default function CryptoDataProvider({ children }) {
           .then((data) => ({
             id: token.id,
             logo: data.error ? null : data.logo,
+            
           }))
           .catch(() => ({ id: token.id, logo: null }))
       );

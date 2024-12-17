@@ -244,7 +244,13 @@ const SectionTwo = ({ details, onDatabase }) => {
           </div>
 
           <div className="lg:col-span-6">
-            <div className="bg-base-300 rounded-xl p-4">
+            <div
+              className={`p-2 rounded-xl ${
+                theme === "light"
+                  ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+                  : " border-gray-400 border"
+              }`}
+            >
               <h3 className="font-semibold mb-4">Description</h3>
               <p className="text-sm leading-relaxed">
                 {onDatabase
@@ -256,8 +262,10 @@ const SectionTwo = ({ details, onDatabase }) => {
         </div>
       ) : (
         <div
-          className={`bg-base-300 rounded-xl p-4 mb-8 ${
-            theme === "light" ? "shadow-lg" : "border border-gray-700"
+          className={`p-2 rounded-xl mb-2 ${
+            theme === "light"
+              ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+              : " border-gray-400 border"
           }`}
         >
           <h3 className="font-semibold mb-4">Description</h3>
