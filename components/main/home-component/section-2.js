@@ -37,7 +37,7 @@ const SectionTwo = () => {
       </div>
 
       {checked && (
-        <div className="flex flex-col lg:flex-row gap-3">
+        <div className="flex flex-col lg:flex-row gap-3 font-bold">
           <Promoted />
 
           <div
