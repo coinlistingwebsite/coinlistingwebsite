@@ -27,7 +27,7 @@ import TrendSlider from "@/components/sub-main/trend-slider";
 import { useContext } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
-import SearchBar from "@/components/sub-main/token-table/search-bar";
+import SearchBar from "@/components/sub-main/search-bar";
 
 const Navbar = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
