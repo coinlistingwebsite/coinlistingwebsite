@@ -1,8 +1,8 @@
+export const revalidate = 3600;
+
 import { db } from "@/firebase";
 import { NextResponse } from "next/server";
 import { getDoc, doc } from "firebase/firestore";
-
-export const dynamic = "force-dynamic";
 
 export const fetchCexBanners = async () => {
   let results;

@@ -32,8 +32,6 @@ const TokenTable = () => {
     );
   }
 
-  console.log(cryptoData.length);
-
   if (!cryptoData || cryptoData.length === 0) {
     return (
       <main className="max-w-7xl mx-auto py-40 text-center">

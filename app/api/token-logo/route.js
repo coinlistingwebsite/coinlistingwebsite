@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 // app/api/token-logo/route.js
 import { NextResponse } from "next/server";
 import { getTokenLogo } from "@/lib/db/dbConfig";
@@ -18,8 +20,6 @@ export async function GET(request) {
     // First check the database
     const dbLogo = await getTokenLogo(id);
 
-    console.log(dbLogo, "marketdata");
-
     if (dbLogo) {
       return NextResponse.json({
         logo: dbLogo,
@@ -29,41 +29,46 @@ export async function GET(request) {
     }
 
     // If not in database, fallback to CMC API
-    const response = await fetch(
-      `https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?id=${id}`,
-      {
-        headers: {
-          "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,
-        },
-      }
-    );
+    // const response = await fetch(
+    //   `https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?id=${id}`,
+    //   {
+    //     headers: {
+    //       "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,
+    //     },
+    //   }
+    // );
 
-    if (!response.ok) {
-      throw new Error(`CMC API responded with status: ${response.status}`);
-    }
+    // if (!response.ok) {
+    //   throw new Error(`CMC API responded with status: ${response.status}`);
+    // }
 
-    const data = await response.json();
-    const quote = data.data[id];
+    // const data = await response.json();
+    // const quote = data.data[id];
 
-    if (!quote || !quote.logo) {
-      return NextResponse.json({
-        logo: null,
-        error: true,
-        message: "Logo not found",
-      });
-    }
+    // if (!quote || !quote.logo) {
+    //   return NextResponse.json({
+    //     logo: null,
+    //     error: true,
+    //     message: "Logo not found",
+    //   });
+    // }
 
-    return NextResponse.json({
-      logo: quote.logo,
-      error: false,
-      source: "api",
-    });
+    // return NextResponse.json({
+    //   logo: quote.logo,
+    //   error: false,
+    //   source: "api",
+    // });
   } catch (error) {
-    console.error("Error fetching token info:", error);
+   // console.error("Error fetching token info:", error);
     return NextResponse.json({
       logo: null,
       error: true,
       message: error.message,
     });
   }
+  return NextResponse.json({
+    logo: null,
+    error: true,
+    message: error.message,
+  });
 }

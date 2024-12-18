@@ -3,8 +3,6 @@
 import { createContext, useState, useLayoutEffect } from "react";
 export const CryptoDataContext = createContext();
 
-export const dynamic = "force-dynamic";
-
 export default function CryptoDataProvider({ children }) {
   const [cryptoData, setCryptoData] = useState([]);
   const [losers, setLosers] = useState([]);
@@ -16,7 +14,7 @@ export default function CryptoDataProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [tokenLogos, setTokenLogos] = useState({});
 
-  // Batch fetch logos for multiple tokens
+  // Modify the fetchTokenLogos function
   const fetchTokenLogos = async (tokens) => {
     try {
       const logoPromises = tokens.map((token) =>
@@ -25,37 +23,43 @@ export default function CryptoDataProvider({ children }) {
           .then((data) => ({
             id: token.id,
             logo: data.error ? null : data.logo,
-            
+            hasLogo: !data.error && data.logo !== null,
           }))
-          .catch(() => ({ id: token.id, logo: null }))
+          .catch(() => ({ id: token.id, logo: null, hasLogo: false }))
       );
 
       const logos = await Promise.all(logoPromises);
-      const logoMap = logos.reduce((acc, { id, logo }) => {
-        acc[id] = logo;
+      const logoMap = logos.reduce((acc, { id, logo, hasLogo }) => {
+        if (hasLogo) {
+          acc[id] = logo;
+        }
         return acc;
       }, {});
 
       setTokenLogos((prevLogos) => ({ ...prevLogos, ...logoMap }));
-      return logoMap;
+      return { logoMap, validTokenIds: Object.keys(logoMap) };
     } catch (error) {
       console.error("Error fetching logos:", error);
-      return {};
+      return { logoMap: {}, validTokenIds: [] };
     }
   };
 
-  // Helper function to enhance tokens with logos
-  const enhanceTokensWithLogos = (tokens, logoMap) => {
-    return tokens.map((token) => ({
-      ...token,
-      logo: logoMap[token.id],
-    }));
+  // Modify the enhanceTokensWithLogos function
+  const enhanceTokensWithLogos = (tokens, logoMap, validTokenIds) => {
+    return tokens
+      .filter((token) => validTokenIds.includes(token.id.toString()))
+      .map((token) => ({
+        ...token,
+        logo: logoMap[token.id],
+      }));
   };
 
+  // Update the fetchCryptoData function
   let fetchCryptoData = async () => {
     setLoading(true);
     try {
       const response = await fetch("/api/fetch-api-tokens", {
+        cache: "force-cache",
         next: { revalidate: 3600 },
       });
       const { tokenData, losers, gainers, newTokens, error } =
@@ -67,23 +71,40 @@ export default function CryptoDataProvider({ children }) {
       }
 
       // Fetch logos for all tokens, gainers, and losers
-      const allTokens = [...tokenData, ...gainers, ...losers];
+      const allTokens = [...tokenData, ...gainers, ...losers, ...newTokens];
       const uniqueTokens = Array.from(
         new Map(allTokens.map((token) => [token.id, token])).values()
       );
-      const logoMap = await fetchTokenLogos(uniqueTokens);
 
-      // Enhance all datasets with logos
-      const enhancedTokenData = enhanceTokensWithLogos(tokenData, logoMap).sort(
+      const { logoMap, validTokenIds } = await fetchTokenLogos(uniqueTokens);
+
+      // Only include tokens that have valid logos
+      const enhancedTokenData = enhanceTokensWithLogos(
+        tokenData,
+        logoMap,
+        validTokenIds
+      ).sort(
         (a, b) =>
           Number(b.quote.USD.market_cap) - Number(a.quote.USD.market_cap)
       );
 
-      const enhancedGainers = enhanceTokensWithLogos(gainers, logoMap);
-      const enhancedLosers = enhanceTokensWithLogos(losers, logoMap);
-      const enhancedNewTokens = enhanceTokensWithLogos(newTokens, logoMap);
+      const enhancedGainers = enhanceTokensWithLogos(
+        gainers,
+        logoMap,
+        validTokenIds
+      );
+      const enhancedLosers = enhanceTokensWithLogos(
+        losers,
+        logoMap,
+        validTokenIds
+      );
+      const enhancedNewTokens = enhanceTokensWithLogos(
+        newTokens,
+        logoMap,
+        validTokenIds
+      );
 
-      // Update state with enhanced data
+      // Update state with filtered data
       setCryptoData(enhancedTokenData);
       setGainers(enhancedGainers);
       setLosers(enhancedLosers);
@@ -92,14 +113,18 @@ export default function CryptoDataProvider({ children }) {
       // Fetch database tokens
       try {
         const dbResponse = await fetch("/api/fetch-database-tokens", {
-          cache: "no-store",
+          cache: "force-cache",
+          next: {
+            revalidate: 3600, // 3600 seconds = 1 hour
+          },
         });
-        const { dbTokens, error: dbError } = await dbResponse.json();
+        const { dbTokens, error } = await dbResponse.json();
 
-        if (!dbError) {
+        if (!error) {
           const results = dbTokens.sort(
             (a, b) => Number(b.date_added || 0) - Number(a.date_added || 0)
           );
+
           setDbTokens(results);
         }
       } catch (error) {

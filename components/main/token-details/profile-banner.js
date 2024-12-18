@@ -4,7 +4,7 @@ const ProfileBanner = ({ details, onDatabase }) => {
   if (!details.banner) {
     return (
       <div className="relative flex justify-center">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-gradient-to-r from-pink-400 to-purple-500 shadow-lg">
+        <div className="flex h-48 w-48 items-center justify-center rounded-full border-4 border-white bg-gradient-to-r from-pink-400 to-purple-500 shadow-lg">
           <img
             className="h-full w-full rounded-full object-cover"
             src={details.logo}

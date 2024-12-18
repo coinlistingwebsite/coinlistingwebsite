@@ -53,8 +53,11 @@ const Promoted = () => {
             <table className="table table-xs">
               <tbody>
                 {dbTokens.slice(0, 20).map((token, index) => (
-                  <tr className="flex flex-row" key={index}>
-                    <th className="my-auto">#{index + 1}</th>
+                  <tr
+                    className="flex flex-row hover:cursor-pointer hover:underline"
+                    key={index}
+                  >
+                    <th className="my-auto">{index + 1}</th>
 
                     <td className="flex flex-row ">
                       <div className="avatar">
@@ -65,10 +68,10 @@ const Promoted = () => {
 
                       <span className="flex flex-row flex-1 my-auto gap-1">
                         <Link
-                          href={`/token/${token.request_id}`}
-                          className="text-md hover:underline hover:cursor-pointer"
+                          href={`/currencies/${token.project_name}/${token.request_id}`}
+                          className="text-md hover:underline hover:cursor-pointer capitalize"
                         >
-                          {token.symbol}
+                          {token.project_name}
                         </Link>
 
                         {token?.platform ? (

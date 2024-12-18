@@ -27,10 +27,13 @@ import TrendSlider from "@/components/sub-main/trend-slider";
 import { useContext } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
+import SearchBar from "@/components/sub-main/search-bar";
 
 const Navbar = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
   let { dbTokens, loading } = useContext(CryptoDataContext);
+
+  console.log(dbTokens);
 
   return (
     <>
@@ -131,42 +134,19 @@ const Navbar = () => {
         <div className="navbar-start hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-5">
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
-              Cryptocurrencies
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
-              >
-                <li className="rounded-lg flex flex-row">
-                  <span className="my-auto flex-1 flex">
-                    <Favorite className="text-sm" />
-                    <Link href="/favourites" className="flex-1">
-                      <span className="flex-1">Favourites</span>
-                    </Link>
-                  </span>
-                </li>
-                <hr />
-                <li className="rounded-lg flex flex-row">
-                  <span className="my-auto flex-1 flex">
-                    <AutoAwesomeIcon className="text-sm" />
-                    <Link href="/newcryptocurrencies" className="flex-1">
-                      New Cryptocurrencies
-                    </Link>
-                  </span>
-                </li>
-                <li className="rounded-lg flex flex-row">
-                  <span className="my-auto flex-1 flex">
-                    <EmojiEventsIcon className="text-sm" />
-                    <Link href="/gainers-losers" className="flex-1">
-                      Gainers & Losers
-                    </Link>
-                  </span>
-                </li>
-              </ul>
+              <Link href="/favourites" className="flex-1">
+                Favorites
+              </Link>
             </li>
 
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
-              <Link href="/services">Services</Link>
+              <Link href="/gainers-losers" className="flex-1">
+                Gainers & Losers
+              </Link>
+            </li>
 
+            <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
+              Services
               <ul
                 tabIndex={0}
                 className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
@@ -218,9 +198,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="hidden lg:flex navbar-end lg:gap-3">
-          <Link href="/submityourtoken" className="btn btn-success btn-sm">
-            Get Listed
-          </Link>
+          <SearchBar />
         </div>
       </div>
 

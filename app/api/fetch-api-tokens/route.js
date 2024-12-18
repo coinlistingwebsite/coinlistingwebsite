@@ -1,3 +1,5 @@
+export const revalidate = 1800; // 30 minutes in seconds (30 * 60)
+
 import axios from "axios";
 import { NextResponse } from "next/server";
 
@@ -10,7 +12,7 @@ export async function GET() {
   try {
     // Token Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/most-visited?limit=50`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/most-visited?limit=500`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,

@@ -45,8 +45,8 @@ const TrendSlider = () => {
         <Marquee direction="left" pauseOnHover>
           {gainers.slice(0, 19).map((token, index) => (
             <Link
-              href={`/token/${token.id}`}
-              className="flex items-center mr-5"
+              href={`/currencies/${token.name}/${token.id}`}
+              className="flex items-center mr-5 hover:underline"
               key={index}
             >
               <div className="flex items-center shadow-sm">

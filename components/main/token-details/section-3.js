@@ -103,9 +103,6 @@ const SectionThree = ({ details, onDatabase }) => {
   return (
     <div>
       <TokenMarketData details={details} onDatabase={onDatabase} />
-
-      <br />
-
       <div
         className={`${
           theme === "light"
@@ -176,7 +173,11 @@ const SectionThree = ({ details, onDatabase }) => {
       <br />
 
       <div
-        className="border border-base-200 rounded-3xl p-3 w-full  text-center"
+        className={`${
+          theme === "light"
+            ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+            : " border-gray-400 border"
+        } rounded-xl p-3`}
         id="safety"
       >
         <b className="font-bold">CHECK SAFETY</b>
