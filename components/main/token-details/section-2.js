@@ -307,7 +307,7 @@ const SectionTwo = ({ details, onDatabase }) => {
       <div className="rounded-xl overflow-hidden bg-base-300 shadow-lg">
         {contractAddress && chainPlatform ? (
           <iframe
-            src={`https://dexscreener.com/${chainPlatform}/${contractAddress}?embed=1&trades=1&info=0&chart=1&theme=${
+            src={`https://dexscreener.com/${chainPlatform}/${contractAddress}?embed=1&trades=0&info=0&chart=1&theme=${
               theme === "light" ? "light" : "dark"
             }`}
             className="w-full h-[600px] border-0"

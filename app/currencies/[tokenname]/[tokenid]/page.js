@@ -4,24 +4,22 @@ import { fetchTokenDetails } from "@/lib/fetch-data";
 import Link from "next/link";
 import React from "react";
 
-export const dynamic = "force-dynamic";
+export async function generateMetadata({ params }) {
+  let { tokenname, tokenid } = params;
 
-// export async function generateMetadata({ params }) {
-//   let tokenid = params.tokenid;
-//   const { details, onDatabase, error } = await fetchTokenDetails(tokenid);
-
-//   return {
-//     title: `CexGate - ${onDatabase ? details.project_name : details.name}`,
-//     description: onDatabase ? details.full_description : details.description,
-//     openGraph: {
-//       images: [
-//         {
-//           url: details.logo,
-//         },
-//       ],
-//     },
-//   };
-// }
+  return {
+    title: `${tokenname} price today, ${tokenname} to USD live price, marketcap, rank and chart
+`,
+    description: tokenname,
+    // openGraph: {
+    //   images: [
+    //     {
+    //       url: details.logo,
+    //     },
+    //   ],
+    // },
+  };
+}
 
 export default async function TokenPage({ params }) {
   let tokenid = params.tokenid;

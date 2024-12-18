@@ -27,14 +27,11 @@ import TrendSlider from "@/components/sub-main/trend-slider";
 import { useContext } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
-import SearchBar from "@/components/sub-main/search-bar";
+import SearchBar from "@/components/sub-main/token-table/search-bar";
 
 const Navbar = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
   let { dbTokens, loading } = useContext(CryptoDataContext);
-
-  console.log(dbTokens);
-
   return (
     <>
       <div className="hidden md:flex flex-row max-w-[1500px] mx-auto p-1">

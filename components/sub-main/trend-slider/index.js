@@ -65,7 +65,7 @@ const TrendSlider = () => {
                 <small className="text-gray-100">
                   {token?.platform?.symbol}
                 </small>
-                <LightbulbIcon className="w-3 h-3 mx-1 text-green-500 blink-animation" />
+                {/* <LightbulbIcon className="w-3 h-3 mx-1 text-green-500 blink-animation" /> */}
               </div>
             </Link>
           ))}
