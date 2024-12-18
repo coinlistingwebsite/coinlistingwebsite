@@ -68,7 +68,10 @@ const Promoted = () => {
 
                       <span className="flex flex-row flex-1 my-auto gap-1">
                         <Link
-                          href={`/currencies/${token.project_name}/${token.request_id}`}
+                          href={`/currencies/${token.project_name.replace(
+                            /\s+/g,
+                            "-"
+                          )}/${token.request_id}`}
                           className="text-md hover:underline hover:cursor-pointer capitalize"
                         >
                           {token.project_name}

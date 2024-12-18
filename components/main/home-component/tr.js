@@ -13,7 +13,9 @@ const Tr = ({ details, index }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/currencies/${details.name}/${details.id}`);
+    router.push(
+      `/currencies/${details.name.replace(/\s+/g, "-")}/${details.id}`
+    );
   };
 
   return (
@@ -33,8 +35,9 @@ const Tr = ({ details, index }) => {
 
           <span className="flex flex-row flex-1 my-auto gap-1">
             <Link
-             
-              href={`/currencies/${details.name}/${details.id}`}
+              href={`/currencies/${details.name.replace(/\s+/g, "-")}/${
+                details.id
+              }`}
               className="text-md hover:underline hover:cursor-pointer capitalize"
             >
               {details.symbol}

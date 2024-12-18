@@ -16,6 +16,7 @@ const SearchBar = () => {
   const abortControllerRef = useRef(null);
   const searchTermRef = useRef(searchTerm);
   const { theme } = useContext(ThemeContext);
+  const searchTimeout = useRef(null);
 
   useEffect(() => {
     searchTermRef.current = searchTerm;
@@ -58,63 +59,70 @@ const SearchBar = () => {
   ).current;
 
   useEffect(() => {
-    const handleSearch = async () => {
-      // Clear results immediately if search term is too short
-      if (searchTerm.length < 2) {
-        setResults([]);
-        setShowDropdown(false);
-        return;
+    // Clear any pending timeout
+    if (searchTimeout.current) {
+      clearTimeout(searchTimeout.current);
+    }
+
+    if (searchTerm.length < 2) {
+      setResults([]);
+      setShowDropdown(false);
+      return;
+    }
+
+    // Immediate context search
+    const contextResults =
+      !contextLoading && Array.isArray(dbTokens) && dbTokens.length > 0
+        ? dbTokens
+            .filter((token) =>
+              token?.project_name
+                ?.toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            )
+            .map((token) => ({
+              id: token.request_id,
+              name: token.project_name,
+              logo: token.logo,
+              symbol: token.symbol,
+              source: "context",
+            }))
+        : [];
+
+    setResults(contextResults);
+    setShowDropdown(true);
+
+    // Set timeout for API search
+    searchTimeout.current = setTimeout(async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/search-tokens?query=${searchTerm}`);
+        const data = await response.json();
+
+        if (searchTerm === searchTermRef.current) {
+          // Check if search term is still current
+          const dbMappedResults = (data.results || []).map((result) => ({
+            ...result,
+            source: "database",
+          }));
+
+          const combinedResults = [...contextResults, ...dbMappedResults];
+          const uniqueResults = Array.from(
+            new Map(combinedResults.map((item) => [item.id, item])).values()
+          );
+
+          setResults(uniqueResults.slice(0, 10));
+          setShowDropdown(uniqueResults.length > 0);
+        }
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      } finally {
+        setIsLoading(false);
       }
+    }, 300); // Single debounce timeout
 
-      // Search in context tokens immediately
-      const contextResults =
-        !contextLoading && Array.isArray(dbTokens) && dbTokens.length > 0
-          ? dbTokens
-              .filter((token) =>
-                token?.project_name
-                  ?.toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-              )
-              .map((token) => ({
-                id: token.request_id,
-                name: token.project_name,
-                logo: token.logo,
-                symbol: token.symbol,
-                source: "context",
-              }))
-          : [];
-
-      // Set immediate results from context
-      setResults(contextResults);
-      setShowDropdown(true);
-
-      // Get database results
-      const dbResults = await debouncedSearch(searchTerm);
-
-      // Only update if this is still the current search term
-      if (searchTermRef.current === searchTerm) {
-        const dbMappedResults = (dbResults || []).map((result) => ({
-          ...result,
-          source: "database",
-        }));
-
-        // Combine and deduplicate results
-        const combinedResults = [...contextResults, ...dbMappedResults];
-        const uniqueResults = Array.from(
-          new Map(combinedResults.map((item) => [item.id, item])).values()
-        );
-
-        setResults(uniqueResults.slice(0, 10));
-        setShowDropdown(uniqueResults.length > 0);
-      }
-    };
-
-    handleSearch();
-
-    // Cleanup function
     return () => {
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
+      if (searchTimeout.current) {
+        clearTimeout(searchTimeout.current);
       }
     };
   }, [searchTerm, dbTokens, contextLoading]);

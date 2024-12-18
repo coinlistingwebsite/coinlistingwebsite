@@ -40,6 +40,26 @@ const TokenMarketData = ({ details, onDatabase }) => {
     fetchMarketData();
   }, [details]); // Added details as dependency
 
+  const formatPrice = (price) => {
+    // Handle prices >= 100
+    if (price >= 100) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(price);
+    }
+
+    // Handle prices < 100
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 6,
+    }).format(price);
+  };
+
   return (
     <>
       {loading ? (
@@ -61,7 +81,7 @@ const TokenMarketData = ({ details, onDatabase }) => {
                   Price
                 </td>
                 <td className="flex-1 justify-end text-right text-lg my-auto">
-                  ${market.price}
+                  {formatPrice(market.price)}
                 </td>
               </tr>
 

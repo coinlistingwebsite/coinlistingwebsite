@@ -17,7 +17,7 @@ const Tr = ({ index, token }) => {
   if (!token) return null;
 
   const handleClick = () => {
-    router.push(`/currencies/${token.name}/${token.id}`);
+    router.push(`/currencies/${token.name.replace(/\s+/g, "-")}/${token.id}`);
   };
 
   const checkFavourite = useCallback(() => {
@@ -114,7 +114,9 @@ const Tr = ({ index, token }) => {
             <span className=" gap-1">
               <span className="flex flex-row items-center">
                 <Link
-                  href={`/currencies/${token.name}/${token.id}`}
+                  href={`/currencies/${token.name.replace(/\s+/g, "-")}/${
+                    token.id
+                  }`}
                   className="text-md hover:underline hover:cursor-pointer"
                 >
                   {token.name.substr(0, 10)}

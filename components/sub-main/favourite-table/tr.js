@@ -1,15 +1,24 @@
-// Tr.jsx
 import React, { useContext, useState, useCallback } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Link from "next/link";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
+import {
+  formatNumber,
+  LargeNumberDisplay,
+} from "@/lib/validations/validations";
+import { useRouter } from "next/navigation";
 
 const Tr = ({ index, token }) => {
+  const router = useRouter();
   const { addToFavourite } = useContext(CryptoDataContext);
   const [forceUpdate, setForceUpdate] = useState(0);
 
   if (!token) return null;
+
+  const handleClick = () => {
+    router.push(`/currencies/${token.name}/${token.id}`);
+  };
 
   const checkFavourite = useCallback(() => {
     const favorite = localStorage.getItem("bmc_favourite");
@@ -53,10 +62,12 @@ const Tr = ({ index, token }) => {
     }).format(price);
   };
 
-  const formatPercentage = (value) => Number(value).toFixed(2);
+  const formatPercentage = (value) => {
+    return Number(value).toFixed(2);
+  };
 
   return (
-    <tr className="transition-colors duration-150">
+    <tr className="transition-colors duration-150 font-bold">
       <td>
         <button
           className="outline-0 border-0 bg-none cursor-pointer p-2 rounded-full hover:bg-gray-100"
@@ -66,7 +77,7 @@ const Tr = ({ index, token }) => {
           }
         >
           <svg
-            className={`w-[1.5rem] ml-1.5 ${
+            className={`w-[1.5rem] ${
               checkFavourite() ? "fill-cyan" : "fill-gray-100"
             } hover:fill-cyan transition-colors duration-200`}
             width="30"
@@ -87,6 +98,8 @@ const Tr = ({ index, token }) => {
         </button>
       </td>
 
+      <td className="font-bold lg:table-cell">{index + 1}</td>
+
       <td className="pl-2">
         <div className="flex flex-col gap-1 text-left">
           <div className="flex items-center gap-2">
@@ -96,8 +109,13 @@ const Tr = ({ index, token }) => {
               </div>
             )}
             <span className="gap-1">
-              <Link href={`/token/${token.id}`} className="hover:underline">
-                {token.name}{" "}
+              <Link
+                href={`/currencies/${token.name.replace(/\s+/g, "-")}/${
+                  token.id
+                }`}
+                className="hover:underline"
+              >
+                {token.name.substr(0, 10)}{" "}
                 <small className="text-[10px] text-gray-500 ml-2">
                   {token.symbol}
                 </small>
@@ -112,7 +130,7 @@ const Tr = ({ index, token }) => {
         </div>
       </td>
 
-      <td className="whitespace-nowrap">
+      <td className="whitespace-nowrap text-right">
         {formatPrice(token.quote.USD.price)}
       </td>
 
@@ -126,7 +144,7 @@ const Tr = ({ index, token }) => {
         )}
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap text-right">
         <span
           className={
             token.quote.USD.percent_change_1h > 0 ? "text-success" : "text-red"
@@ -141,7 +159,7 @@ const Tr = ({ index, token }) => {
         </span>
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap text-right">
         <span
           className={
             token.quote.USD.percent_change_24h > 0 ? "text-success" : "text-red"
@@ -156,7 +174,7 @@ const Tr = ({ index, token }) => {
         </span>
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
+      <td className="hidden lg:table-cell whitespace-nowrap text-right">
         <span
           className={
             token.quote.USD.percent_change_7d > 0 ? "text-success" : "text-red"
@@ -171,22 +189,20 @@ const Tr = ({ index, token }) => {
         </span>
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
-        {token.quote.USD.volume_24h
-          ? new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-            }).format(token.quote.USD.volume_24h)
-          : "-"}
+      <td className="hidden lg:table-cell whitespace-nowrap text-right pr-4">
+        {token.quote.USD.volume_24h ? (
+          <LargeNumberDisplay price={token.quote.USD.volume_24h} />
+        ) : (
+          "-"
+        )}
       </td>
 
-      <td className="hidden lg:table-cell whitespace-nowrap">
-        {token.quote.USD.market_cap
-          ? new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-            }).format(token.quote.USD.market_cap)
-          : "-"}
+      <td className="hidden lg:table-cell whitespace-nowrap text-right pr-4">
+        {token.quote.USD.market_cap ? (
+          <LargeNumberDisplay price={token.quote.USD.market_cap} />
+        ) : (
+          "-"
+        )}
       </td>
     </tr>
   );
