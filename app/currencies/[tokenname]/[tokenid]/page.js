@@ -8,16 +8,20 @@ export async function generateMetadata({ params }) {
   let { tokenname, tokenid } = params;
 
   return {
-    title: `${tokenname} price today, ${tokenname} to USD live price, marketcap, rank and chart
-`,
-    description: tokenname,
-    // openGraph: {
-    //   images: [
-    //     {
-    //       url: details.logo,
-    //     },
-    //   ],
-    // },
+    title: `${tokenname} Price, Charts & Analytics | RankCoins`,
+    description: `Get real-time ${tokenname} cryptocurrency price updates, detailed market analysis, and trading information on RankCoins.`,
+    robots: {
+      index: true,
+      follow: true,
+      nocache: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
