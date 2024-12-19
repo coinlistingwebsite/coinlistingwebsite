@@ -1,6 +1,5 @@
 "use client";
 import FavouriteTable from "@/components/sub-main/favourite-table";
-import NewsSection from "@/components/sub-main/news-section";
 import { RefreshOutlined } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 
@@ -69,8 +68,6 @@ const Favourites = () => {
   return (
     <div>
       <FavouriteTable data={data} />
-
-     
     </div>
   );
 };

@@ -1,5 +1,4 @@
 "use client";
-
 import { delay } from "@/lib/validations/validations";
 import { createContext, useState, useEffect } from "react";
 export const ThemeContext = createContext();

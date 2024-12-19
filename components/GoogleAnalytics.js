@@ -1,21 +1,21 @@
-// components/GoogleAnalytics.jsx
 "use client";
-
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-const GA_MEASUREMENT_ID = "G-TEW3GXJNMG"; // Replace with your GA4 measurement ID
+const GA_MEASUREMENT_ID = "G-TEW3GXJNMG";
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const url = pathname + searchParams.toString();
-    window.gtag("config", GA_MEASUREMENT_ID, {
-      page_path: url,
-    });
+    if (pathname) {
+      const url = pathname + (searchParams?.toString() || "");
+      window.gtag?.("config", GA_MEASUREMENT_ID, {
+        page_path: url,
+      });
+    }
   }, [pathname, searchParams]);
 
   return (

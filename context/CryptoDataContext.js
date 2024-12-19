@@ -1,5 +1,4 @@
 "use client";
-
 import { createContext, useState, useLayoutEffect } from "react";
 export const CryptoDataContext = createContext();
 

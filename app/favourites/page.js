@@ -1,5 +1,4 @@
 import Favourites from "@/components/main/favourites";
-import React from "react";
 
 export default function FavouritesPage() {
   return (

@@ -1,95 +1,91 @@
-// FavoriteTable.jsx
-import React, { useContext, useState } from "react";
-import Tr from "./tr";
-import Filters from "./Filters";
-import { ThemeContext } from "@/context/ThemeContext";
-import { CryptoDataContext } from "@/context/CryptoDataContext";
-import Link from "next/link";
+"use client";
+import { Suspense } from "react";
+import FavouriteTable from "@/components/sub-main/favourite-table";
+import { RefreshOutlined } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
 
-const FavoriteTable = ({ data }) => {
-  const { theme } = useContext(ThemeContext);
-  const [page, setPage] = useState(0);
-  const [perPage, setPerPage] = useState(100);
+const FavouriteTableWrapper = ({ data }) => {
+  return (
+    <Suspense
+      fallback={
+        <div className="w-full mx-auto max-w-[1300px] min-h-[50vh] flex justify-center">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
+      }
+    >
+      <FavouriteTable data={data} />
+    </Suspense>
+  );
+};
 
-  if (!data || data.length === 0) {
+const Favourites = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  const fetchFavouriteData = async () => {
+    let favorite = localStorage.getItem("bmc_favourite");
+    if (!favorite) {
+      setLoading(false); // Changed to false since we want to show empty state
+      return;
+    }
+    let fav = favorite.split(",");
+
+    const response = await fetch("/api/fetch-favourite-data", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        favourites: fav,
+      }),
+    });
+
+    const { favData, error } = await response.json();
+    if (error) {
+      setLoading(false);
+      return;
+    }
+
+    let arr = Object.values(favData);
+    setData(arr);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchFavouriteData();
+  }, []);
+
+  if (loading) {
     return (
-      <main className="max-w-7xl mx-auto py-40 text-center">
-        <h1 className="text-3xl mb-4">No Favorites Found</h1>
-        <p className="mb-8">
-          You haven't added any cryptocurrencies to your favorites yet.
+      <div className="w-full mx-auto max-w-[1300px] min-h-[50vh] flex justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <main className="max-w-[1500px] mx-auto py-40 text-center">
+        <h1 className="text-4xl lg:text-[70px] my-2">WHOOPS !</h1>
+        <p>Sorry, the section you are looking for could not be found.</p>
+        <p>Slow or Bad Internet Connection.</p>
+        <p>
+          <button
+            onClick={() => window.location.reload(true)}
+            className="btn btn-neutral btn-md mt-5"
+          >
+            <RefreshOutlined /> Try Refresh the Page
+          </button>
         </p>
-        <Link href="/" className="text-blue-500 hover:underline">
-          Return to Home Page
-        </Link>
       </main>
     );
   }
 
   return (
-    <>
-      <Filters />
-
-      <div className="lg:overflow-x-auto overflow-hidden rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black">
-        <table className="table table-sm p-1 w-full">
-          <thead>
-            <tr>
-              <th>Favorite</th>
-              <th>Name/symbol</th>
-              <th className="text-left">Price</th>
-              <th className="text-left hidden lg:table-cell">Chain</th>
-              <th className="hidden lg:table-cell text-left">1h</th>
-              <th className="text-left hidden lg:table-cell">24h</th>
-              <th className="hidden lg:table-cell text-left">7d</th>
-              <th className="hidden lg:table-cell text-left">24h Volume</th>
-              <th className="hidden lg:table-cell text-left">Market Cap</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.slice(page, page + perPage).map((token, index) => (
-              <Tr
-                key={token[0]?.id || index}
-                index={page + index}
-                token={token[0]}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="join flex flex-row justify-center items-center gap-2 mt-5">
-        <button
-          className="join-item btn btn-primary"
-          disabled={page === 0}
-          onClick={() => setPage(page - perPage)}
-        >
-          «
-        </button>
-
-        <span className="px-4 py-2">Page {Math.floor(page / perPage) + 1}</span>
-
-        <button
-          className="join-item btn btn-primary"
-          disabled={page + perPage >= data.length}
-          onClick={() => setPage(page + perPage)}
-        >
-          »
-        </button>
-
-        <select
-          className="select select-bordered ml-4"
-          value={perPage}
-          onChange={(e) => {
-            setPerPage(Number(e.target.value));
-            setPage(0);
-          }}
-        >
-          <option value={50}>50 per page</option>
-          <option value={100}>100 per page</option>
-          <option value={200}>200 per page</option>
-        </select>
-      </div>
-    </>
+    <div>
+      <FavouriteTableWrapper data={data} />
+    </div>
   );
 };
 
-export default FavoriteTable;
+export default Favourites;
