@@ -154,13 +154,13 @@ const SubmitTokenComponent = () => {
       />
       <br />
       <span className="submit_token_text">
-        I acknowledge that BMC reserves the right, in their sole discretion, to
-        determine the suitability of my request for the site. In the event that
-        BMC rejects my request, I acknowledge that BMC is not obligated to
-        inform me or provide any reasons for such refusal. I declare that the
-        information provided on the form is accurate and complete to the best of
-        my knowledge and that failure to fulfill these requirements may render
-        my request inadmissible.
+        I acknowledge that RankCoins reserves the right, in their sole
+        discretion, to determine the suitability of my request for the site. In
+        the event that RankCoins rejects my request, I acknowledge that
+        RankCoins is not obligated to inform me or provide any reasons for such
+        refusal. I declare that the information provided on the form is accurate
+        and complete to the best of my knowledge and that failure to fulfill
+        these requirements may render my request inadmissible.
       </span>
 
       <br />
@@ -169,7 +169,7 @@ const SubmitTokenComponent = () => {
       {/* ------------------------ */}
       {/* Relationship with the project */}
 
-      <label className="form-control">
+      {/* <label className="form-control">
         <div className="label">
           <span className="submit_token_text">
             Relationship with the project
@@ -190,7 +190,7 @@ const SubmitTokenComponent = () => {
             founder, employee, community member and exchange)
           </span>
         </div>
-      </label>
+      </label> */}
 
       {/* ------------------------ */}
 
@@ -387,7 +387,7 @@ const SubmitTokenComponent = () => {
       {/* Link To Banner */}
 
       <label className="form-control w-full my-5">
-        <span className="submit_token_text">Link to Banner</span>
+        <span className="submit_token_text">Link to Banner (Optional)</span>
         <input
           type="text"
           className="input input-bordered w-full"
@@ -411,7 +411,7 @@ const SubmitTokenComponent = () => {
 
       <label className="form-control w-full">
         <div className="label">
-          <span className="submit_token_text">Website 1</span>
+          <span className="submit_token_text">Website</span>
         </div>
         <input
           type="text"
@@ -458,7 +458,7 @@ const SubmitTokenComponent = () => {
       {/* ------------------------ */}
       {/* Block Explorer 1(optional) */}
 
-      <label className="form-control w-full">
+      {/* <label className="form-control w-full">
         <div className="label">
           <span className="submit_token_text">Block Explorer 1(optional)</span>
         </div>
@@ -479,13 +479,13 @@ const SubmitTokenComponent = () => {
             exchange.
           </span>
         </div>
-      </label>
+      </label> */}
 
       {/* ------------------------ */}
       {/* Source Code (e.g. Github, Gitter)(optional)
        */}
 
-      <label className="form-control w-full">
+      {/* <label className="form-control w-full">
         <div className="label">
           <span className="submit_token_text">
             Source Code (e.g. Github, Gitter)(optional)
@@ -504,13 +504,13 @@ const SubmitTokenComponent = () => {
         <div className="label">
           <span className="submit_token_text">Insert a valid URL.</span>
         </div>
-      </label>
+      </label> */}
 
       {/* ------------------------ */}
       {/* Source Code (e.g. Github, Gitter)(optional)
        */}
 
-      <label className="form-control w-full">
+      {/* <label className="form-control w-full">
         <div className="label">
           <span className="submit_token_text">
             Whitepaper / Technical Documentation(optional)
@@ -529,7 +529,7 @@ const SubmitTokenComponent = () => {
         <div className="label">
           <span className="submit_token_text">Insert a valid URL.</span>
         </div>
-      </label>
+      </label> */}
 
       {/* ------------------------ */}
       {/* Source Code (e.g. Github, Gitter)(optional)
@@ -611,7 +611,7 @@ const SubmitTokenComponent = () => {
               target="_blank"
               className="underline text-secondary"
             ></a>
-            https://t.me/BullishMarktCap
+            https://t.me/rankcoins
           </span>
         </div>
       </label>
@@ -638,12 +638,12 @@ const SubmitTokenComponent = () => {
         </div>
       </label>
 
-      <br />
-      <br />
+      {/* <br />
+      <br /> */}
 
       {/* ------------------------ */}
 
-      <div className="label">
+      {/* <div className="label">
         <span className="submit_token_text">
           CEX Lisitng Platfom. Fill information for where your token is
           currently traded on.
@@ -672,11 +672,11 @@ const SubmitTokenComponent = () => {
             });
           }}
         />
-      </label>
+      </label> */}
 
       {/* ------------------------ */}
 
-      <label className="form-control w-full flex flex-col md:flex-row gap-2 my-2">
+      {/* <label className="form-control w-full flex flex-col md:flex-row gap-2 my-2">
         <input
           type="text"
           className="input input-bordered w-full"
@@ -699,11 +699,11 @@ const SubmitTokenComponent = () => {
             });
           }}
         />
-      </label>
+      </label> */}
 
       {/* ------------------------ */}
 
-      <label className="form-control w-full flex flex-col md:flex-row gap-2 my-2">
+      {/* <label className="form-control w-full flex flex-col md:flex-row gap-2 my-2">
         <input
           type="text"
           className="input input-bordered w-full"
@@ -726,12 +726,12 @@ const SubmitTokenComponent = () => {
             });
           }}
         />
-      </label>
+      </label> */}
       {/* ------------------------ */}
-      <br />
-      <br />
+      {/* <br />
+      <br /> */}
 
-      <div className="label">
+      {/* <div className="label">
         <span className="submit_token_text">
           CEX Target Lisitng. Fill information for where your token aiming to be
           traded on
@@ -772,7 +772,7 @@ const SubmitTokenComponent = () => {
             cex_target_3: event.target.value,
           });
         }}
-      />
+      /> */}
 
       <br />
       <br />
@@ -780,7 +780,7 @@ const SubmitTokenComponent = () => {
       <label className="form-control">
         <div className="label">
           <span className="submit_token_text">
-            Important aims in the future (Cryptoasset)
+            Important aims in the future (Optional)
           </span>
         </div>
         <textarea
