@@ -12,7 +12,7 @@ export async function GET() {
   try {
     // Token Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/most-visited?limit=500`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/most-visited?limit=100`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,
@@ -27,7 +27,7 @@ export async function GET() {
   try {
     // New Listing Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/new?limit=100`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/new?limit=50`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,
