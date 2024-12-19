@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
   let { tokenname, tokenid } = params;
 
   return {
-    title: `${tokenname} Price, Charts & Analytics | RankCoins`,
+    title: `${tokenname} Price, Charts & Analytics`,
     description: `Get real-time ${tokenname} cryptocurrency price updates, detailed market analysis, and trading information on RankCoins.`,
     robots: {
       index: true,
