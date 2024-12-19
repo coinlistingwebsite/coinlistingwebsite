@@ -26,12 +26,12 @@ export default function ThemeProvider({ children }) {
     //  setTheme(storedTheme);
   }, []);
 
-  if (!isMounted)
-    return (
-      <div className="w-full mx-auto max-w-[1300px] min-h-[50vh] flex justify-center">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+  // if (!isMounted)
+  //   return (
+  //     <div className="w-full mx-auto max-w-[1300px] min-h-[50vh] flex justify-center">
+  //       <span className="loading loading-spinner loading-lg"></span>
+  //     </div>
+  //   );
 
   const changeTheme = (theme) => {
     setTheme(theme);

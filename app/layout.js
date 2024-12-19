@@ -6,6 +6,7 @@ import Footer from "@/components/main/footer";
 import ClientThemeWrapper from "@/context/ClientThemeWrapper";
 import ThemeProvider from "@/context/ThemeContext";
 import CryptoDataProvider from "@/context/CryptoDataContext";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +31,7 @@ export const metadata = {
       "Explore RankCoins for in-depth crypto rankings, real-time market analytics, and trending tokens. Uncover hidden gems and identify your next cryptocurrency moonshot today",
     images: [
       {
-        url: "https://yourwebsite.com/og-image.jpg", // Replace with your actual OG image URL
+        url: "https://pbs.twimg.com/profile_images/1869764243198808064/xhGxE-i9_400x400.jpg", // Replace with your actual OG image URL
         width: 1200,
         height: 630,
         alt: "RankCoins - Cryptocurrency Rankings and Analytics",
@@ -39,13 +40,15 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@YourTwitterHandle", // Replace with your Twitter handle
-    creator: "@YourTwitterHandle",
+    site: "@RankCoins", // Replace with your Twitter handle
+    creator: "@RankCoins",
     title:
       "RankCoins – Discover Cryptocurrencies and Your Next Crypto Moonshot",
     description:
       "Explore RankCoins for in-depth crypto rankings, real-time market analytics, and trending tokens. Uncover hidden gems and identify your next cryptocurrency moonshot today",
-    images: ["https://yourwebsite.com/twitter-image.jpg"], // Replace with your actual Twitter card image URL
+    images: [
+      "https://pbs.twimg.com/profile_images/1869764243198808064/xhGxE-i9_400x400.jpg",
+    ],
   },
   robots: {
     index: true,
@@ -72,6 +75,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
+        <GoogleAnalytics />
         <ThemeProvider>
           <ClientThemeWrapper>
             <CryptoDataProvider>
