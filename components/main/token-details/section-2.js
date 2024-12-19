@@ -207,73 +207,21 @@ const SectionTwo = ({ details, onDatabase }) => {
       </div>
 
       {/* Description and CEX Information */}
-      {onDatabase ? (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-8">
-          <div className="lg:col-span-3">
-            <div className="bg-base-300 rounded-xl p-4">
-              <h3 className="font-semibold mb-4 text-center">CEX Listing</h3>
-              <div className="space-y-2">
-                {details?.urls?.cex_name_1 && (
-                  <a
-                    href={details.urls.cex_link_1}
-                    target="_blank"
-                    className="flex items-center gap-2 w-full px-4 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors"
-                  >
-                    <CurrencyBitcoinIcon />
-                    <span>{details.urls.cex_name_1}</span>
-                  </a>
-                )}
-                {/* Add other CEX listings similarly */}
-              </div>
-            </div>
-          </div>
 
-          <div className="lg:col-span-3">
-            <div className="bg-base-300 rounded-xl p-4">
-              <h3 className="font-semibold mb-4 text-center">Target CEX</h3>
-              <div className="space-y-2">
-                {details?.urls?.cex_target_1 && (
-                  <div className="flex items-center gap-2 w-full px-4 py-2 rounded-lg bg-blue-500 text-white">
-                    <GpsFixedIcon />
-                    <span>{details.urls.cex_target_1}</span>
-                  </div>
-                )}
-                {/* Add other target CEXs similarly */}
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-6">
-            <div
-              className={`p-2 rounded-xl ${
-                theme === "light"
-                  ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
-                  : " border-gray-400 border"
-              }`}
-            >
-              <h3 className="font-semibold mb-4">Description</h3>
-              <p className="text-sm leading-relaxed">
-                {onDatabase
-                  ? details.full_description.substr(0, 600)
-                  : details.description.substr(0, 600)}
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div
-          className={`p-2 rounded-xl mb-2 ${
-            theme === "light"
-              ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
-              : " border-gray-400 border"
-          }`}
-        >
-          <h3 className="font-semibold mb-4">Description</h3>
-          <p className="text-sm leading-relaxed line-clamp-10">
-            {details.description}
-          </p>
-        </div>
-      )}
+      <div
+        className={`p-2 rounded-xl mb-2 ${
+          theme === "light"
+            ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
+            : " border-gray-400 border"
+        }`}
+      >
+        <h3 className="font-semibold mb-4">Description</h3>
+        <p className="text-sm leading-relaxed line-clamp-10">
+          {onDatabase
+            ? details.full_description.substr(0, 600)
+            : details.description.substr(0, 600)}
+        </p>
+      </div>
 
       {/* Quick Links */}
       <div className="flex flex-wrap gap-2 mb-8">

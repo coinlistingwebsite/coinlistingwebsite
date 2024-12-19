@@ -809,8 +809,10 @@ const SubmitTokenComponent = () => {
             class="twitter-share-button"
             target="_blank"
             data-size="large"
-            data-text="🚀We successfully has applied to listing and we are ready to the moon 🌝 
- #cexgateio #realdiamond"
+            data-text=" 🚀 We have successfully applied to get listed on RankCoins!
+🌐 https://rankcoins.com/
+
+#rankcoins"
             data-hashtags="coinlisting"
             data-show-count="false"
           >

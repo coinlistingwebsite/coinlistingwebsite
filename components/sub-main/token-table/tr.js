@@ -194,7 +194,10 @@ const Tr = ({ index, token }) => {
 
       <td className="hidden lg:table-cell whitespace-nowrap text-right pr-4">
         {token.total_supply ? (
-          <LargeNumberDisplay price={token.total_supply} />
+          <LargeNumberDisplay
+            price={token.total_supply}
+            showDollarSign={false}
+          />
         ) : (
           "-"
         )}

@@ -27,7 +27,7 @@ async function getSqliteTokens() {
   try {
     const db = await getDb();
     const tokens = await db.all(
-      "SELECT id, name, updated_at FROM cryptocurrencies"
+      "SELECT id, name FROM cryptocurrencies WHERE id BETWEEN 1 AND 500 ORDER BY id ASC"
     );
 
     return tokens.map((token) => ({
@@ -35,7 +35,7 @@ async function getSqliteTokens() {
         /\s+/g,
         "-"
       )}/${token.id}`,
-      lastModified: token.updated_at ? new Date(token.updated_at) : new Date(),
+      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     }));
@@ -52,14 +52,20 @@ const staticPages = [
     changeFrequency: "daily",
     priority: 1.0,
   },
-  // {
-  //   url: `${process.env.NEXT_PUBLIC_BASE_URL}/cexlisted`,
-  //   lastModified: new Date(),
-  //   changeFrequency: "daily",
-  //   priority: 0.8,
-  // },
   {
     url: `${process.env.NEXT_PUBLIC_BASE_URL}/newcryptocurrencies`,
+    lastModified: new Date(),
+    changeFrequency: "daily",
+    priority: 0.8,
+  },
+  {
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/moonshot`,
+    lastModified: new Date(),
+    changeFrequency: "daily",
+    priority: 0.8,
+  },
+  {
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/submityourtoken`,
     lastModified: new Date(),
     changeFrequency: "daily",
     priority: 0.8,
