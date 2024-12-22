@@ -9,12 +9,15 @@ import { useContext, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import confetti from "canvas-confetti";
 
+const VOTE_COOLDOWN = 10000; // 10 seconds in milliseconds
+
 const BoostToken = ({ details, onDatabase }) => {
   const { dbVotes, setDbVotes, loading } = useContext(CryptoDataContext);
   const [calculating, setCalculating] = useState(true);
-  const [totalVotes, setTotalVotes] = useState(0); // Initialize to 0
+  const [totalVotes, setTotalVotes] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
   const [voting, setVoting] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(0);
 
   const calculateVotes = () => {
     const baseVotes = parseInt(details.votes) || 0;
@@ -25,19 +28,22 @@ const BoostToken = ({ details, onDatabase }) => {
         ?.length || 0;
 
     const newTotalVotes = bullishVotes + baseVotes;
-    // console.log("Calculating votes:", {
-    //   baseVotes,
-    //   bullishVotes,
-    //   newTotalVotes,
-    // });
-
     setTotalVotes(newTotalVotes);
 
-    // Check if user has already voted
-    const hasUserVoted = dbVotes?.some(
-      (vote) => vote.coinid === coinId && vote.vote === true
-    );
-    setHasVoted(hasUserVoted);
+    // Check if user has voted recently by checking localStorage
+    const lastVoteTime = localStorage.getItem(`lastVote_${coinId}`);
+    if (lastVoteTime) {
+      const timeSinceLastVote = Date.now() - parseInt(lastVoteTime);
+      if (timeSinceLastVote < VOTE_COOLDOWN) {
+        setHasVoted(true);
+        setTimeRemaining(Math.ceil((VOTE_COOLDOWN - timeSinceLastVote) / 1000));
+      } else {
+        setHasVoted(false);
+        localStorage.removeItem(`lastVote_${coinId}`);
+      }
+    } else {
+      setHasVoted(false);
+    }
     setCalculating(false);
   };
 
@@ -45,6 +51,23 @@ const BoostToken = ({ details, onDatabase }) => {
     if (loading || !onDatabase) return;
     calculateVotes();
   }, [details, dbVotes, loading, onDatabase]);
+
+  // Timer effect for countdown
+  useEffect(() => {
+    let timer;
+    if (hasVoted && timeRemaining > 0) {
+      timer = setInterval(() => {
+        setTimeRemaining((prev) => {
+          if (prev <= 1) {
+            setHasVoted(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [hasVoted, timeRemaining]);
 
   const triggerConfetti = () => {
     confetti({
@@ -75,6 +98,9 @@ const BoostToken = ({ details, onDatabase }) => {
       const { error } = await response.json();
 
       if (!error) {
+        // Store vote timestamp in localStorage
+        localStorage.setItem(`lastVote_${coinId}`, Date.now().toString());
+
         // Create new vote object
         const currentDate = new Date();
         const newVote = {
@@ -86,16 +112,12 @@ const BoostToken = ({ details, onDatabase }) => {
         // Update local votes state
         setDbVotes((prevVotes) => {
           const updatedVotes = [...prevVotes, newVote];
-          console.log("Updated votes:", updatedVotes);
           return updatedVotes;
         });
 
         setHasVoted(true);
-        setTotalVotes((prev) => {
-          const newTotal = prev + 1;
-          console.log("New total votes:", newTotal);
-          return newTotal;
-        });
+        setTimeRemaining(10);
+        setTotalVotes((prev) => prev + 1);
         triggerConfetti();
       }
     } catch (error) {
@@ -130,7 +152,10 @@ const BoostToken = ({ details, onDatabase }) => {
           <>
             <span>{totalVotes} Boosts</span>
             {hasVoted ? (
-              <BatteryFull className="w-5 h-5 text-green-400" />
+              <>
+                <BatteryFull className="w-5 h-5 text-green-400" />
+                <span className="text-sm">({timeRemaining}s)</span>
+              </>
             ) : (
               <Battery0Bar className="w-5 h-5 animate-pulse" />
             )}
