@@ -116,16 +116,7 @@ export default function CryptoDataProvider({ children }) {
 
       // Fetch database tokens
       try {
-        const dbResponse = await fetch(
-          "/api/fetch-database-tokens",
-
-          {
-            cache: "force-cache",
-            next: {
-              revalidate: 3600,
-            },
-          }
-        );
+        const dbResponse = await fetch("/api/fetch-database-tokens");
         const { dbTokens, error } = await dbResponse.json();
 
         if (!error) {

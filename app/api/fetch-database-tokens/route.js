@@ -1,5 +1,3 @@
-export const revalidate = 3600;
-
 import { fetchTokens } from "@/lib/fetch-data";
 import { NextResponse } from "next/server";
 
@@ -12,7 +10,6 @@ export async function GET() {
     let response = await fetchTokens();
     if (!response) throw new Error("Error fetching tokens");
     dbTokens = response;
-
   } catch (error) {
     console.log(error);
     return NextResponse.json({
