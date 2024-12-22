@@ -58,14 +58,7 @@ export default function CryptoDataProvider({ children }) {
   let fetchCryptoData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        "/api/fetch-api-tokens",
-
-        {
-          cache: "force-cache",
-          next: { revalidate: 3600 },
-        }
-      );
+      const response = await fetch("/api/fetch-api-tokens");
       const { tokenData, losers, gainers, newTokens, error } =
         await response.json();
 

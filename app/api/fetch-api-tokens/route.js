@@ -1,5 +1,3 @@
-export const revalidate = 1800;
-
 import axios from "axios";
 import { NextResponse } from "next/server";
 
