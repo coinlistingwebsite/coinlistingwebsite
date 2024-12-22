@@ -11,8 +11,8 @@ import AnimatedBatteryHeader from "./animated-battery-header";
 // Row component
 const VoteRankingRow = ({ index, details }) => {
   return (
-    <tr className="hover:cursor-pointer hover:underline">
-      <th className="my-auto">{index + 1}</th>
+    <tr className="hover:underline transition-colors">
+      <th className="py-2">{index + 1}</th>
       <td className="flex flex-row">
         <div className="avatar">
           <div className="mask mask-squircle w-8 h-8 mr-2">
@@ -20,7 +20,7 @@ const VoteRankingRow = ({ index, details }) => {
           </div>
         </div>
 
-        <span className="flex flex-row flex-1 my-auto gap-1">
+        <span className="flex flex-row flex-1 items-center gap-1">
           <Link
             href={`/currencies/${details.project_name.replace(/\s+/g, "-")}/${
               details.request_id
@@ -31,16 +31,14 @@ const VoteRankingRow = ({ index, details }) => {
           </Link>
 
           {details?.platform && (
-            <small className="text-xs my-auto text-gray-500">
-              {details.platform}
-            </small>
+            <small className="text-xs text-gray-500">{details.platform}</small>
           )}
         </span>
       </td>
 
-      <th className="flex-1 justify-end text-right my-auto">
+      <td className="text-right py-2">
         <AnimatedVoteCounter votes={details.totalVotes} />
-      </th>
+      </td>
     </tr>
   );
 };

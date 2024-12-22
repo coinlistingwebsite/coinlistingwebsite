@@ -1,4 +1,4 @@
-// export const revalidate = 1800;
+export const revalidate = 1800;
 
 import axios from "axios";
 import { NextResponse } from "next/server";
@@ -10,14 +10,9 @@ export async function GET() {
   let newTokens = [];
 
   try {
-    // Get date from a week ago
-    const lastWeek = new Date();
-    lastWeek.setDate(lastWeek.getDate() - 7);
-    const formattedDate = lastWeek.toISOString().split("T")[0]; // Format: YYYY-MM-DD
-
     // Historical Market Cap Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/historical?date=${formattedDate}&sort=market_cap&sort_dir=desc&limit=100`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/most-visited`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,

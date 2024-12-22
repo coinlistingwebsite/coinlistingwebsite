@@ -1,12 +1,7 @@
 "use client";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
-import {
-  BatteryChargingFull,
-  Battery0Bar,
-  BatteryFull,
-} from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, ThumbsUp } from "lucide-react";
 import confetti from "canvas-confetti";
 
 const VOTE_COOLDOWN = 10000; // 10 seconds in milliseconds
@@ -146,18 +141,20 @@ const BoostToken = ({ details, onDatabase }) => {
         ) : voting ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span>Boosting...</span>
+            <span>Voting...</span>
           </>
         ) : (
           <>
-            <span>{totalVotes} Boosts</span>
+            <span>
+              {totalVotes} {hasVoted ? "Voted" : "Votes"}
+            </span>
             {hasVoted ? (
               <>
-                <BatteryFull className="w-5 h-5 text-green-400" />
+                <ThumbsUp className="w-5 h-5 text-green-400 fill-current" />
                 <span className="text-sm">({timeRemaining}s)</span>
               </>
             ) : (
-              <Battery0Bar className="w-5 h-5 animate-pulse" />
+              <ThumbsUp className="w-5 h-5 animate-pulse" />
             )}
           </>
         )}

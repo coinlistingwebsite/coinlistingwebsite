@@ -17,6 +17,11 @@ import ProfileBanner from "./profile-banner";
 import TrInfo from "./tr-info";
 import BoostToken from "./boost-token";
 
+const truncateText = (text, limit = 600) => {
+  if (!text) return "";
+  return text.slice(0, limit) + (text.length > limit ? "..." : "");
+};
+
 const SectionTwo = ({ details, onDatabase }) => {
   const { theme } = useContext(ThemeContext);
   const { addToFavourite } = useContext(CryptoDataContext);
@@ -59,7 +64,7 @@ const SectionTwo = ({ details, onDatabase }) => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 lg:px-0">
       {/* Profile Banner Section */}
       <ProfileBanner details={details} onDatabase={onDatabase} />
 
@@ -131,7 +136,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.website[0]}</>
             )
           }
-          icon={<LanguageRounded className="text-lg text-blue-500" />}
+          icon={<LanguageRounded className="text-xl text-blue-500" />}
         />
         <TrInfo
           title="Explorer"
@@ -142,14 +147,14 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.explorer[0]}</>
             )
           }
-          icon={<TravelExploreIcon className="text-lg text-yellow-300" />}
+          icon={<TravelExploreIcon className="text-xl text-yellow-300" />}
         />
         <TrInfo
           title="Telegram"
           link={
             onDatabase ? <>{details.urls.chat}</> : <>{details.urls.chat[0]}</>
           }
-          icon={<Chat className="text-xs text-blue-300" />}
+          icon={<Chat className="text-xl text-blue-300" />}
         />
         <TrInfo
           title="Twitter"
@@ -160,7 +165,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.twitter[0]}</>
             )
           }
-          icon={<Twitter className="text-lg text-blue-500" />}
+          icon={<Twitter className="text-xl text-blue-500" />}
         />
         <TrInfo
           title="Source Code"
@@ -171,7 +176,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.source_code[0]}</>
             )
           }
-          icon={<GitHub className="text-lg text-purple-500" />}
+          icon={<GitHub className="text-xl text-purple-500" />}
         />
         <TrInfo
           title="Reddit"
@@ -182,7 +187,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.reddit[0]}</>
             )
           }
-          icon={<Reddit className="text-lg text-red" />}
+          icon={<Reddit className="text-xl text-red" />}
         />
         <TrInfo
           title="Facebook"
@@ -193,7 +198,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.facebook[0]}</>
             )
           }
-          icon={<Facebook className="text-lg text-blue-600" />}
+          icon={<Facebook className="text-xl text-blue-600" />}
         />
       </div>
 
@@ -207,10 +212,10 @@ const SectionTwo = ({ details, onDatabase }) => {
         }`}
       >
         <h3 className="font-semibold mb-4">Description</h3>
-        <p className="text-sm leading-relaxed line-clamp-10 overflow-hidden text-wrap">
-          {onDatabase
-            ? details.full_description.substr(0, 600)
-            : details.description.substr(0, 600)}
+        <p className="text-sm leading-relaxed break-words whitespace-normal">
+          {truncateText(
+            onDatabase ? details.full_description : details.description
+          )}
         </p>
       </div>
 

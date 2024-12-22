@@ -59,12 +59,12 @@ export default function CryptoDataProvider({ children }) {
     setLoading(true);
     try {
       const response = await fetch(
-        "/api/fetch-api-tokens"
+        "/api/fetch-api-tokens",
 
-        //   , {
-        //   cache: "force-cache",
-        //   next: { revalidate: 3600 },
-        // }
+        {
+          cache: "force-cache",
+          next: { revalidate: 3600 },
+        }
       );
       const { tokenData, losers, gainers, newTokens, error } =
         await response.json();
@@ -117,16 +117,14 @@ export default function CryptoDataProvider({ children }) {
       // Fetch database tokens
       try {
         const dbResponse = await fetch(
-          "/api/fetch-database-tokens"
+          "/api/fetch-database-tokens",
 
-          //   ,
-
-          //   {
-          //   cache: "force-cache",
-          //   next: {
-          //     revalidate: 3600,
-          //   },
-          // }
+          {
+            cache: "force-cache",
+            next: {
+              revalidate: 3600,
+            },
+          }
         );
         const { dbTokens, error } = await dbResponse.json();
 
