@@ -207,7 +207,7 @@ const SectionTwo = ({ details, onDatabase }) => {
         }`}
       >
         <h3 className="font-semibold mb-4">Description</h3>
-        <p className="text-sm leading-relaxed line-clamp-10">
+        <p className="text-sm leading-relaxed line-clamp-10 overflow-hidden text-wrap">
           {onDatabase
             ? details.full_description.substr(0, 600)
             : details.description.substr(0, 600)}
