@@ -104,7 +104,7 @@ const SectionThree = ({ details, onDatabase }) => {
     <div>
       <TokenMarketData details={details} onDatabase={onDatabase} />
      
-      <div
+      {/* <div
         className={`${
           theme === "light"
             ? "shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-black"
@@ -142,7 +142,7 @@ const SectionThree = ({ details, onDatabase }) => {
             placeholder="Post on Twitter and share link *Mandatory"
             onChange={(event) => setAllowed(event.target.value)}
           />
-          <br /> */}
+          <br /> 
           <div className="flex flex-row gap-2" id="boost">
             <button
               className="btn btn-success btn-sm flex-1"
@@ -171,7 +171,7 @@ const SectionThree = ({ details, onDatabase }) => {
         </div>
       </div>
 
-      <br />
+      <br /> */}
 
       <div
         className={`${
