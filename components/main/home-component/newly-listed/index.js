@@ -72,7 +72,7 @@ const NewlyListed = () => {
                     </td>
 
                     <th className="flex-1 justify-end text-right my-auto">
-                      <span className="badge badge-info badge-xs">
+                      <span className="font-bold text-xs">
                         <Moment fromNow>{token.date_added}</Moment>
                       </span>
                     </th>
