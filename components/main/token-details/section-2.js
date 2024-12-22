@@ -1,7 +1,5 @@
 import { ThemeContext } from "@/context/ThemeContext";
 import {
-  ArrowForward,
-  BatteryChargingFull,
   GitHub,
   LanguageRounded,
   Telegram,
@@ -11,14 +9,13 @@ import {
   Reddit,
 } from "@mui/icons-material";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
-import GpsFixedIcon from "@mui/icons-material/GpsFixed";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import React, { useContext, useEffect, useState } from "react";
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import Link from "next/link";
 import CryptoFeed from "./cryptowidget";
 import ProfileBanner from "./profile-banner";
 import TrInfo from "./tr-info";
+import BoostToken from "./boost-token";
 
 const SectionTwo = ({ details, onDatabase }) => {
   const { theme } = useContext(ThemeContext);
@@ -118,13 +115,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               </svg>
             </button>
 
-            <Link
-              href="#boost"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-colors"
-            >
-              <span>Boost</span>
-              <BatteryChargingFull className="w-5 h-5 animate-pulse" />
-            </Link>
+            <BoostToken details={details} onDatabase={onDatabase} />
           </div>
         </div>
       </div>
@@ -140,7 +131,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.website[0]}</>
             )
           }
-          icon={<LanguageRounded className="text-xs text-blue-500" />}
+          icon={<LanguageRounded className="text-lg text-blue-500" />}
         />
         <TrInfo
           title="Explorer"
@@ -151,7 +142,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.explorer[0]}</>
             )
           }
-          icon={<TravelExploreIcon className="text-xs text-yellow-300" />}
+          icon={<TravelExploreIcon className="text-lg text-yellow-300" />}
         />
         <TrInfo
           title="Telegram"
@@ -169,7 +160,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.twitter[0]}</>
             )
           }
-          icon={<Twitter className="text-xs text-blue-500" />}
+          icon={<Twitter className="text-lg text-blue-500" />}
         />
         <TrInfo
           title="Source Code"
@@ -180,7 +171,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.source_code[0]}</>
             )
           }
-          icon={<GitHub className="text-xs text-purple-500" />}
+          icon={<GitHub className="text-lg text-purple-500" />}
         />
         <TrInfo
           title="Reddit"
@@ -191,7 +182,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.reddit[0]}</>
             )
           }
-          icon={<Reddit className="text-xs text-red" />}
+          icon={<Reddit className="text-lg text-red" />}
         />
         <TrInfo
           title="Facebook"
@@ -202,7 +193,7 @@ const SectionTwo = ({ details, onDatabase }) => {
               <>{details.urls.facebook[0]}</>
             )
           }
-          icon={<Facebook className="text-xs text-blue-600" />}
+          icon={<Facebook className="text-lg text-blue-600" />}
         />
       </div>
 

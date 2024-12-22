@@ -1,26 +1,5 @@
 "use client";
-import {
-  Api,
-  AssessmentOutlined,
-  Brush,
-  CurrencyBitcoin,
-  Favorite,
-  GitHub,
-  MenuBook,
-  NewspaperOutlined,
-  Search,
-  Settings,
-  SmartToy,
-  Telegram,
-  TipsAndUpdates,
-  Twitter,
-} from "@mui/icons-material";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import CategoryIcon from "@mui/icons-material/Category";
-import LinkIcon from "@mui/icons-material/Link";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+
 import Link from "next/link";
 import SectionOne from "../home-component/section-1";
 import TrendSlider from "@/components/sub-main/trend-slider";
@@ -34,7 +13,7 @@ const Navbar = () => {
   let { dbTokens, loading } = useContext(CryptoDataContext);
   return (
     <>
-      <div className="hidden md:flex flex-row max-w-[1500px] mx-auto p-1">
+      <div className="hidden md:flex flex-row max-w-[1400px] mx-auto p-1">
         <div className="flex flex-row text-xs gap-3 flex-1">
           <span className="my-auto">
             {loading ? (
@@ -105,26 +84,22 @@ const Navbar = () => {
                 />
               </svg>
             </div>
+
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link
-                  href="/submityourtoken"
-                  className="btn btn-success btn-sm"
-                >
-                  Get Listed
-                </Link>
+                <Link href="/moonshots">Moonshots</Link>
+              </li>
+              <li>
+                <Link href="/favourites">Favorites</Link>
               </li>
             </ul>
           </div>
+
           <Link href="/" className="btn btn-ghost text-xl py-0">
-            <img
-              src="https://firebasestorage.googleapis.com/v0/b/bmc-database-f73bd.appspot.com/o/services%2F1.png?alt=media&token=db69211a-ec64-4dca-8eb5-5ef0a015a045"
-              className="rounded-full h-full"
-              alt="Cex Gate"
-            />
+            <img src="/3.png" className="rounded-full h-full" alt="Cex Gate" />
           </Link>
         </div>
 
@@ -143,59 +118,19 @@ const Navbar = () => {
             </li>
 
             <li className="dropdown dropdown-hover dropdown-start dropdown-bottom font-bold my-auto hover:cursor-pointer">
-              Services
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52 font-light text-xs"
-              >
-                <li className="rounded-lg flex flex-row">
-                  <Link href="/adverts" className="my-auto flex-1 flex">
-                    <SmartToy className="text-sm" />
-                    <span className="flex-1">Bot Services</span>
-                  </Link>
-                </li>
-                <li className="rounded-lg flex flex-row">
-                  <Link href="/adverts" className="my-auto flex-1 flex">
-                    <GitHub className="text-sm" />
-                    <span className="flex-1">Fullstack Developer</span>
-                  </Link>
-                </li>
-                <li className="rounded-lg flex flex-row">
-                  <Link href="/adverts" className="my-auto flex-1 flex">
-                    <CurrencyBitcoin className="text-sm" />
-                    <span className="flex-1">Blockchain Developer</span>
-                  </Link>
-                </li>
-                <li className="rounded-lg flex flex-row">
-                  <Link href="/adverts" className="my-auto flex-1 flex">
-                    <Brush className="text-sm" />
-                    <span className="flex-1">Crypto Designer</span>
-                  </Link>
-                </li>
-                <li className="rounded-lg flex flex-row">
-                  <Link href="/adverts" className="my-auto flex-1 flex">
-                    <Telegram className="text-sm" />
-                    <span className="flex-1">Telegram Shilling</span>
-                  </Link>
-                </li>
-                <li className="rounded-lg flex flex-row">
-                  <Link href="/adverts" className="my-auto flex-1 flex">
-                    <Twitter className="text-sm" />
-                    <span className="flex-1">Twitter Shilling</span>
-                  </Link>
-                </li>
-                <li className="rounded-lg flex flex-row">
-                  <span className="my-auto flex-1 flex">
-                    <Api className="text-sm" />
-                    <span className="flex-1">API (Coming soon)</span>
-                  </span>
-                </li>
-              </ul>
+              <Link href="/moonshots" className="flex-1">
+                Moonshots
+              </Link>
             </li>
           </ul>
         </div>
         <div className="hidden lg:flex navbar-end lg:gap-3">
           <SearchBar />
+        </div>
+        <div className="navbar-end lg:hidden">
+          <Link href="/submityourtoken" className="btn btn-info btn-sm">
+            Get Listed
+          </Link>
         </div>
       </div>
 

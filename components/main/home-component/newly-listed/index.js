@@ -1,12 +1,13 @@
 import { CryptoDataContext } from "@/context/CryptoDataContext";
-import { RefreshOutlined } from "@mui/icons-material";
+import { RefreshOutlined, Rocket } from "@mui/icons-material";
 import Link from "next/link";
 import React, { useContext } from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Moment from "react-moment";
 import { ThemeContext } from "@/context/ThemeContext";
+import AnimatedRocketHeader from "./animated-header";
 
-const Promoted = () => {
+const NewlyListed = () => {
   let { loading, dbTokens } = useContext(CryptoDataContext);
   const { theme } = useContext(ThemeContext);
 
@@ -27,22 +28,7 @@ const Promoted = () => {
             : " border-gray-400 border"
         }`}
       >
-        <div className="flex flex-row p-3">
-          <b className="flex-1 my-auto text-sm flex flex-row">
-            <img
-              src="https://info.lexplore.com/hs-fs/hubfs/Rocket.gif"
-              className="w-6 h-6 animate-bounce"
-            />
-            Newly Listed Tokens
-          </b>
-
-          <Link
-            href="/newcryptocurrencies"
-            className="hover:text-accent text-xs font-bold hover:cursor-pointer"
-          >
-            View more <KeyboardArrowRightIcon />
-          </Link>
-        </div>
+        <AnimatedRocketHeader />
 
         <div className="overflow-y-auto h-[170px]">
           {loading && newListed.length == 0 ? (
@@ -119,4 +105,4 @@ const Promoted = () => {
   );
 };
 
-export default Promoted;
+export default NewlyListed;

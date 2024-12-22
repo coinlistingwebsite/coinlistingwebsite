@@ -20,7 +20,7 @@ const Tr = ({ title, description, value }) => {
           </Tooltip>
         </td>
 
-        <td className="flex-1 justify-end text-right text-lg my-auto">
+        <td className="flex-1 justify-end text-right text-sm my-auto font-medium">
           {formatter.format(value)}
         </td>
       </tr>

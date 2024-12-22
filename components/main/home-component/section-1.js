@@ -1,7 +1,7 @@
 import { CryptoDataContext } from "@/context/CryptoDataContext";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
-import Marquee from "react-fast-marquee";
+
 
 const SectionOne = () => {
   const [loading, setLoading] = useState(true);

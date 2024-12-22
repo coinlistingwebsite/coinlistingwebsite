@@ -1,0 +1,126 @@
+import React, { useContext, useState, useCallback } from "react";
+import { BarChart2 } from "lucide-react";
+import { CryptoDataContext } from "@/context/CryptoDataContext";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+const TokenVoteRow = ({ token, rank }) => {
+  const router = useRouter();
+  const { addToFavourite } = useContext(CryptoDataContext);
+  const [forceUpdate, setForceUpdate] = useState(0);
+
+  const checkFavourite = useCallback(() => {
+    const favorite = localStorage.getItem("bmc_favourite");
+    if (!favorite) return false;
+    const fav = favorite.split(",");
+    return fav.includes(token.symbol);
+  }, [token.symbol]);
+
+  const removeFavorite = useCallback(() => {
+    const favorite = localStorage.getItem("bmc_favourite");
+    if (!favorite) return;
+    const fav = favorite.split(",");
+    const updatedFav = fav.filter((fa) => fa !== token.symbol);
+    localStorage.setItem("bmc_favourite", updatedFav.join(","));
+    setForceUpdate((prev) => prev + 1);
+  }, [token.symbol]);
+
+  const toggleFavorite = () => {
+    if (checkFavourite()) {
+      removeFavorite();
+    } else {
+      addToFavourite(token.symbol);
+      setForceUpdate((prev) => prev + 1);
+    }
+  };
+
+  return (
+    <tr className="transition-colors duration-150 font-bold hover:cursor-pointer">
+      <td>
+        <button
+          className="outline-0 border-0 bg-none cursor-pointer p-2 rounded-full hover:bg-gray-100"
+          onClick={toggleFavorite}
+          aria-label={
+            checkFavourite() ? "Remove from favorites" : "Add to favorites"
+          }
+        >
+          <svg
+            className={`w-[1.5rem] ${
+              checkFavourite() ? "fill-cyan" : "fill-gray-100"
+            } hover:fill-cyan transition-colors duration-200`}
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            fill="cyan"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clipPath="url(#clip0_16_420)">
+              <path d="M22.6583 28.3333C22.2901 28.333 21.9303 28.2227 21.625 28.0167L15.4083 23.85C15.3777 23.8289 15.3414 23.8175 15.3042 23.8175C15.267 23.8175 15.2306 23.8289 15.2 23.85L8.98334 28.0167C8.67117 28.2251 8.30297 28.3337 7.92765 28.3279C7.55233 28.3221 7.18764 28.2023 6.88201 27.9844C6.57637 27.7665 6.34426 27.4608 6.2165 27.1078C6.08873 26.7549 6.07135 26.3714 6.16667 26.0083L8.20834 18.8083C8.21799 18.7721 8.21682 18.7339 8.20497 18.6983C8.19312 18.6628 8.17112 18.6315 8.14167 18.6083L2.25834 13.9833C1.94862 13.7526 1.71888 13.4307 1.60133 13.0628C1.48377 12.6949 1.48431 12.2995 1.60285 11.9319C1.72139 11.5644 1.952 11.2431 2.26233 11.0132C2.57267 10.7833 2.94718 10.6563 3.33334 10.65L10.8333 10.3667C10.8702 10.3641 10.9056 10.351 10.9351 10.3288C10.9647 10.3066 10.9872 10.2764 11 10.2417L13.5833 3.21666C13.7136 2.86053 13.9501 2.55301 14.2608 2.33574C14.5716 2.11848 14.9416 2.00195 15.3208 2.00195C15.7 2.00195 16.0701 2.11848 16.3808 2.33574C16.6916 2.55301 16.9281 2.86053 17.0583 3.21666L19.6417 10.2417C19.6544 10.2764 19.677 10.3066 19.7065 10.3288C19.7361 10.351 19.7715 10.3641 19.8083 10.3667L27.3083 10.65C27.6945 10.6563 28.069 10.7833 28.3793 11.0132C28.6897 11.2431 28.9203 11.5644 29.0388 11.9319C29.1574 12.2995 29.1579 12.6949 29.0403 13.0628C28.9228 13.4307 28.6931 13.7526 28.3833 13.9833L22.5 18.6083C22.4697 18.6308 22.447 18.662 22.435 18.6978C22.4231 18.7336 22.4225 18.7722 22.4333 18.8083L24.475 26.0083C24.5467 26.2845 24.5538 26.5735 24.4958 26.8528C24.4378 27.1322 24.3162 27.3944 24.1406 27.6193C23.9649 27.8441 23.7398 28.0254 23.4828 28.1493C23.2257 28.2731 22.9436 28.3361 22.6583 28.3333Z" />
+            </g>
+            <defs>
+              <clipPath id="clip0_16_420">
+                <rect width="30" height="30" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </td>
+
+      <td className="font-bold lg:table-cell">{rank}</td>
+
+      <td className="pl-2">
+        <div className="flex items-center gap-2">
+          {token.logo && (
+            <div className="mask mask-squircle w-8 h-8">
+              <img
+                src={token.logo}
+                alt={`${token.project_name} logo`}
+                className="object-cover"
+              />
+            </div>
+          )}
+          <span className="flex flex-col">
+            <Link
+              href={`/currencies/${token.project_name.replace(/\s+/g, "-")}/${
+                token.request_id
+              }`}
+              className="text-sm hover:underline hover:cursor-pointer"
+            >
+              {token.project_name}
+              <small className="text-[10px] text-gray-500 ml-2">
+                {token.symbol}
+              </small>
+            </Link>
+          </span>
+        </div>
+      </td>
+
+      <td className="hidden lg:table-cell">{token.platform}</td>
+
+      <td className="hidden lg:table-cell">
+        <span className="text-xs font-mono">
+          {token.contract_address.substring(0, 6)}...
+          {token.contract_address.substring(token.contract_address.length - 4)}
+        </span>
+      </td>
+
+      <td className="text-right font-bold">
+        {token.totalVotes.toLocaleString()} votes
+      </td>
+
+      <td className="hidden lg:table-cell text-center">
+        <a
+          href={`https://dexscreener.com/ethereum/${token.contract_address}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-sm btn-primary"
+        >
+          <BarChart2 className="w-4 h-4" />
+          View Chart
+        </a>
+      </td>
+    </tr>
+  );
+};
+
+export default TokenVoteRow;

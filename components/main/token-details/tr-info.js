@@ -5,11 +5,11 @@ const TrInfo = ({ title, link, icon }) => {
   return (
     <>
       <span className="flex flex-row p-1 rounded-xl mb-1 mr-2">
-        <span className="lg:flex lg:flex-row text-sm my-auto opacity-75 hidden">
+        <span className="lg:flex lg:flex-row text-md my-auto opacity-75 hidden">
           {title}
         </span>
 
-        <span className="flex-1 justify-end text-right font-light text-sm my-auto">
+        <span className="flex-1 justify-end text-right font-light text-lg my-auto">
           <a
             href={link.props.children}
             className="btn-xs break-words"

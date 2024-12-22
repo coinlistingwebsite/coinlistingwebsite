@@ -74,22 +74,23 @@ const TokenMarketData = ({ details, onDatabase }) => {
               : "border-gray-400 border"
           }`}
         >
+          <div className="text-xl font-bold mt-1 mb-3">Market Analysis</div>
           <table className="table table-xs w-full">
             <tbody>
               <tr className="flex flex-row pb-2">
                 <td className="flex flex-row text-sm my-auto opacity-75">
                   Price
                 </td>
-                <td className="flex-1 justify-end text-right text-lg my-auto">
+                <td className="flex-1 justify-end text-right text-sm my-auto font-medium">
                   {formatPrice(market.price)}
                 </td>
               </tr>
 
               <tr className="flex flex-row py-2">
                 <td className="flex flex-row text-sm my-auto opacity-75">
-                  Percent Change 24H
+                  24hr % Change
                 </td>
-                <td className="flex-1 justify-end text-right text-lg my-auto">
+                <td className="flex-1 justify-end text-right text-sm my-auto">
                   <span
                     className={
                       market.percent_change_24h > 0
@@ -114,7 +115,7 @@ Refers to the total market value of a cryptocurrency's circulating supply."
                 value={market.market_cap}
               />
               <Tr
-                title="24 Hour Trading Vol"
+                title="24hr Volume"
                 description="A measure of a cryptocurrency trading volume across all tracked platforms in the last 24 hours."
                 value={market.volume_24h}
               />

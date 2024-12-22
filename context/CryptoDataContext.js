@@ -1,4 +1,5 @@
 "use client";
+import { Votes } from "@/lib/fetch-data";
 import { createContext, useState, useLayoutEffect } from "react";
 export const CryptoDataContext = createContext();
 
@@ -10,6 +11,7 @@ export default function CryptoDataProvider({ children }) {
   const [dbTokens, setDbTokens] = useState([]);
   const [banners, setBannerrs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [dbVotes, setDbVotes] = useState([]);
   const [tokenLogos, setTokenLogos] = useState({});
 
   // Modify the fetchTokenLogos function
@@ -37,7 +39,7 @@ export default function CryptoDataProvider({ children }) {
       setTokenLogos((prevLogos) => ({ ...prevLogos, ...logoMap }));
       return { logoMap, validTokenIds: Object.keys(logoMap) };
     } catch (error) {
-      console.error("Error fetching logos:", error);
+      //   console.error("Error fetching logos:", error);
       return { logoMap: {}, validTokenIds: [] };
     }
   };
@@ -56,10 +58,14 @@ export default function CryptoDataProvider({ children }) {
   let fetchCryptoData = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/fetch-api-tokens", {
-        cache: "force-cache",
-        next: { revalidate: 3600 },
-      });
+      const response = await fetch(
+        "/api/fetch-api-tokens"
+
+        //   , {
+        //   cache: "force-cache",
+        //   next: { revalidate: 3600 },
+        // }
+      );
       const { tokenData, losers, gainers, newTokens, error } =
         await response.json();
 
@@ -110,12 +116,18 @@ export default function CryptoDataProvider({ children }) {
 
       // Fetch database tokens
       try {
-        const dbResponse = await fetch("/api/fetch-database-tokens", {
-          cache: "force-cache",
-          next: {
-            revalidate: 3600, // 3600 seconds = 1 hour
-          },
-        });
+        const dbResponse = await fetch(
+          "/api/fetch-database-tokens"
+
+          //   ,
+
+          //   {
+          //   cache: "force-cache",
+          //   next: {
+          //     revalidate: 3600,
+          //   },
+          // }
+        );
         const { dbTokens, error } = await dbResponse.json();
 
         if (!error) {
@@ -125,8 +137,15 @@ export default function CryptoDataProvider({ children }) {
 
           setDbTokens(results);
         }
+
+        // fetch votes
+        const fetchedVotes = await Votes();
+
+        if (fetchedVotes) {
+          setDbVotes(fetchedVotes);
+        }
       } catch (error) {
-        console.error("Error fetching DB tokens:", error);
+        //  console.error("Error fetching DB tokens:", error);
       }
     } catch (error) {
       console.error("Error fetching crypto data:", error);
@@ -220,6 +239,8 @@ export default function CryptoDataProvider({ children }) {
         gainers,
         newTokens,
         dbTokens,
+        dbVotes,
+        setDbVotes,
         loading,
         addToFavourite,
         banners,

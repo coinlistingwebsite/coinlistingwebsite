@@ -3,6 +3,8 @@ import { validateSubmitForm } from "@/lib/validations/submit-validations";
 import SelectChain from "./select-chain";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import LogoUploader from "./uploadImages";
+import { uploadProjectImages } from "@/lib/post-data";
 
 const SubmitTokenComponent = () => {
   const [formData, setFormData] = useState({
@@ -13,22 +15,12 @@ const SubmitTokenComponent = () => {
     launch_date: "",
     project_name: "",
     symbol: "",
-    tags: "",
-    short_description: "",
     full_description: "",
     platform: "",
-    logo: "",
-    banner: "",
     website: "",
-    website_2: "",
     chain: "",
     contract_address: "",
-    contract_decimals: "",
     etherscan: "",
-    source_code: "",
-    technical_doc: "",
-    announcement: "",
-    message_board: "",
     twitter: "",
     reddit: "",
     facebook: "",
@@ -41,21 +33,18 @@ const SubmitTokenComponent = () => {
     circulating_supply: "",
     total_supply: "",
     max_supply: "",
-    cex_name_1: "",
-    cex_link_1: "",
-    cex_name_2: "",
-    cex_link_2: "",
-    cex_name_3: "",
-    cex_link_3: "",
-    cex_target_1: "",
-    cex_target_2: "",
-    cex_target_3: "",
     aims: "",
     public_verification_post: "",
   });
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [requestid, setRequestid] = useState("");
+  const [imageState, setImageState] = useState({
+    logo: null,
+    banner: null,
+    logoError: null,
+    bannerError: null,
+  });
   const recaptchaRef = useRef();
 
   const handleSubmit = async () => {
@@ -68,7 +57,10 @@ const SubmitTokenComponent = () => {
     //   return;
     // }
 
-    const { response, message } = await validateSubmitForm(formData);
+    const { response, message } = await validateSubmitForm(
+      formData,
+      imageState
+    );
 
     if (response) {
       setError(message);
@@ -77,14 +69,29 @@ const SubmitTokenComponent = () => {
 
     setLoading(true);
 
-    // Send FormData to Server API
+    // Upload images and get URLs
+    const imageUrls = await uploadProjectImages(formData, imageState);
+    if (!imageUrls) {
+      setError(
+        "Error in submitting token, please try again or contact support"
+      );
+      setLoading(false);
+      return;
+    }
+
+    // Add image URLs to form data
+    const submissionData = {
+      ...formData,
+      logo: imageUrls.logoURL,
+      banner: imageUrls.bannerURL || "", // Use empty string if no banner
+    };
 
     const result = await fetch("/api/submit", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(submissionData),
     });
 
     const { requestID, errorStatus, status } = await result.json();
@@ -166,61 +173,6 @@ const SubmitTokenComponent = () => {
       <br />
       <br />
 
-      {/* ------------------------ */}
-      {/* Relationship with the project */}
-
-      {/* <label className="form-control">
-        <div className="label">
-          <span className="submit_token_text">
-            Relationship with the project
-          </span>
-        </div>
-        <textarea
-          className="textarea textarea-bordered min-h-24"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              relationship_project: event.target.value,
-            });
-          }}
-        ></textarea>
-        <div className="label">
-          <span className="submit_token_text">
-            Please describe your relationship with the project (e.g. CEO,
-            founder, employee, community member and exchange)
-          </span>
-        </div>
-      </label> */}
-
-      {/* ------------------------ */}
-
-      {/* Project Launch Date */}
-      {/* 
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">Project Launch Date</span>
-        </div>
-        <input
-          type="date"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              launch_date: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            The date the project launched (e.g. token sale, genesis block,
-            formation of company, drafting of business plan).
-          </span>
-        </div>
-      </label> */}
-
-      {/* ------------------------ */}
-      {/* Project Name */}
-
       <label className="form-control w-full">
         <div className="label">
           <span className="submit_token_text">Project Name</span>
@@ -267,35 +219,6 @@ const SubmitTokenComponent = () => {
           <span className="submit_token_text">(e.g. BTC, ETH, XRP, HOT)</span>
         </div>
       </label>
-
-      {/* ------------------------ */}
-      {/* Cryptoasset Tags - Sector/Categories */}
-      {/* 
-      <label className="form-control w-full my-3">
-        <div className="label">
-          <span className="submit_token_text">
-            Cryptocurrency Tags, Seperate each tage by comma.
-          </span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              tags: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            Example - Education, Fashion, Transport, DeFi
-          </span>
-        </div>
-      </label> */}
-
-      {/* ------------------------ */}
-      {/* Detailed Project Description (Cryptoasset) */}
 
       <label className="form-control">
         <div className="label">
@@ -359,52 +282,8 @@ const SubmitTokenComponent = () => {
       </label>
 
       {/* ------------------------ */}
-      {/* Link To Logo */}
 
-      <label className="form-control w-full my-5">
-        <span className="submit_token_text">Link to Logo</span>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              logo: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            3 conditions MUST be met: (1) Transparent background; (2) Square
-            (200x200); unequal dimensions will be rejected! (3) PNG format. If
-            possible, it is recommended that you provide logo URLs ending with
-            .png so that our system can extract the logo directly.
-          </span>
-        </div>
-      </label>
-
-      {/* ------------------------ */}
-      {/* Link To Banner */}
-
-      <label className="form-control w-full my-5">
-        <span className="submit_token_text">Link to Banner (Optional)</span>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              banner: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            3 conditions MUST be met: (1) Transparent background; (2) Rectangle
-            (700x200);
-          </span>
-        </div>
-      </label>
+      <LogoUploader imageState={imageState} setImageState={setImageState} />
 
       {/* ------------------------ */}
       {/* Website */}
@@ -441,7 +320,7 @@ const SubmitTokenComponent = () => {
 
       <label className="form-control w-full">
         <div className="label">
-          <span className="submit_token_text">Contract Address 1</span>
+          <span className="submit_token_text">Contract Address</span>
         </div>
         <input
           type="text"
@@ -454,86 +333,6 @@ const SubmitTokenComponent = () => {
           }}
         />
       </label>
-
-      {/* ------------------------ */}
-      {/* Block Explorer 1(optional) */}
-
-      {/* <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">Block Explorer 1(optional)</span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              etherscan: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">
-            Insert a valid URL with the CONTRACT ADDRESS, e.g. This is a
-            mandatory field for projects that are already trading on an
-            exchange.
-          </span>
-        </div>
-      </label> */}
-
-      {/* ------------------------ */}
-      {/* Source Code (e.g. Github, Gitter)(optional)
-       */}
-
-      {/* <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Source Code (e.g. Github, Gitter)(optional)
-          </span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              source_code: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">Insert a valid URL.</span>
-        </div>
-      </label> */}
-
-      {/* ------------------------ */}
-      {/* Source Code (e.g. Github, Gitter)(optional)
-       */}
-
-      {/* <label className="form-control w-full">
-        <div className="label">
-          <span className="submit_token_text">
-            Whitepaper / Technical Documentation(optional)
-          </span>
-        </div>
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              technical_doc: event.target.value,
-            });
-          }}
-        />
-        <div className="label">
-          <span className="submit_token_text">Insert a valid URL.</span>
-        </div>
-      </label> */}
-
-      {/* ------------------------ */}
-      {/* Source Code (e.g. Github, Gitter)(optional)
-       */}
 
       <label className="form-control w-full">
         <div className="label">
@@ -637,142 +436,6 @@ const SubmitTokenComponent = () => {
           </span>
         </div>
       </label>
-
-      {/* <br />
-      <br /> */}
-
-      {/* ------------------------ */}
-
-      {/* <div className="label">
-        <span className="submit_token_text">
-          CEX Lisitng Platfom. Fill information for where your token is
-          currently traded on.
-        </span>
-      </div>
-      <label className="form-control w-full flex flex-col md:flex-row gap-2">
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          placeholder="CEX Platfrom 1 Name"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              cex_name_1: event.target.value,
-            });
-          }}
-        />
-        <input
-          type="text"
-          placeholder="CEX Platfrom 1 Link"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              cex_link_1: event.target.value,
-            });
-          }}
-        />
-      </label> */}
-
-      {/* ------------------------ */}
-
-      {/* <label className="form-control w-full flex flex-col md:flex-row gap-2 my-2">
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          placeholder="CEX Platfrom 2 Name"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              cex_name_2: event.target.value,
-            });
-          }}
-        />
-        <input
-          type="text"
-          placeholder="CEX Platfrom 2 Link"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              cex_link_2: event.target.value,
-            });
-          }}
-        />
-      </label> */}
-
-      {/* ------------------------ */}
-
-      {/* <label className="form-control w-full flex flex-col md:flex-row gap-2 my-2">
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          placeholder="CEX Platfrom 3 Name"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              cex_name_3: event.target.value,
-            });
-          }}
-        />
-        <input
-          type="text"
-          placeholder="CEX Platfrom 3 Link"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              cex_link_3: event.target.value,
-            });
-          }}
-        />
-      </label> */}
-      {/* ------------------------ */}
-      {/* <br />
-      <br /> */}
-
-      {/* <div className="label">
-        <span className="submit_token_text">
-          CEX Target Lisitng. Fill information for where your token aiming to be
-          traded on
-        </span>
-      </div>
-      <label className="form-control w-full flex flex-col md:flex-row gap-2">
-        <input
-          type="text"
-          className="input input-bordered w-full"
-          placeholder="Target CEX 1"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              cex_target_1: event.target.value,
-            });
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Target CEX 2"
-          className="input input-bordered w-full"
-          onChange={(event) => {
-            setFormData({
-              ...formData,
-              cex_target_2: event.target.value,
-            });
-          }}
-        />
-      </label>
-      <br />
-      <input
-        type="text"
-        placeholder="Target CEX 3"
-        className="input input-bordered w-full"
-        onChange={(event) => {
-          setFormData({
-            ...formData,
-            cex_target_3: event.target.value,
-          });
-        }}
-      /> */}
 
       <br />
       <br />

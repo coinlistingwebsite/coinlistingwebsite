@@ -1,7 +1,7 @@
 "use client";
 import SectionTwo from "./section-2";
 import TokenTable from "@/components/sub-main/token-table";
-import Marquee from "react-fast-marquee";
+
 
 const HomeComponent = () => {
   return (

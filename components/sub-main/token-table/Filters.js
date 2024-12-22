@@ -37,6 +37,14 @@ const Filters = () => {
         <Add size={16} />
         <span>Recently Added Projects</span>
       </Link>
+
+      <Link
+        href="/moonshots"
+        className="flex items-center gap-1 p-2 rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-1 border-black text-sm bg-orange-500 text-white"
+      >
+        <Add size={16} />
+        <span>Moonshots</span>
+      </Link>
     </ul>
   );
 };

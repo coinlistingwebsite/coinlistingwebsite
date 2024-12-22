@@ -103,6 +103,7 @@ const SectionThree = ({ details, onDatabase }) => {
   return (
     <div>
       <TokenMarketData details={details} onDatabase={onDatabase} />
+     
       <div
         className={`${
           theme === "light"
