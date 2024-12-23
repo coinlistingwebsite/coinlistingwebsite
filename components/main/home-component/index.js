@@ -12,7 +12,7 @@ const HomeComponent = () => {
       <div className="flex flex-row my-5">
         <div className="divider flex-1"></div>
         <span className="badge badge-warning flex justify-center my-auto">
-          Open Your Next GEMS
+          Find your next Moonshot!
         </span>
         <div className="divider flex-1"></div>
       </div>
