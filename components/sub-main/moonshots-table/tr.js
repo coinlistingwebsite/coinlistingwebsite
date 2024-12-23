@@ -9,6 +9,8 @@ const TokenVoteRow = ({ token, rank }) => {
   const { addToFavourite } = useContext(CryptoDataContext);
   const [forceUpdate, setForceUpdate] = useState(0);
 
+  console.log(token);
+
   const checkFavourite = useCallback(() => {
     const favorite = localStorage.getItem("bmc_favourite");
     if (!favorite) return false;
@@ -110,7 +112,7 @@ const TokenVoteRow = ({ token, rank }) => {
 
       <td className="hidden lg:table-cell text-center">
         <a
-          href={`https://dexscreener.com/ethereum/${token.contract_address}`}
+          href={`https://dexscreener.com/${token.chain}/${token.contract_address}`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-sm btn-primary"
