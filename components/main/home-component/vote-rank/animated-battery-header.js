@@ -1,5 +1,6 @@
 import React from "react";
 import { Trophy, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const VoteHeader = () => {
   return (
@@ -12,10 +13,10 @@ const VoteHeader = () => {
         <span className="text-base font-bold text-gray-700">Top Voted</span>
       </div>
 
-      <button className="flex items-center text-xs font-bold text-gray-600 hover:text-yellow-500 transition-colors">
+      <Link href="moonshots className="flex items-center text-xs font-bold text-gray-600 hover:text-yellow-500 transition-colors">
         View more
         <ChevronRight className="w-4 h-4" />
-      </button>
+      </Link>
     </div>
   );
 };
