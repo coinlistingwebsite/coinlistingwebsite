@@ -13,7 +13,7 @@ const VoteHeader = () => {
         <span className="text-base font-bold text-gray-700">Top Voted</span>
       </div>
 
-      <Link href="moonshots className="flex items-center text-xs font-bold text-gray-600 hover:text-yellow-500 transition-colors">
+      <Link href="moonshots" className="flex items-center text-xs font-bold text-gray-600 hover:text-yellow-500 transition-colors">
         View more
         <ChevronRight className="w-4 h-4" />
       </Link>
