@@ -27,7 +27,7 @@ async function getSqliteTokens() {
   try {
     const db = await getDb();
     const tokens = await db.all(
-      "SELECT id, name FROM cryptocurrencies WHERE id BETWEEN 1 AND 500 ORDER BY id ASC"
+      "SELECT id, name FROM cryptocurrencies WHERE id BETWEEN 1 AND 700 ORDER BY id ASC"
     );
 
     return tokens.map((token) => ({
