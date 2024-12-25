@@ -474,7 +474,7 @@ const SubmitTokenComponent = () => {
             data-size="large"
             data-text=" 🚀 We have successfully applied to get listed on RankCoins!
 🌐 https://rankcoins.com/
-
+@RankCoins
 #rankcoins"
             data-hashtags="coinlisting"
             data-show-count="false"
