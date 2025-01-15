@@ -1,7 +1,19 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
 
+// Tell Next.js this is a dynamic route
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
+  // Configure cache control headers
+  const config = {
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    }
+  };
+
   let tokenData = [];
   let losers = [];
   let gainers = [];
@@ -67,13 +79,15 @@ export async function GET() {
     console.log(error);
   }
 
-  return NextResponse.json({
-    tokenData,
-    losers,
-    gainers,
-    newTokens,
-
-    status: 200,
-    error: false,
-  });
+  return NextResponse.json(
+    {
+      tokenData,
+      losers,
+      gainers,
+      newTokens,
+      status: 200,
+      error: false,
+    },
+    config  // Apply the no-cache config to the response
+  );
 }
