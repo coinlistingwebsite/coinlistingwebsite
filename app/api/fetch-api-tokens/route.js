@@ -10,7 +10,7 @@ export async function GET() {
   try {
     // Historical Market Cap Data
     let response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/most-visited`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/trending/latest?limit=200`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": process.env.NEXT_CMC_API_KEY,
